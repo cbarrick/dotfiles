@@ -1,1 +1,3 @@
-print "${USER} @ ${HOST}"
+#!/bin/zsh
+source ${ZDOTDIR}/zlogin
+
