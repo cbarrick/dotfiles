@@ -1,0 +1,43 @@
+# Cbarrick's awesome prompt theme
+
+function prompt_cbarrick_help {
+    cat<<'EOF'
+Usage: prompt cbarrick [COLOR1 [COLOR2]]
+EOF
+}
+
+function prompt_cbarrick_setup {
+    setopt prompt_subst
+    
+    autoload -Uz add-zsh-hook
+    autoload -Uz vcs_info
+    
+    add-zsh-hook precmd prompt_cbarrick_precmd
+    
+    local main_color alt_color
+    main_color=${1:-'green'}
+    alt_color=${2:-'red'}
+    
+    local vcs_part path_part action_part
+    local vcs_prompt no_vcs_prompt
+    vcs_part="%F{${main_color}}%r%f:%F{${main_color}}%b%f"
+    path_part='%S %#'
+    action_part="%F{${alt_color}}\${vcs_info_msg_1_}%f"
+    vcs_prompt="${vcs_part}${action_part} ${path_part} "
+    no_vcs_prompt="%1~ %# "
+    
+    zstyle ':vcs_info:*' formats "${vcs_prompt}"
+    zstyle ':vcs_info:*' actionformats "${vcs_prompt}" "(%a)"
+    zstyle ':vcs_info:*' nvcsformats "${no_vcs_prompt}"
+    
+    export PROMPT='${(e)vcs_info_msg_0_}'
+    
+    # SSH Hostname on the right
+    export RPROMPT='${SSH_CONNECTION:+ %m}'
+}
+
+function prompt_cbarrick_precmd {
+    vcs_info
+}
+
+prompt_cbarrick_setup "$@"

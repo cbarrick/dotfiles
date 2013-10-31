@@ -1,0 +1,2 @@
+Put all external functions and shell libraries here
+Files in this directory will be coppied to ~/.zsh.d/Libs

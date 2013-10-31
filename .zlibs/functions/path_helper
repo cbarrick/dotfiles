@@ -1,0 +1,38 @@
+#!/bin/zsh -f
+# This function acts much like /usr/libexec/path_helper in OS X to set path,
+# manpath, and fpath. You should still use your normal method of path setup in
+# ZSHENV because this function won't be avaliable.
+
+# NOTE: THIS DOESN'T WORK AS FAR AS I CAN TELL. You need to source a file to
+# export variables, thus this won't work as an autoloaded function (afaik).
+
+typeset -U path manpath fpath
+
+local ps newpath
+
+path=(${path} $(/bin/cat /etc/paths 2> /dev/null))
+manpath=(${manpath} $(/bin/cat /etc/manpaths 2> /dev/null))
+fpath=(${fpath} $(/bin/cat /etc/fpaths 2> /dev/null))
+
+ps=($(/bin/ls /etc/paths.d 2> /dev/null))
+for p in $ps
+do
+    newpath=($(/bin/cat /etc/paths.d/${p} 2> /dev/null))
+    path=(${path} ${newpath})
+done
+
+ps=($(/bin/ls /etc/manpaths.d 2> /dev/null))
+for p in $ps
+do
+    newpath=($(/bin/cat /etc/manpaths.d/${p} 2> /dev/null))
+    manpath=(${manpath} ${newpath})
+done
+
+ps=($(/bin/ls /etc/fpaths.d 2> /dev/null))
+for p in $ps
+do
+    newpath=($(/bin/cat /etc/fpaths.d/${p} 2> /dev/null))
+    fpath=(${fpath} ${newpath})
+done
+
+export path manpath fpath
