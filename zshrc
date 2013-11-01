@@ -47,16 +47,21 @@ setopt prompt_cr # Print a \r before the prompt
 setopt prompt_sp # Try to preserve lines that would be covered by the \r
 setopt prompt_subst # Substitute in parameter/command/arithmetic expansions
 
+
 # Interactive environment
 #--------------------
 
+# Custom zsh libraries home
+ZLIBS=${ZDOTDIR:-${HOME}/.zsh.d}/zlibs
+export ZLIBS
+
 # Add local functions to fpath
 typeset -U fpath
-fpath=(${ZDOTDIR:-${HOME}}/zlibs/functions ${fpath})
+fpath=(${ZLIBS}/functions ${fpath})
 
 # Defaults
-EDITOR=vim
-VISUAL=vim
+EDITOR=ex
+VISUAL=subl
 PAGER=less
 LESS='-R -+X'
 export EDITOR VISUAL PAGER LESS
@@ -66,6 +71,16 @@ HISTSIZE=2000
 HISTFILE=${ZDOTDIR:-${HOME}}/.history
 SAVEHIST=$HISTSIZE
 export HISTSIZE HISTFILE SAVEHIST
+
+
+# Aliases
+#--------------------
+
+# GNU coreutils
+alias -g ls=gls
+alias -g mv='nocorrect gmv'
+alias -g ln='nocorrect gln'
+alias -g cp='nocorrect gcp'
 
 
 # Keyboard
@@ -87,9 +102,9 @@ bindkey -e
 [[ -n "${key[Ctrl-Left]}"  ]] && bindkey "${key[Ctrl-Left]}"  backward-word
 [[ -n "${key[Ctrl-Right]}" ]] && bindkey "${key[Ctrl-Right]}" forward-word
 
+
 # Prompt
 #--------------------
-
 
 # Set a default prompt to be used if the prompt library fails
 PS1='%1~ %# '

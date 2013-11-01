@@ -1,4 +1,4 @@
-# Cbarrick's awesome prompt theme
+# cbarrick's awesome prompt theme
 
 function prompt_cbarrick_help {
     cat<<'EOF'
