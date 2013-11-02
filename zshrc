@@ -17,8 +17,9 @@ setopt menu_complete # Tab cycles through completion possibilities
 
 # Expansion and Globbing
 setopt glob # Perform filename generation (i.e. the use of the * operator)
-#setopt extended_glob # Use additional glob operators
+setopt extended_glob # Use additional glob operators
 setopt mark_dirs # Directories resulting from globbing have trailing slashes
+setopt no_nomatch # If a glob fails, use the literal string
 
 # Input/Output
 setopt clobber # Allows '>' to truncate files and '>>' to create files
@@ -50,10 +51,6 @@ setopt prompt_subst # Substitute in parameter/command/arithmetic expansions
 
 # Interactive environment
 #--------------------
-
-# Custom zsh libraries home
-ZLIBS=${ZDOTDIR:-${HOME}/.zsh.d}/zlibs
-export ZLIBS
 
 # Add local functions to fpath
 typeset -U fpath
