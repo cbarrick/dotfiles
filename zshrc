@@ -74,10 +74,14 @@ export HISTSIZE HISTFILE SAVEHIST
 #--------------------
 
 # GNU coreutils
-alias -g ls=gls
-alias -g mv='nocorrect gmv'
-alias -g ln='nocorrect gln'
-alias -g cp='nocorrect gcp'
+[[ -a $(which gls) ]] && alias -g ls=gls
+[[ -a $(which gmv) ]] && alias -g mv=gmv
+[[ -a $(which gln) ]] && alias -g ln=gln
+[[ -a $(which gcp) ]] && alias -g cp=gcp
+
+alias mv='nocorrect mv'
+alias ln='nocorrect ln'
+alias cp='nocorrect cp'
 
 
 # Keyboard
@@ -110,3 +114,9 @@ PS1='%1~ %# '
 autoload -Uz promptinit
 promptinit
 prompt cbarrick
+
+
+# Execute on startup
+#--------------------
+
+print "${USER} @ ${HOST}"
