@@ -244,19 +244,19 @@ else
 	fi
 fi
 
-local termID=${VENDOR}-${OSTYPE}
-command mv $zkbd/$TERM.tmp $zkbd/$TERM-$termID
+local termId=${TERM}-${HOST}
+command mv $zkbd/$TERM.tmp $zkbd/${termId}
 
 cat <<EOF
 
 Parameter assignments for the keys you typed have been written to the file:
-$zkbd/$TERM-$termID
+$zkbd/$termId
 
 You may read this file into ${ZDOTDIR:-$HOME}/.zshrc or another startup
 file with the "source" or "." commands, then reference the \$key parameter
 in bindkey commands, like this:
 
-	source ${zkbd/$HOME/~}/\$TERM-\$VENDOR-\$OSTYPE
+	source ${zkbd/$HOME/~}/\${termId}
 	[[ -n \${key[Left]} ]] && bindkey "\${key[Left]}" backward-char
 	[[ -n \${key[Right]} ]] && bindkey "\${key[Right]}" forward-char
 	# etc.

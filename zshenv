@@ -28,13 +28,13 @@ local newpath
 path=($(/bin/cat /etc/paths 2> /dev/null) ${path})
 manpath=($(/bin/cat /etc/manpaths 2> /dev/null) ${manpath})
 fpath=($(/bin/cat /etc/fpaths 2> /dev/null) ${fpath})
-for file in /etc/paths ${ZLIBS}/paths.d/* ${ZLIBS}/paths.d/${OSTYPE}/*; do
+for file in /etc/paths ${ZLIBS}/paths.d/* ${ZLIBS}/paths.d/${HOST}/*; do
     path=(${~$(/bin/cat ${file} 2> /dev/null)} $path)
 done
-for file in /etc/manpaths ${ZLIBS}/manpaths.d/* ${ZLIBS}/manpaths.d/${OSTYPE}/*; do
+for file in /etc/manpaths ${ZLIBS}/manpaths.d/* ${ZLIBS}/manpaths.d/${HOST}/*; do
     manpath=(${~$(/bin/cat ${file} 2> /dev/null)} $manpath)
 done
-for file in /etc/fpaths ${ZLIBS}/fpaths.d/* ${ZLIBS}/fpaths.d/${OSTYPE}/*; do
+for file in /etc/fpaths ${ZLIBS}/fpaths.d/* ${ZLIBS}/fpaths.d/${HOST}/*; do
     fpath=(${~$(/bin/cat ${file} 2> /dev/null)} $fpath)
 done
 export path manpath fpath

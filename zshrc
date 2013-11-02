@@ -72,16 +72,9 @@ export HISTSIZE HISTFILE SAVEHIST
 # Aliases
 #--------------------
 
-# GNU coreutils
-[[ -a $(which gls) ]] && alias -g ls=gls
-[[ -a $(which gmv) ]] && alias -g mv=gmv
-[[ -a $(which gln) ]] && alias -g ln=gln
-[[ -a $(which gcp) ]] && alias -g cp=gcp
-
-# Turn off auto correct
-alias mv="nocorrect $(which mv)"
-alias ln="nocorrect $(which ln)"
-alias cp="nocorrect $(which cp)"
+alias mv="nocorrect mv"
+alias ln="nocorrect ln"
+alias cp="nocorrect cp"
 
 alias l="pwd && $(which ls) -lhHF"
 alias la="l -A"
@@ -91,8 +84,8 @@ alias la="l -A"
 #--------------------
 
 autoload -Uz zkbd
-[[ ! -f ${ZDOTDIR:-${HOME}}/zlibs/zkbd/${TERM}-${VENDOR}-${OSTYPE} ]] && zkbd
-source ${ZDOTDIR:-${HOME}}/zlibs/zkbd/${TERM}-${VENDOR}-${OSTYPE}
+[[ ! -f ${ZDOTDIR:-${HOME}}/zlibs/zkbd/${TERM}-${HOST} ]] && zkbd
+source ${ZDOTDIR:-${HOME}}/zlibs/zkbd/${TERM}-${HOST}
 
 bindkey -e
 [[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
