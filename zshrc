@@ -57,11 +57,10 @@ typeset -U fpath
 fpath=(${ZLIBS}/functions ${fpath})
 
 # Defaults
-EDITOR=ex
-VISUAL=subl
-PAGER=less
-LESS='-R -+X'
-export EDITOR VISUAL PAGER LESS
+[[ -a $(which subl) ]] && EDITOR=ex   || EDITOR=vim
+[[ -a $(which subl) ]] && VISUAL=subl || VISUAL=vim
+[[ -a $(which most) ]] && PAGER=most  || PAGER=less
+export EDITOR VISUAL PAGER
 
 # History
 HISTSIZE=2000
@@ -83,6 +82,9 @@ export HISTSIZE HISTFILE SAVEHIST
 alias mv="nocorrect $(which mv)"
 alias ln="nocorrect $(which ln)"
 alias cp="nocorrect $(which cp)"
+
+alias l="pwd && $(which ls) -lhHF"
+alias la="l -A"
 
 
 # Keyboard
@@ -115,6 +117,26 @@ PS1='%1~ %# '
 autoload -Uz promptinit
 promptinit
 prompt cbarrick
+
+
+# ZLE
+#--------------------
+
+# Credit: Mikael Magnusson (Mikachu)
+# Type '...' to get '../..'  etc
+function rationalise-dot {
+    local MATCH # keep the regex match from leaking to the environment
+    if [[ $LBUFFER =~ '(^|/| |      |'$'\n''|\||;|&)\.\.$' ]]; then
+      LBUFFER+=/
+      zle self-insert
+      zle self-insert
+    else
+      zle self-insert
+    fi
+}
+zle -N rationalise-dot
+bindkey . rationalise-dot
+bindkey -M isearch . self-insert
 
 
 # Execute on startup
