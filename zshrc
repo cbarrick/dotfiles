@@ -79,9 +79,10 @@ export HISTSIZE HISTFILE SAVEHIST
 [[ -a $(which gln) ]] && alias -g ln=gln
 [[ -a $(which gcp) ]] && alias -g cp=gcp
 
-alias mv='nocorrect mv'
-alias ln='nocorrect ln'
-alias cp='nocorrect cp'
+# Turn off auto correct
+alias mv="nocorrect $(which mv)"
+alias ln="nocorrect $(which ln)"
+alias cp="nocorrect $(which cp)"
 
 
 # Keyboard
