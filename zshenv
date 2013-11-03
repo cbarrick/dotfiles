@@ -26,6 +26,7 @@ setopt no_nomatch # If a glob fails, use the literal string
 #   $(cmd)      : Value of executing cmd
 #   ${(e)param} : Like ${param} but also expand parameters in content
 #   ${(f)param} : Like ${param} but change '\n' to ' '
+#   #"          : These comments fix Sublime Text syntax highlighting
 local newpath
 typeset -U path manpath fpath
 
@@ -34,17 +35,17 @@ manpath=($(cat /etc/manpaths 2> /dev/null) ${manpath})
 fpath=($(cat /etc/fpaths 2> /dev/null) ${fpath})
 
 for file in /etc/paths ${ZLIBS}/paths.d/* ${ZLIBS}/paths.d/${HOST}/*; do
-	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"})
+	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"}) #"
     path=($newpath $path)
 done
 
 for file in /etc/manpaths ${ZLIBS}/manpaths.d/* ${ZLIBS}/manpaths.d/${HOST}/*; do
-	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"})
+	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"}) #"
     manpath=($newpath $manpath)
 done
 
 for file in /etc/fpaths ${ZLIBS}/fpaths.d/* ${ZLIBS}/fpaths.d/${HOST}/*; do
-	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"})
+	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"}) #"
     fpath=($newpath $fpath)
 done
 
