@@ -52,17 +52,11 @@ setopt prompt_subst # Substitute in parameter/command/arithmetic expansions
 # Interactive environment
 #--------------------
 
-# Add local functions to fpath
-typeset -U fpath
-fpath=(${ZLIBS}/functions ${fpath})
-
-# Defaults
 [[ -a $(which subl) ]] && EDITOR=ex   || EDITOR=vim
 [[ -a $(which subl) ]] && VISUAL=subl || VISUAL=vim
 [[ -a $(which most) ]] && PAGER=most  || PAGER=less
 export EDITOR VISUAL PAGER
 
-# History
 HISTSIZE=2000
 HISTFILE=${ZDOTDIR:-${HOME}}/.history
 SAVEHIST=$HISTSIZE

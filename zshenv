@@ -23,18 +23,29 @@ setopt no_nomatch # If a glob fails, use the literal string
 #--------------------
 
 # Sets path in a way similar to path_helper(8) on OS X
-typeset -U path manpath fpath
+#   $(cmd)      : Value of executing cmd
+#   ${(e)param} : Like ${param} but also expand parameters in content
+#   ${(f)param} : Like ${param} but change '\n' to ' '
 local newpath
-path=($(/bin/cat /etc/paths 2> /dev/null) ${path})
-manpath=($(/bin/cat /etc/manpaths 2> /dev/null) ${manpath})
-fpath=($(/bin/cat /etc/fpaths 2> /dev/null) ${fpath})
+typeset -U path manpath fpath
+
+path=($(cat /etc/paths 2> /dev/null) ${path})
+manpath=($(cat /etc/manpaths 2> /dev/null) ${manpath})
+fpath=($(cat /etc/fpaths 2> /dev/null) ${fpath})
+
 for file in /etc/paths ${ZLIBS}/paths.d/* ${ZLIBS}/paths.d/${HOST}/*; do
-    path=(${~$(/bin/cat ${file} 2> /dev/null)} $path)
+	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"})
+    path=($newpath $path)
 done
+
 for file in /etc/manpaths ${ZLIBS}/manpaths.d/* ${ZLIBS}/manpaths.d/${HOST}/*; do
-    manpath=(${~$(/bin/cat ${file} 2> /dev/null)} $manpath)
+	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"})
+    manpath=($newpath $manpath)
 done
+
 for file in /etc/fpaths ${ZLIBS}/fpaths.d/* ${ZLIBS}/fpaths.d/${HOST}/*; do
-    fpath=(${~$(/bin/cat ${file} 2> /dev/null)} $fpath)
+	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"})
+    fpath=($newpath $fpath)
 done
+
 export path manpath fpath
