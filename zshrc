@@ -6,7 +6,7 @@
 #--------------------
 
 # Changing Directories
-setopt no_chase_links # Treat links as real directories
+setopt chase_links # Resolve links to their true directory
 
 # Completion
 setopt auto_list # List choices on ambiguous completion
@@ -21,6 +21,11 @@ setopt extended_glob # Use additional glob operators
 setopt mark_dirs # Directories resulting from globbing have trailing slashes
 setopt no_nomatch # If a glob fails, use the literal string
 
+# History
+setopt hist_ignore_all_dups # Ignore all duplicates when writing history
+setopt hist_ignore_space # Ignore commands that begin with spaces
+setopt inc_append_history # Write commands to history file as soon as possible
+
 # Input/Output
 setopt clobber # Allows '>' to truncate files and '>>' to create files
 setopt correct_all # Try to correct the spelling of all commands and arguments
@@ -33,20 +38,14 @@ setopt bg_nice # Run background jobs at lower priority
 setopt check_jobs # Warn about background & suspended jobs on exit
 setopt monitor # Enable job control. This is default.
 
-# ZLE
-setopt no_beep # The shell shouldn't beep on ZLE errors (most beeps)
-setopt zle # Use ZLE. This is default, but I like to be explicit
-
-# History
-setopt append_history
-setopt bang_hist
-setopt hist_ignore_dups
-setopt hist_ignore_space
-
-# Prompt
+# Prompting
 setopt prompt_cr # Print a \r before the prompt
 setopt prompt_sp # Try to preserve lines that would be covered by the \r
 setopt prompt_subst # Substitute in parameter/command/arithmetic expansions
+
+# ZLE
+setopt no_beep # The shell shouldn't beep on ZLE errors (most beeps)
+setopt zle # Use ZLE. This is default, but I like to be explicit
 
 
 # Interactive environment
@@ -104,9 +103,14 @@ bindkey -e
 PS1='%1~ %# '
 
 # Initialize the prompt library and select the prompt
-autoload -Uz promptinit
-promptinit
+autoload -U promptinit && promptinit
 prompt cbarrick
+
+
+# Completion
+#--------------------
+
+autoload -U compinit && compinit
 
 
 # ZLE
