@@ -27,26 +27,36 @@ setopt no_nomatch # If a glob fails, use the literal string
 #   ${(e)param} : Like ${param} but also expand parameters in content
 #   ${(f)param} : Like ${param} but change '\n' to ' '
 #   #"          : These comments fix Sublime Text syntax highlighting
-local newpath
 typeset -U path manpath fpath
 
-path=($(cat /etc/paths 2> /dev/null) ${path})
-manpath=($(cat /etc/manpaths 2> /dev/null) ${manpath})
-fpath=($(cat /etc/fpaths 2> /dev/null) ${fpath})
+local userpaths="${ZDOTDIR}/paths"
 
-for file in /etc/paths ${ZLIBS}/paths.d/* ${ZLIBS}/paths.d/${HOST}/*; do
-	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"}) #"
-    path=($newpath $path)
-done
+path=(
+	${(ef)"$(cat ${userpaths}/paths.d/${HOST} 2> /dev/null)"} #"
+	${(ef)"$(cat ${userpaths}/paths 2> /dev/null)"} #"
+	${(ef)"$(cat /etc/paths 2> /dev/null)"}
+	${path}
+)
 
-for file in /etc/manpaths ${ZLIBS}/manpaths.d/* ${ZLIBS}/manpaths.d/${HOST}/*; do
-	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"}) #"
-    manpath=($newpath $manpath)
-done
+manpath=(
+	${(ef)"$(cat ${userpaths}/manpaths.d/${HOST} 2> /dev/null)"} #"
+	${(ef)"$(cat ${userpaths}/manpaths 2> /dev/null)"} #"
+	${(ef)"$(cat /etc/manpaths 2> /dev/null)"}
+	${manpath}
+)
 
-for file in /etc/fpaths ${ZLIBS}/fpaths.d/* ${ZLIBS}/fpaths.d/${HOST}/*; do
-	newpath=(${(ef)"$(cat ${file} 2> /dev/null)"}) #"
-    fpath=($newpath $fpath)
-done
+fpath=(
+	${(ef)"$(cat ${userpaths}/fpaths.d/${HOST} 2> /dev/null)"} #"
+	${(ef)"$(cat ${userpaths}/fpaths 2> /dev/null)"} #"
+	${(ef)"$(cat /etc/fpaths 2> /dev/null)"}
+	${fpath}
+)
 
-export path manpath fpath
+cdpath=(
+	${(ef)"$(cat ${userpaths}/cdpaths.d/${HOST} 2> /dev/null)"} #"
+	${(ef)"$(cat ${userpaths}/cdpaths 2> /dev/null)"} #"
+	${(ef)"$(cat /etc/cdpaths 2> /dev/null)"}
+	${cdpath}
+)
+
+export path manpath fpath cdpath

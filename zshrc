@@ -61,9 +61,6 @@ HISTFILE=${ZDOTDIR:-${HOME}}/.history
 SAVEHIST=$HISTSIZE
 export HISTSIZE HISTFILE SAVEHIST
 
-cdpath=(~ ~/Documents/Engage)
-export cdpath
-
 
 # Aliases
 #--------------------
