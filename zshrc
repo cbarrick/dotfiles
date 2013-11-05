@@ -69,7 +69,7 @@ alias mv="nocorrect mv"
 alias ln="nocorrect ln"
 alias cp="nocorrect cp"
 
-alias l="pwd && $(which ls) -lhHF"
+alias l="pwd && $(which ls) -lhF"
 alias la="l -a"
 
 
