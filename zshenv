@@ -25,35 +25,34 @@ setopt no_nomatch # If a glob fails, use the literal string
 #   $(cmd)      : Value of executing cmd
 #   ${(e)param} : Like ${param} but also expand parameters in content
 #   ${(f)param} : Like ${param} but change '\n' to ' '
-#   #"          : These comments fix Sublime Text syntax highlighting
 typeset -U path manpath fpath
 
 local userpaths="${ZDOTDIR}/paths"
 
 path=(
-	${(ef)"$(cat ${userpaths}/paths.d/${HOST} 2> /dev/null)"} #"
-	${(ef)"$(cat ${userpaths}/paths 2> /dev/null)"} #"
+	${(ef)"$(cat ${userpaths}/paths.d/${HOST} 2> /dev/null)"}
+	${(ef)"$(cat ${userpaths}/paths 2> /dev/null)"}
 	${(ef)"$(cat /etc/paths 2> /dev/null)"}
 	${path}
 )
 
 manpath=(
-	${(ef)"$(cat ${userpaths}/manpaths.d/${HOST} 2> /dev/null)"} #"
-	${(ef)"$(cat ${userpaths}/manpaths 2> /dev/null)"} #"
+	${(ef)"$(cat ${userpaths}/manpaths.d/${HOST} 2> /dev/null)"}
+	${(ef)"$(cat ${userpaths}/manpaths 2> /dev/null)"}
 	${(ef)"$(cat /etc/manpaths 2> /dev/null)"}
 	${manpath}
 )
 
 fpath=(
-	${(ef)"$(cat ${userpaths}/fpaths.d/${HOST} 2> /dev/null)"} #"
-	${(ef)"$(cat ${userpaths}/fpaths 2> /dev/null)"} #"
+	${(ef)"$(cat ${userpaths}/fpaths.d/${HOST} 2> /dev/null)"}
+	${(ef)"$(cat ${userpaths}/fpaths 2> /dev/null)"}
 	${(ef)"$(cat /etc/fpaths 2> /dev/null)"}
 	${fpath}
 )
 
 cdpath=(
-	${(ef)"$(cat ${userpaths}/cdpaths.d/${HOST} 2> /dev/null)"} #"
-	${(ef)"$(cat ${userpaths}/cdpaths 2> /dev/null)"} #"
+	${(ef)"$(cat ${userpaths}/cdpaths.d/${HOST} 2> /dev/null)"}
+	${(ef)"$(cat ${userpaths}/cdpaths 2> /dev/null)"}
 	${(ef)"$(cat /etc/cdpaths 2> /dev/null)"}
 	${cdpath}
 )
