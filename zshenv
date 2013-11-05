@@ -4,7 +4,7 @@
 # Universal environment
 #--------------------
 
-ZDOTDIR=${HOME}/.zsh.d
+ZDOTDIR=${HOME}/.zsh
 export ZDOTDIR
 
 
