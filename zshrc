@@ -77,8 +77,8 @@ alias la="l -A"
 #--------------------
 
 autoload -Uz zkbd
-[[ ! -f ${ZDOTDIR:-${HOME}}/zlibs/zkbd/${TERM}-${HOST} ]] && zkbd
-source ${ZDOTDIR:-${HOME}}/zlibs/zkbd/${TERM}-${HOST}
+[[ ! -f ${ZDOTDIR}/zkbd/${TERM}-${HOST} ]] && zkbd
+source ${ZDOTDIR}/zkbd/${TERM}-${HOST}
 
 bindkey -e
 [[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line

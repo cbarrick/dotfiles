@@ -5,8 +5,7 @@
 #--------------------
 
 ZDOTDIR=${HOME}/.zsh.d
-ZLIBS=${ZDOTDIR:-${HOME}/.zsh.d}/zlibs
-export ZDOTDIR ZLIBS
+export ZDOTDIR
 
 
 # Universal options
