@@ -28,7 +28,7 @@ setopt inc_append_history # Write commands to history file as soon as possible
 
 # Input/Output
 setopt clobber # Allows '>' to truncate files and '>>' to create files
-setopt correct_all # Try to correct the spelling of all commands and arguments
+setopt correct # Try to correct the spelling of commands
 setopt interactive_comments # Allow comments in interactive shells
 
 # Job Control
@@ -57,7 +57,7 @@ setopt zle # Use ZLE. This is default, but I like to be explicit
 export EDITOR VISUAL PAGER
 
 HISTSIZE=2000
-HISTFILE=${ZDOTDIR:-${HOME}}/.history
+HISTFILE=${ZDOTDIR}/.history
 SAVEHIST=$HISTSIZE
 export HISTSIZE HISTFILE SAVEHIST
 
@@ -70,7 +70,7 @@ alias ln="nocorrect ln"
 alias cp="nocorrect cp"
 
 alias l="pwd && $(which ls) -lhHF"
-alias la="l -A"
+alias la="l -a"
 
 
 # Keyboard
@@ -81,14 +81,14 @@ autoload -Uz zkbd
 source ${ZDOTDIR}/zkbd/${TERM}-${HOST}
 
 bindkey -e
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-search
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-search
-[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+[[ -n "${key[Home]}"       ]] && bindkey "${key[Home]}"   beginning-of-line
+[[ -n "${key[End]}"        ]] && bindkey "${key[End]}"    end-of-line
+[[ -n "${key[Insert]}"     ]] && bindkey "${key[Insert]}" overwrite-mode
+[[ -n "${key[Delete]}"     ]] && bindkey "${key[Delete]}" delete-char
+[[ -n "${key[Up]}"         ]] && bindkey "${key[Up]}"     up-line-or-search
+[[ -n "${key[Down]}"       ]] && bindkey "${key[Down]}"   down-line-or-search
+[[ -n "${key[Left]}"       ]] && bindkey "${key[Left]}"   backward-char
+[[ -n "${key[Right]}"      ]] && bindkey "${key[Right]}"  forward-char
 [[ -n "${key[Ctrl-Left]}"  ]] && bindkey "${key[Ctrl-Left]}"  backward-word
 [[ -n "${key[Ctrl-Right]}" ]] && bindkey "${key[Ctrl-Right]}" forward-word
 
