@@ -110,7 +110,8 @@ zstyle ':completion:*' squeeze-slashes true
 #--------------------
 
 # EX: Rename all .cpp files to .cc ::
-#   zmv '(*).cpp' '${1}.cc'
+#   zmv '(*).cpp' '$1.cc'
+# Remember that arguments are quoted
 # Use `-n` for a dry-run
 autoload -U zmv
 alias mv="zmv"
@@ -138,10 +139,6 @@ bindkey -M isearch . self-insert
 
 # Aliases
 #--------------------
-
-alias mv="nocorrect $(which mv)"
-alias ln="nocorrect $(which ln)"
-alias cp="nocorrect $(which cp)"
 
 alias l="pwd && $(which ls) -lhF"
 alias la="l -a"
