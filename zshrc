@@ -62,17 +62,6 @@ SAVEHIST=$HISTSIZE
 export HISTSIZE HISTFILE SAVEHIST
 
 
-# Aliases
-#--------------------
-
-alias mv="nocorrect mv"
-alias ln="nocorrect ln"
-alias cp="nocorrect cp"
-
-alias l="pwd && $(which ls) -lhF"
-alias la="l -a"
-
-
 # Keyboard
 #--------------------
 
@@ -109,6 +98,23 @@ prompt cbarrick
 
 autoload -U compinit && compinit
 
+# Cache completion results (nice for package managers)
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ${ZDOTDIR}/.cache
+
+# When you use a completed directory as an argument, strip the trailing slash
+zstyle ':completion:*' squeeze-slashes true
+
+
+# zmv - Batch Rename
+#--------------------
+
+# EX: Rename all .cpp files to .cc ::
+#   zmv '(*).cpp' '${1}.cc'
+# Use `-n` for a dry-run
+autoload -U zmv
+alias mv="zmv"
+
 
 # ZLE
 #--------------------
@@ -128,6 +134,17 @@ function rationalise-dot {
 zle -N rationalise-dot
 bindkey . rationalise-dot
 bindkey -M isearch . self-insert
+
+
+# Aliases
+#--------------------
+
+alias mv="nocorrect $(which mv)"
+alias ln="nocorrect $(which ln)"
+alias cp="nocorrect $(which cp)"
+
+alias l="pwd && $(which ls) -lhF"
+alias la="l -a"
 
 
 # Execute on startup
