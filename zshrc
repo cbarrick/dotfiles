@@ -114,7 +114,7 @@ zstyle ':completion:*' squeeze-slashes true
 # Remember that arguments are quoted
 # Use `-n` for a dry-run
 autoload -U zmv
-alias mv="zmv"
+alias mv="noglob zmv"
 
 
 # ZLE
