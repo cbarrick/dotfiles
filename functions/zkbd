@@ -2,7 +2,7 @@
 # THIS IS A MODIFIED VERSION OF ZKBD THAT COMES WITH THE DEFAULT INSTALLATION
 # OF ZSH. IT HAS BEEN MODIFIED TO SUPPORT MAC OS X WHICH DOES NOT USE THE
 # $DISPLAY VARIABLE (or at least does not set it in a way zkbd expects) AND TO
-# USE A DIFFERENT DIRECTORY. FOR THIS TO WORK $ZLIBS MUST BE SET.
+# USE A DIFFERENT DIRECTORY.
 
 [[ -o interactive ]] && {
 	local -hi ARGC		# local is a no-op outside of a function
@@ -15,7 +15,7 @@
 emulate -RL zsh
 local zkbd term key seq
 
-zkbd=${ZLIBS}/zkbd
+zkbd=${ZDOTDIR}/zkbd
 [[ -d $zkbd ]] || mkdir -p $zkbd || return 1
 
 print 'typeset -g -A key\n' > $zkbd/$TERM.tmp || return 1
