@@ -2,3 +2,5 @@
 .DS_Store
 .history
 .zcompdump
+
+secret.zsh
