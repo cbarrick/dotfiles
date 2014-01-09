@@ -7,22 +7,36 @@ EOF
 }
 
 function prompt_cbarrick_setup {
+    local main_color    # Main info color; used for branch name etc
+    local alt_color     # Secondary info color; used for errors, actions
+    local vcs_part      # Part that shows version control info
+    local path_part     # Part of the prompt that shows
+    local action_part   # Part that shows vcs actions like in progress merges
+    local vcs_prompt    # Prompt when in a version controled directory
+    local no_vcs_prompt # Prompt when in a non-vcs directory
+
+    main_color=${1:-'green'}
+    alt_color=${2:-'red'}
+
     setopt prompt_subst
     
     autoload -Uz add-zsh-hook
     autoload -Uz vcs_info
     
+    # Update the prompt before every command
     add-zsh-hook precmd prompt_cbarrick_precmd
     
-    local main_color alt_color
-    main_color=${1:-'green'}
-    alt_color=${2:-'red'}
-    
-    local vcs_part path_part action_part
-    local vcs_prompt no_vcs_prompt
+    # In vcs: '<project>:<branch>'
     vcs_part="%F{${main_color}}%r%f:%F{${main_color}}%b%f"
+    
+    # User: '<dirname> %'
+    # Root: '<dirname> #'
     path_part='%S %#'
+    
+    # In vcs: Looks like the "actionsformat" style in the ":vcs_info" context
+    # By default: shows the current action in parens
     action_part="%F{${alt_color}}\${vcs_info_msg_1_}%f"
+    
     vcs_prompt="${vcs_part}${action_part} ${path_part} "
     no_vcs_prompt="%1~ %# "
     
