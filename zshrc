@@ -7,6 +7,7 @@
 
 # Changing Directories
 setopt chase_links # Resolve links to their true directory
+setopt autocd # If command is a directory path, cd to it
 
 # Completion
 setopt auto_list # List choices on ambiguous completion
