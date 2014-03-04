@@ -1,3 +1,4 @@
+#!/bin/zsh --no-rcs
 # cbarrick's awesome prompt theme
 
 function prompt_cbarrick_help {

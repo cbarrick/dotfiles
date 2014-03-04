@@ -1,4 +1,4 @@
-#!/bin/zsh -f
+#!/bin/zsh --no-rcs
 # THIS IS A MODIFIED VERSION OF ZKBD THAT COMES WITH THE DEFAULT INSTALLATION
 # OF ZSH. IT HAS BEEN MODIFIED TO SUPPORT MAC OS X WHICH DOES NOT USE THE
 # $DISPLAY VARIABLE (or at least does not set it in a way zkbd expects) AND TO
