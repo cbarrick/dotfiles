@@ -144,6 +144,8 @@ bindkey -M isearch . self-insert
 alias l="pwd && $(which ls) -lhF"
 alias la="l -a"
 
+which hub > /dev/null && alias git=hub
+
 
 # Execute on startup
 #--------------------
