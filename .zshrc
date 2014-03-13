@@ -141,7 +141,7 @@ bindkey -M isearch . self-insert
 # Aliases
 #--------------------
 
-alias l="pwd && $(which ls) -lhF"
+alias l="printf 'pwd: ' && pwd && $(which ls) -lhF --group-directories-first"
 alias la="l -a"
 
 which hub > /dev/null && alias git=hub
