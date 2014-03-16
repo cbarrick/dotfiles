@@ -1,0 +1,12 @@
+{
+  "name": "remember-window",
+  "main": "./lib/remember-window",
+  "version": "0.1.1",
+  "description": "Remember the window size and position",
+  "repository": "https://github.com/AbeEstrada/atom-remember-window",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {}
+}

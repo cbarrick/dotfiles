@@ -1,0 +1,35 @@
+{
+  "name": "editorconfig",
+  "version": "0.1.1",
+  "description": "Helps developers maintain consistent coding styles between different editors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sindresorhus/atom-editorconfig"
+  },
+  "private": true,
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "atom": ">=0.60.0"
+  },
+  "dependencies": {
+    "emissary": "^1.0.0",
+    "editorconfig": "^0.11.4"
+  },
+  "readme": "# EditorConfig\n\n[Atom package](https://atom.io/packages/editorconfig)\n\n> [EditorConfig](http://editorconfig.org) helps developers maintain consistent coding styles between different editors\n\n![](https://f.cloud.github.com/assets/170270/2327994/dfe40cb4-a3f6-11e3-862f-894999973373.png)\n\n\n## Install\n\n```bash\n$ apm install editorconfig\n```\n\nOr Settings ➔ Packages ➔ Search for `editorconfig`\n\n\n## Getting started\n\nSee the EditorConfig [documentation](http://editorconfig.org).\n\n\n## Supported properties\n\n- root\n- indent_style\n- indent_size\n\n\n## Features\n\n- Applies the above settings from your `.editorconfig` file\n- Syntax highlights `.editorconfig` files\n\n\n## Example file\n\n```ini\n# editorconfig.org\nroot = true\n\n[*]\nindent_style = space\nindent_size = 4\nend_of_line = lf\ncharset = utf-8\ntrim_trailing_whitespace = true\ninsert_final_newline = true\n```\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
+  "readmeFilename": "readme.md",
+  "bugs": {
+    "url": "https://github.com/sindresorhus/atom-editorconfig/issues"
+  },
+  "homepage": "https://github.com/sindresorhus/atom-editorconfig",
+  "_id": "editorconfig@0.1.1",
+  "dist": {
+    "shasum": "e7158a979a83519ea8c6a389cb00f26102c3721f"
+  },
+  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114215-22400-tax4p2/package.tgz",
+  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114215-22400-tax4p2/package.tgz"
+}

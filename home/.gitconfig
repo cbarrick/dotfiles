@@ -1,0 +1,7 @@
+[user]
+	email = cbarrick1@gmail.com
+	name = Chris Barrick
+[core]
+	excludesfile = ~/.gitignore
+[push]
+	default = simple

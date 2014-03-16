@@ -1,0 +1,26 @@
+{
+  "name": "block-travel",
+  "version": "0.10.0",
+  "main": "./lib/block-travel",
+  "description": "Quickly travel up/down between blocks of code",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leejarvis/block-travel"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": "*"
+  },
+  "readme": "# Block travel package\n\nBlock travel uses empty lines to travel quickly\nthrough blocks of code.\n\n* `alt-up` to travel up through blocks of code\n* `alt-down` to travel down through blocks of code\n* `alt-shift-up` to travel and select up through blocks of code\n* `alt-shift-down` to travel and select down through blocks of code\n\n![](http://f.cl.ly/items/422j0z3O2l3G013f040o/block-travel.gif)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/leejarvis/block-travel/issues"
+  },
+  "homepage": "https://github.com/leejarvis/block-travel",
+  "_id": "block-travel@0.10.0",
+  "dist": {
+    "shasum": "6f204a7485560985158b23968c281d89b3155b47"
+  },
+  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114215-22344-szv7sf/package.tgz",
+  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114215-22344-szv7sf/package.tgz"
+}

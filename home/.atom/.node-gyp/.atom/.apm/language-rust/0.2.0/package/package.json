@@ -1,0 +1,18 @@
+{
+  "name": "language-rust",
+  "version": "0.2.0",
+  "description": "Rust language support in Atom",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "homepage": "https://github.com/zargony/atom-language-rust",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zargony/atom-language-rust.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zargony/atom-language-rust/issues"
+  }
+}

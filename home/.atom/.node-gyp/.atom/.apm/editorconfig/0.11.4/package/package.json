@@ -1,0 +1,40 @@
+{
+  "name": "editorconfig",
+  "version": "0.11.4",
+  "description": "EditorConfig File Locator and Interpreter for Node.js",
+  "keywords": [
+    "editorconfig",
+    "core"
+  ],
+  "main": "editorconfig.js",
+  "contributors": [
+    "Hong Xu (topbug.net)",
+    "Jed Hunsaker <jed.hunsaker[at]gmail.com>",
+    "Trey Hunner (http://treyhunner.com)"
+  ],
+  "directories": {
+    "bin": "./bin",
+    "lib": "./lib"
+  },
+  "scripts": {
+    "pretest": "cmake .",
+    "test": "ctest .",
+    "test-verbose": "ctest -VV --output-on-failure .",
+    "codepaint": "codepaint xform -e **/**.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/editorconfig/editorconfig-core-js.git"
+  },
+  "bugs": "https://github.com/editorconfig/editorconfig-core-js/issues",
+  "author": "EditorConfig Team",
+  "license": {
+    "type": "MIT",
+    "url": "http://editorconfig.mit-license.org/2012"
+  },
+  "dependencies": {
+    "commander": "~1.1.1",
+    "lru-cache": "~2.0.0",
+    "sigmund": "~1.0.0"
+  }
+}
