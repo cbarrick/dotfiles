@@ -19,8 +19,9 @@ setopt menu_complete # Tab cycles through completion possibilities
 # Expansion and Globbing
 setopt glob # Perform filename generation (i.e. the use of the * operator)
 setopt extended_glob # Use additional glob operators
+setopt glob_dots # Do not require a leading ‘.’ in a filename to be matched explicitly.
 setopt mark_dirs # Directories resulting from globbing have trailing slashes
-setopt no_nomatch # If a glob fails, use the literal string
+setopt nomatch # If a glob fails, the command isn't executed
 
 # History
 setopt hist_ignore_all_dups # Ignore all duplicates when writing history
@@ -52,8 +53,8 @@ setopt zle # Use ZLE. This is default, but I like to be explicit
 # Interactive environment
 #--------------------
 
-[[ -a $(which subl) ]] && EDITOR=ex   || EDITOR=vim
-[[ -a $(which subl) ]] && VISUAL=subl || VISUAL=vim
+[[ -a $(which atom) ]] && EDITOR="atom -w" || EDITOR=vim
+[[ -a $(which atom) ]] && VISUAL="atom -w" || VISUAL=vim
 [[ -a $(which most) ]] && PAGER=most  || PAGER=less
 export EDITOR VISUAL PAGER
 
