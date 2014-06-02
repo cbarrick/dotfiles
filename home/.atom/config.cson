@@ -27,8 +27,6 @@
   'disabledPackages': [
     'autocomplete'
     'feedback'
-    'tabs'
-    'tree-view'
   ]
 'autosave': {}
 'tree-view':
@@ -45,3 +43,4 @@
   'hideVcsIgnoredFiles': true
 'tabs':
   'showIcons': true
+'jshint': {}
