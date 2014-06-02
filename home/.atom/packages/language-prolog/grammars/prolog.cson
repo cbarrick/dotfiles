@@ -1,0 +1,212 @@
+'fileTypes': [
+  'pl'
+  'plg'
+  'prolog'
+  'pdb'
+]
+'name': 'Prolog'
+'patterns': [
+  {
+    'begin': '\''
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.prolog'
+    'end': '\''
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.prolog'
+    'name': 'string.quoted.single.prolog'
+    'patterns': [
+      {
+        'match': '\\\\.'
+        'name': 'constant.character.escape.prolog'
+      }
+      {
+        'match': '\'\''
+        'name': 'constant.character.escape.quote.prolog'
+      }
+    ]
+  }
+  {
+    'begin': '/\\*'
+    'captures':
+      '0':
+        'name': 'punctuation.definition.comment.prolog'
+    'end': '\\*/'
+    'name': 'comment.block.prolog'
+  }
+  {
+    'begin': '(^[ \\t]+)?(?=%)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.whitespace.comment.leading.prolog'
+    'end': '(?!\\G)'
+    'patterns': [
+      {
+        'begin': '%'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.prolog'
+        'end': '\\n'
+        'name': 'comment.line.percentage.prolog'
+      }
+    ]
+  }
+  {
+    'match': ':-'
+    'name': 'keyword.operator.definition.prolog'
+  }
+  {
+    'match': '\\.'
+    'name': 'punctuation.separator.statement.prolog'
+  }
+  {
+    'match': ','
+    'name': 'punctuation.separator.and.prolog'
+  }
+  {
+    'match': ';'
+    'name': 'punctuation.separator.or.prolog'
+  }
+  {
+    'match': '!'
+    'name': 'support.constant.cut.prolog'
+  }
+  {
+    'match': 'true'
+    'name': 'support.constant.true.prolog'
+  }
+  {
+    'match': 'fail'
+    'name': 'support.constant.fail.prolog'
+  }
+  {
+    'match': 'nl'
+    'name': 'support.constant.newline.prolog'
+  }
+  {
+    'match': '_'
+    'name': 'support.constant.joker.prolog'
+  }
+  {
+    'match': '\\\\+'
+    'name': 'keyword.operator.not.prolog'
+  }
+  {
+    'match': '@<'
+    'name': 'keyword.operator.alphabeticalllt.prolog'
+  }
+  {
+    'match': '@=<'
+    'name': 'keyword.operator.alphabeticallyle.prolog'
+  }
+  {
+    'match': '@>='
+    'name': 'keyword.operator.alphabeticallyge.prolog'
+  }
+  {
+    'match': '@>'
+    'name': 'keyword.operator.alphabeticallygt.prolog'
+  }
+  {
+    'match': '\\\\=='
+    'name': 'keyword.operator.notidentical.prolog'
+  }
+  {
+    'match': '\\\\='
+    'name': 'keyword.operator.notequal.prolog'
+  }
+  {
+    'match': '=='
+    'name': 'keyword.operator.identical.prolog'
+  }
+  {
+    'match': '=:='
+    'name': 'keyword.operator.equalexpr.prolog'
+  }
+  {
+    'match': '=\\\\='
+    'name': 'keyword.operator.notequalexpr.prolog'
+  }
+  {
+    'match': '#='
+    'name': 'keyword.operator.sharpequal.prolog'
+  }
+  {
+    'match': '#=<'
+    'name': 'keyword.operator.sharple.prolog'
+  }
+  {
+    'match': '=<'
+    'name': 'keyword.operator.le.prolog'
+  }
+  {
+    'match': '#<'
+    'name': 'keyword.operator.sharplt.prolog'
+  }
+  {
+    'match': '<'
+    'name': 'keyword.operator.lt.prolog'
+  }
+  {
+    'match': '#>='
+    'name': 'keyword.operator.sharpge.prolog'
+  }
+  {
+    'match': '>='
+    'name': 'keyword.operator.ge.prolog'
+  }
+  {
+    'match': '#>'
+    'name': 'keyword.operator.sharpgt.prolog'
+  }
+  {
+    'match': '>'
+    'name': 'keyword.operator.gt.prolog'
+  }
+  {
+    'match': '=|(?:is)'
+    'name': 'keyword.operator.is.prolog'
+  }
+  {
+    'match': '\\+'
+    'name': 'keyword.operator.plus.prolog'
+  }
+  {
+    'match': '-'
+    'name': 'keyword.operator.minus.prolog'
+  }
+  {
+    'match': '\\*'
+    'name': 'keyword.operator.times.prolog'
+  }
+  {
+    'match': '\\|'
+    'name': 'keyword.operator.cons.prolog'
+  }
+  {
+    'match': '\\b\\d+\\b'
+    'name': 'constant.numeric.prolog'
+  }
+  {
+    'match': '\\bconsult\(\\w*\)\\b'
+    'name': 'keyword.control.consult.prolog'
+  }
+  {
+    'match': '\\bcall\(\\w*\)\\b'
+    'name': 'keyword.control.call.prolog'
+  }
+  {
+    'match': '\\b(?:append|arg|bagof|findall|read|end_of_file|get_byte|get|flush_output|member|print|prin|tab|put|setof|forall|between|select|length)\(\\w*\)\\b'
+    'name': 'support.function.prolog'
+  }
+  {
+    'match': '\\b[A-Z][a-zA-Z0-9_]*\\b'
+    'name': 'variable.other.prolog'
+  }
+  {
+    'match': '\\b[a-z][a-zA-Z0-9_]*\\b'
+    'name': 'entity.name.function.declaration.prolog'
+  }
+]
+'scopeName': 'source.prolog'

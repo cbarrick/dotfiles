@@ -1,0 +1,88 @@
+'.source.mips':
+  'Hello World (mips)':
+    'prefix': 'hello'
+    'body': '#  a basic example in mips-assembler: hello world.\n#  tested with xspim-7.0\n   \n\t.text\n\t.globl main\n\t\nmain:\n\tli       \\$v0, 4            # call = 4 = print_string\n\tla       \\$a0, hello_string # set \\$a0 to point to the string\n\tsyscall                    # print it.\n\tli       \\$v0, 10           # call = 10 = exit\n\tsyscall                    # done.\n\t\n\t\n\t.data\n\t\nhello_string:  .asciiz  "Hello World!"\n$1'
+  'print string':
+    'prefix': 'print'
+    'body': 'li\t\t\\$v0, 1\t\t# system call #4 - print string\nla\t\t\\$a0, ${1:string}\nsyscall\t\t\t\t# execute'
+  'add immediate':
+    'prefix': 'addi'
+    'body': 'addi\t${1:\\$t0}, ${2:\\$t1}, ${3:0}\t\t\t# $1 = $2 + $3\n'
+  'add':
+    'prefix': 'add'
+    'body': 'add\t\t${1:\\$t0}, ${2:\\$t1}, ${3:\\$t2}\t\t# $1 = $2 + $3\n'
+  'branch if equal':
+    'prefix': 'beq'
+    'body': 'beq\t\t${1:\\$t0}, ${2:\\$t1}, ${3:target}\t# if $1 == $2 then $3\n'
+  'branch if greater then or equal':
+    'prefix': 'bge'
+    'body': 'bge\t\t${1:\\$t0}, ${2:\\$t1}, ${3:target}\t# if $1 >= $2 then $3\n'
+  'branch if greater then':
+    'prefix': 'bgt'
+    'body': 'bgt\t\t${1:\\$t0}, ${2:\\$t1}, ${3:target}\t# if $1 > $2 then $3\n'
+  'branch if less then or equal':
+    'prefix': 'ble'
+    'body': 'ble\t\t${1:\\$t0}, ${2:\\$t1}, ${3:target}\t# if $1 <= $2 then $3\n'
+  'branch if less then':
+    'prefix': 'blt'
+    'body': 'blt\t\t${1:\\$t0}, ${2:\\$t1}, ${3:target}\t# if $1 < $2 then $3\n'
+  'branch if not equal':
+    'prefix': 'bne'
+    'body': 'bne\t\t${1:\\$t0}, ${2:\\$t1}, ${3:target}\t# if $1 != $2 then $3\n'
+  'branch uncodnitional':
+    'prefix': 'b'
+    'body': 'b\t\t${1:target}\t\t\t# branch to $1\n'
+  'divide':
+    'prefix': 'div'
+    'body': 'div\t\t${1:\\$t0}, ${2:\\$t1}\t\t\t# $1 / $2\nmflo\t${3:\\$t2}\t\t\t\t\t# $3 = floor($1 / $2) \nmfhi\t${4:\\$t3}\t\t\t\t\t# $4 = $1 mod $2 \n'
+  'jump and link':
+    'prefix': 'jal'
+    'body': 'jal\t\t${1:target}\t\t\t\t# jump to $1 and save position to \\$ra\n'
+  'jump register':
+    'prefix': 'jr'
+    'body': 'jr\t\t${1:\\$ra}\t\t\t\t\t# jump to $1\n'
+  'jump':
+    'prefix': 'j'
+    'body': 'j\t\t${1:target}\t\t\t\t# jump to $1\n'
+  'load address':
+    'prefix': 'la'
+    'body': 'la\t\t${1:\\$t1}, ${2:var1}\t\t# \n'
+  'load byte':
+    'prefix': 'lb'
+    'body': 'lb\t\t${1:\\$t1}, ${2:${3:0}(${4:\\$s1})}\t\t# \n'
+  'load immediate':
+    'prefix': 'li'
+    'body': 'li\t\t${1:\\$t1}, $2\t\t# $1 = $2\n'
+  'load word':
+    'prefix': 'lw'
+    'body': 'lw\t\t${1:\\$t1}, ${2:${3:0}(${4:\\$s1})}\t\t# \n'
+  'move':
+    'prefix': 'move'
+    'body': 'move \t${1:\\$t0}, ${2:\\$t1}\t\t# $1 = $2'
+  'multiply':
+    'prefix': 'mult'
+    'body': 'mult\t${1:\\$t0}, ${2:\\$t1}\t\t\t# $1 * $2 = Hi and Lo registers\nmflo\t${3:\\$t2}\t\t\t\t\t# copy Lo to $3\n'
+  'print double':
+    'prefix': 'print'
+    'body': 'li\t\t\\$v0, 3\t\t# system call #3 - print double\nla\t\t\\$a0, ${1:variable}\nsyscall\t\t\t\t# execute'
+  'print float':
+    'prefix': 'print'
+    'body': 'li\t\t\\$v0, 2\t\t# system call #2 - print float\nla\t\t\\$a0, ${1:variable}\nsyscall\t\t\t\t# execute'
+  'print int':
+    'prefix': 'print'
+    'body': 'li\t\t\\$v0, 1\t\t# system call #1 - print int\nla\t\t\\$a0, ${1:variable}\nsyscall\t\t\t\t# execute'
+  'store byte':
+    'prefix': 'sb'
+    'body': 'sb\t\t${1:\\$t1}, ${2:${3:0}(${4:\\$s1})}\t\t# \n'
+  'store word':
+    'prefix': 'sw'
+    'body': 'sw\t\t${1:\\$t1}, ${2:${3:0}(${4:\\$s1})}\t\t# \n'
+  'string var':
+    'prefix': 'string'
+    'body': '${1:string}: .asciiz "$2"'
+  'substract':
+    'prefix': 'sub'
+    'body': 'sub\t\t${1:\\$t0}, ${2:\\$t1}, ${3:\\$t2}\t\t# $1 = $2 - $3\n'
+  'variable':
+    'prefix': 'var'
+    'body': '${1:var}: .${2:word} $3'

@@ -1,0 +1,34 @@
+{
+  "name": "autocomplete-snippets",
+  "main": "./lib/autocomplete-snippets",
+  "version": "0.2.0",
+  "description": "Adds snippets to autocomplete+ suggestions",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saschagehlich/autocomplete-snippets"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "underscore-plus": "~1.1.2",
+    "autocomplete-plus": "git://github.com/saschagehlich/autocomplete-plus.git#feature/api",
+    "season": "~2.0.0",
+    "async": "~0.7.0",
+    "fs-plus": "~2.2.1",
+    "fuzzaldrin": "~1.0.0"
+  },
+  "readme": "# autocomplete+ snippet suggestions\n\n[View the changelog](https://github.com/saschagehlich/autocomplete-snippets/blob/master/CHANGELOG.md)\n\nAdds snippets to autocomplete+ suggestions\n\n![autocomplete-snippets](http://s7.directupload.net/images/140411/kgdlgsgx.gif)\n\n## Installation\n\nYou can install autocomplete-snippets using the Preferences pane.\n\n**Please make sure you have autocomplete-plus installed as well**\n\n## Features\n\n* Adds user snippets and language snippets to the autocomplete+ suggestions list\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/saschagehlich/autocomplete-snippets/issues"
+  },
+  "homepage": "https://github.com/saschagehlich/autocomplete-snippets",
+  "_id": "autocomplete-snippets@0.2.0",
+  "dist": {
+    "shasum": "3335344a5b96f9756392c01fe8bd806539c89fab"
+  },
+  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11449-26736-fxah0y/package.tgz",
+  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11449-26736-fxah0y/package.tgz"
+}

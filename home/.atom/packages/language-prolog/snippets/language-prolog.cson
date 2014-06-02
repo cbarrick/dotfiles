@@ -1,0 +1,10 @@
+'.source.prolog':
+  'DCG':
+    'prefix': 'dcg'
+    'body': '${1:clause} --> ${0:body}.'
+  'Fact':
+    'prefix': 'fact'
+    'body': '${1:functor_name}(${2:argument}).'
+  'Rule':
+    'prefix': 'rule'
+    'body': '${1:functor_name}(${2:argument}) :-\n\t${0:%% body}'

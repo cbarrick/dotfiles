@@ -1,0 +1,27 @@
+{
+  "name": "scroll-past-end",
+  "main": "./lib/scroll-past-end",
+  "version": "0.1.4",
+  "description": "scroll past end",
+  "readme": "In the process",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anson0370/scroll-past-end"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/anson0370/scroll-past-end/issues"
+  },
+  "homepage": "https://github.com/anson0370/scroll-past-end",
+  "_id": "scroll-past-end@0.1.4",
+  "dist": {
+    "shasum": "464dc33a1a98d1389802636e36f350df8a1133cb"
+  },
+  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114411-30655-12m7wm1/package.tgz",
+  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114411-30655-12m7wm1/package.tgz"
+}
