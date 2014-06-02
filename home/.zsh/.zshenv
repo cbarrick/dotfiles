@@ -25,7 +25,7 @@ setopt no_nomatch # If a glob fails, use the literal string
 #   $(cmd)      : Value of executing cmd
 #   ${(e)param} : Like ${param} but also expand parameters in content
 #   ${(f)param} : Like ${param} but change '\n' to ' '
-typeset -U path manpath fpath
+typeset -U path manpath fpath cdpath
 
 local userpaths="${ZDOTDIR}/paths"
 
