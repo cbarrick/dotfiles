@@ -1,0 +1,30 @@
+{
+  "name": "editor-stats",
+  "version": "0.14.0",
+  "main": "./lib/editor-stats",
+  "description": "Display a graph of keyboard and mouse usage for the last 6 hours.",
+  "license": "MIT",
+  "dependencies": {
+    "d3-browserify": "3.3.13",
+    "underscore-plus": "1.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atom/editor-stats"
+  },
+  "engines": {
+    "atom": "*"
+  },
+  "readme": "# Editor Stats package\n\nView a graph of your mouse and keyboard activity for the last 6 hours.\n\nUse `cmd-alt-s` to open and close the graph.\n\n![](https://f.cloud.github.com/assets/671378/2262223/843b1172-9e57-11e3-9c60-8d28d542f39c.png)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/atom/editor-stats/issues"
+  },
+  "homepage": "https://github.com/atom/editor-stats",
+  "_id": "editor-stats@0.14.0",
+  "dist": {
+    "shasum": "72004b2cff3b6d9c022fd74e730cdb1e0e567227"
+  },
+  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11452-4416-1b3zs6b/package.tgz",
+  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11452-4416-1b3zs6b/package.tgz"
+}

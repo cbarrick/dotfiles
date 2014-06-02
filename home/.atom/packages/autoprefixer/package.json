@@ -1,0 +1,37 @@
+{
+  "name": "autoprefixer",
+  "version": "0.2.1",
+  "description": "Prefix CSS with Autoprefixer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sindresorhus/atom-autoprefixer"
+  },
+  "private": true,
+  "activationEvents": [
+    "autoprefixer"
+  ],
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^1.1.0"
+  },
+  "readme": "# Autoprefixer\n\n[Atom package](https://atom.io/packages/autoprefixer)\n\n> Prefix CSS with [Autoprefixer](https://github.com/ai/autoprefixer)\n\n\n## Usage\n\n* If you are in a CSS file, open the Command Palette, and type `Autoprefixer`.\n\n  ![](https://f.cloud.github.com/assets/1223565/2284892/51b999b2-9fce-11e3-9e9d-5e6a9cb4e933.gif)\n\n* If the CSS content is inline, select it, open the Command Palette, and type\n  `Autoprefixer`.\n\n  ![](https://f.cloud.github.com/assets/1223565/2284893/51e4bd18-9fce-11e3-8b1a-282f664593e9.gif)\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
+  "readmeFilename": "readme.md",
+  "bugs": {
+    "url": "https://github.com/sindresorhus/atom-autoprefixer/issues"
+  },
+  "homepage": "https://github.com/sindresorhus/atom-autoprefixer",
+  "_id": "autoprefixer@0.2.1",
+  "dist": {
+    "shasum": "17f96f4b76961dd64a07fe06d55819388c1a9495"
+  },
+  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11452-4523-komt4f/package.tgz",
+  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11452-4523-komt4f/package.tgz"
+}
