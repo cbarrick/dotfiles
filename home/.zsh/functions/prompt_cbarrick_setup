@@ -8,13 +8,13 @@ EOF
 }
 
 function prompt_cbarrick_setup {
-	local main_color	# Main info color; used for branch name etc
-	local alt_color	 # Secondary info color; used for errors, actions
-	local main		  # The universal part
-	local vcs_part	  # Part that shows version control info
-	local path_part	 # Part of the prompt that shows
+	local main_color    # Main info color; used for branch name etc
+	local alt_colo      # Secondary info color; used for errors, actions
+	local main          # The universal part
+	local vcs_part      # Part that shows version control info
+	local path_part     # Part of the prompt that shows
 	local action_part   # Part that shows vcs actions like in progress merges
-	local vcs_prompt	# Prompt when in a version controled directory
+	local vcs_prompt    # Prompt when in a version controled directory
 	local no_vcs_prompt # Prompt when in a non-vcs directory
 
 	main_color=${1:-'green'}
