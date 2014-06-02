@@ -40,6 +40,24 @@ homesick link dotfiles
 [homesick]: https://github.com/technicalpickles/homesick
 
 
+### Setup Zsh
+
+My Zsh config lives under `~/.zsh` rather than directly under the home directory. On most systems, you'll need to let Zsh know where to find its config files by setting the `$ZDOTDIR` environmental variable to `${HOME}/.zsh`.
+
+If you have root access, find the global Zsh config (`/etc/zshenv` on OS X and `/etc/zsh/zshenv` on Debian iirc). Then add the following lines somewhere in there:
+
+```sh
+ZDOTDIR=${HOME}/.zsh
+export ZDOTDIR
+```
+
+Alternatively, if you can't or don't want to modify global files, symlink `~/.zsh/.zshenv` as `~/.zshenv`:
+
+```sh
+ln -s ~/.zsh/.zshenv ~/.zshenv
+```
+
+
 ### Configuring your path
 
 My Zsh config sources its paths from files, like a portable version of the `path_helper` command in OS X with support for host dependent paths.
