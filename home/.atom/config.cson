@@ -46,3 +46,5 @@
 'jshint': {}
 'linter':
   'showStatusBarWhenCursorIsInErrorRange': true
+'minimap':
+  'autoToggle': true

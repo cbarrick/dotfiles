@@ -1,0 +1,121 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+@font-face {
+  font-family: 'Redacted';
+  font-weight: normal;
+  font-style: normal;
+  src: url(atom://minimap/resources/redacted-fixed.woff) format('woff');
+  unicode-range: U+21-FF;
+}
+
+
+.pane.with-minimap {
+  :not(.minimap-editor) > .editor {
+    padding-right: 10%;
+  }
+  .vertical-scrollbar {
+    right: 10%;
+  }
+}
+
+.minimap-on-left {
+  .pane.with-minimap {
+    :not(.minimap-editor) > .editor {
+      padding-right: 0;
+      padding-left: 10%;
+    }
+
+    .vertical-scrollbar {
+      right: 0;
+    }
+
+    .minimap {
+      left: initial;
+      right: 90%;
+    }
+  }
+}
+
+.minimap {
+  position: absolute;
+  left: 90%;
+  width: 10%;
+  bottom: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  // .accelerated;
+
+  .editor {
+    padding: 0 !important;
+  }
+
+  .lines {
+    word-spacing: -1px;
+  }
+
+  .line {
+    opacity: .6;
+    .accelerated;
+  }
+
+  .minimap-scroller {
+    position: absolute;
+    display: none;
+    right: 0;
+    width: 3px;
+    min-height: 2px;
+    z-index: 10;
+    background: @background-color-selected;
+    // .accelerated;
+
+    &.visible {
+      display: block;
+    }
+  }
+
+  .minimap-wrapper {
+    position: absolute;
+    .accelerated;
+    -webkit-transform-origin: 0 0;
+  }
+
+  .minimap-visible-area {
+    position: absolute;
+    width: 100%;
+    background-color: #888;
+    opacity: .2;
+    // .accelerated;
+  }
+
+  .minimap-editor {
+    position: absolute;
+    cursor: default;
+    width: 100%;
+    .accelerated;
+    .scroll-view {
+      // .accelerated;
+    }
+  }
+
+  // Themes
+  &[data-theme="redacted"] {
+    .editor /*, .minimap-underlayer, .minimap-overlayer */ {
+      font-family: Redacted, Inconsolata, Monaco, Consolas, 'Courier New', Courier !important;
+      // With faux-italic and faux-bold the char width changes, and we don't
+      // want that :).
+      font-weight: normal !important;
+    }
+  }
+
+  // Mixins
+  .accelerated {
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+  }
+}
