@@ -3,7 +3,23 @@ module.exports =
     retainHalfScreen: false
 
   activate: ->
-    {EditorView} = require "atom"
+    # patch for react editor
+    DisplayBuffer = require "src/display-buffer"
+    DisplayBuffer::getScrollHeight = ->
+      # patch code start
+      lineHeight = if @getLineHeight then @getLineHeight() else @getLineHeightInPixels()
+      if not lineHeight > 0
+        throw new Error("You must assign lineHeight before calling ::getScrollHeight()")
+      height = @getLineCount() * lineHeight
+      if atom.config.get("scroll-past-end").retainHalfScreen
+        height = height + @getHeight() / 2
+      else
+        height = height + @getHeight() - (lineHeight * 3)
+      height
+      # patch code end
+
+    # patch for classic editor
+    EditorView = require "src/editor-view"
     EditorView::updateLayerDimensions = ->
       height = @lineHeight * @editor.getScreenLineCount()
       # patch code start

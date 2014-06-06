@@ -44,3 +44,5 @@
 'tabs':
   'showIcons': true
 'jshint': {}
+'linter':
+  'showStatusBarWhenCursorIsInErrorRange': true
