@@ -17,7 +17,7 @@
     'eol': ''
     'space': '·'
     'tab': '⇥'
-  'fontSize': 13
+  'fontSize': 14
 'core':
   'themes': [
     'atom-dark-ui'
@@ -44,7 +44,6 @@
 'tabs':
   'showIcons': true
 'jshint': {}
-'linter':
-  'showStatusBarWhenCursorIsInErrorRange': true
+'linter': {}
 'minimap':
   'autoToggle': true
