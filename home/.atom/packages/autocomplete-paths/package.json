@@ -1,7 +1,7 @@
 {
   "name": "autocomplete-paths",
   "main": "./lib/autocomplete-paths",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Adds path autocompletion to autocomplete+",
   "repository": {
     "type": "git",
@@ -22,10 +22,10 @@
     "url": "https://github.com/saschagehlich/autocomplete-paths/issues"
   },
   "homepage": "https://github.com/saschagehlich/autocomplete-paths",
-  "_id": "autocomplete-paths@0.6.0",
+  "_id": "autocomplete-paths@0.7.0",
   "dist": {
-    "shasum": "adb952e81b8f930d2568fc21ef15a357d73d42d3"
+    "shasum": "7e7a8636d782eb74d271479ab94153095e88f040"
   },
-  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114411-30691-ilgdxb/package.tgz",
-  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114411-30691-ilgdxb/package.tgz"
+  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114512-7771-1rqyxus/package.tgz",
+  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114512-7771-1rqyxus/package.tgz"
 }
