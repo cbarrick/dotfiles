@@ -8,52 +8,48 @@ EOF
 }
 
 function prompt_cbarrick_setup {
-	local main_color    # Main info color; used for branch name etc
-	local alt_colo      # Secondary info color; used for errors, actions
-	local main          # The universal part
-	local vcs_part      # Part that shows version control info
-	local path_part     # Part of the prompt that shows
-	local action_part   # Part that shows vcs actions like in progress merges
-	local vcs_prompt    # Prompt when in a version controled directory
-	local no_vcs_prompt # Prompt when in a non-vcs directory
-
-	main_color=${1:-'green'}
-	alt_color=${2:-'red'}
-
 	setopt prompt_subst
 
 	autoload -Uz add-zsh-hook
 	autoload -Uz vcs_info
 
-	# Update the prompt before every command.
+	# Update the version control data before every command
 	add-zsh-hook precmd prompt_cbarrick_precmd
 
-	# The main prompt
-	main="%(?..%F{${alt_color}})%#%f"
+	# The colors
+	local main_color=${1:-'green'}
+	local alt_color=${2:-'red'}
 
-	# In version control: `<project>:<branch> <path> <prompt>`.
-	vcs_part="%F{${main_color}}%r%f:%F{${main_color}}%b%f"
-	action_part="%F{${alt_color}}\${vcs_info_msg_1_}%f"
-	vcs_prompt="${vcs_part}${action_part} %S %${main} "
+	# The static parts of the prompt; includes the exit status of the last command if not 0
+	local main="%(?.%#.%F{${alt_color}}%#(%?%)%f) "
 
-	# Not in version control: `<dirname> <prompt>`.
-	no_vcs_prompt="%1~ ${main} "
+	# These variables are composed into the $vcs_info_msg_0_ environment variable
+	local project="%F{${main_color}}%r%f"  # The name of the root directory of the project
+	local branch="%F{${main_color}}%b%f"   # The name of the current branch
+	local action="%F{${alt_color}}(%a)%f"  # The current action (merge, rebase, etc)
+	local vcs_path="%S"       # The path relative to the root of the project
+	local non_vcs_path="%1~"  # The name of the current directory
 
-	# Settings for the vcs_info plugin, where the prompt is _actually_ set.
-	zstyle ':vcs_info:*' formats "${vcs_prompt}"
-	zstyle ':vcs_info:*' actionformats "${vcs_prompt}" "(%a)"
-	zstyle ':vcs_info:*' nvcsformats "${no_vcs_prompt}"
+	# Configure vcs_info
+	# These options set the $vcs_info_msg_0_ variable dynamically depending on the context:
+	# - 'formats' is is the value when in a version controled directory
+	# - 'actionformats' is the value during a merge, rebase, etc
+	# - 'nvcsformats' is the value when outside of version control
+	zstyle ':vcs_info:*:cbarrick:*' formats "${project}:${branch} ${vcs_path}"
+	zstyle ':vcs_info:*:cbarrick:*' actionformats "${project}:${branch}${action} ${vcs_path}"
+	zstyle ':vcs_info:*:cbarrick:*' nvcsformats "${non_vcs_path}"
 
-	# The main prompt is the main message output by the vcs_info plugin.
-	export PROMPT='${(e)vcs_info_msg_0_}'
+	# The prompt is the dynamic vcs info followed by the static parts of the prompt
+	PROMPT='${(e)vcs_info_msg_0_} '
+	PROMPT+="${main}"
+	export PROMPT
 
 	# SSH Hostname on the right.
 	export RPROMPT='${SSH_CONNECTION:+ %m}'
 }
 
 function prompt_cbarrick_precmd {
-	# Update the version control info.
-	vcs_info
+	vcs_info cbarrick
 }
 
 prompt_cbarrick_setup "$@"
