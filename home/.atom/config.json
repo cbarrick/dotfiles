@@ -18,7 +18,13 @@
     "softWrap": true,
     "softWrapAtPreferredLineLength": true,
     "tabLength": 4,
-    "fontSize": 14
+    "fontSize": 14,
+    "invisibles": {
+      "tab": "",
+      "eol": ""
+    },
+    "showIndentGuide": true,
+    "fontFamily": "Source Code Pro"
   },
   "core": {
     "themes": [
@@ -30,12 +36,16 @@
       "autocomplete",
       "feedback",
       "minimap-git-diff",
-      "autosave"
-    ]
+      "autosave",
+      "tabs",
+      "tree-view"
+    ],
+    "useReactEditor": true,
+    "audioBeep": false
   },
   "tree-view": {
     "hideVcsIgnoredFiles": true,
-    "hideIgnoredNames": false,
+    "hideIgnoredNames": true,
     "showOnRightSide": true
   },
   "highlight-line": {
@@ -48,8 +58,18 @@
     "showIcons": true
   },
   "jshint": {},
-  "linter": {},
+  "linter": {
+    "showHightlighting": false
+  },
   "minimap": {
     "autoToggle": true
+  },
+  "sublime-tabs": {
+    "showOnRightSide": true,
+    "hideVcsIgnoredFiles": true,
+    "hideIgnoredNames": true
+  },
+  "grammar-selector": {
+    "showOnRightSideOfStatusBar": true
   }
 }
