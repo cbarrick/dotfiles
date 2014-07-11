@@ -64,7 +64,7 @@ class Linter
       else
         return cmd_item
 
-    if atom.inDevMode()
+    if atom.config.get('linter.lintDebug')
       console.log 'command and arguments', cmd_list
 
     {
@@ -87,7 +87,7 @@ class Linter
     # build the command with arguments to lint the file
     {command, args} = @getCmdAndArgs(filePath)
 
-    if atom.inDevMode()
+    if atom.config.get('linter.lintDebug')
       console.log 'is node executable: ' + @isNodeExecutable
 
     # use BufferedNodeProcess if the linter is node executable
@@ -100,18 +100,23 @@ class Linter
     options = {cwd: @cwd}
 
     stdout = (output) =>
-      if atom.inDevMode()
+      if atom.config.get('linter.lintDebug')
         console.log 'stdout', output
-      if @errorStream == 'stdout'
+      if @errorStream is 'stdout'
         @processMessage(output, callback)
 
     stderr = (output) =>
-      if atom.inDevMode()
+      if atom.config.get('linter.lintDebug')
         console.warn 'stderr', output
-      if @errorStream == 'stderr'
+      if @errorStream is 'stderr'
         @processMessage(output, callback)
 
-    new Process({command, args, options, stdout, stderr})
+    process = new Process({command, args, options, stdout, stderr})
+
+    # Don't block UI more than 5seconds, it's really annoying on big files
+    setTimeout ->
+      process.kill()
+    , 5000
 
   # Private: process the string result of a linter execution using the regex
   #          as the message builder
@@ -187,6 +192,7 @@ class Linter
   #   colStart: column to on which to start a higlight (optional)
   #   colEnd: column to end highlight (optional)
   computeRange: (match) ->
+    match.line ?= 0 # Assume if no line is found that it denotes a full file error.
     rowStart = parseInt(match.lineStart ? match.line) - 1
     rowEnd = parseInt(match.lineEnd ? match.line) - 1
 

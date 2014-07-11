@@ -55,7 +55,7 @@ class AutocompleteView extends SimpleSelectListView
   # Private: Creates a view for the given item
   #
   # Returns a {jQuery} object that represents the item view
-  viewForItem: ({word, label, renderLabelAsHtml}) ->
+  viewForItem: ({word, label, renderLabelAsHtml, className}) ->
     item = $$ ->
       @li =>
         @span word, class: "word"
@@ -64,6 +64,9 @@ class AutocompleteView extends SimpleSelectListView
 
     if renderLabelAsHtml
       item.find(".label").html label
+
+    if className?
+      item.addClass className
 
     return item
 
@@ -94,6 +97,14 @@ class AutocompleteView extends SimpleSelectListView
     # Close the overlay when the cursor moved without
     # changing any text
     @editor.on "cursor-moved", @cursorMoved
+
+    @hiddenInput.on 'compositionstart', =>
+      @compositionInProgress = true
+      null
+
+    @hiddenInput.on 'compositionend', =>
+      @compositionInProgress = false
+      null
 
   # Public: Registers the given provider
   #
@@ -134,6 +145,8 @@ class AutocompleteView extends SimpleSelectListView
   # Private: Finds suggestions for the current prefix, sets the list items,
   # positions the overlay and shows it
   runAutocompletion: =>
+    return if @compositionInProgress
+
     # Iterate over all providers, ask them to build word lists
     suggestions = []
     for provider in @providers.slice().reverse()

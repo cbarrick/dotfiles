@@ -1,7 +1,30 @@
+1.5.2 / 2014-07-09
+==================
+
+* fix an unexpected offset on the right side of the editor contents 
+
+1.5.1 / 2014-07-09
+==================
+
+* fix with-minimap decoration removed on tab change when react editor is enabled
+* fix pane styles with minimap and react editor enabled
+* fix minimap line-height with react editor enabled
+* fix error raised when closing the last tab in a pane
+
+1.5.0 / 2014-07-07
+==================
+
+* add support for react editor mode
+
+1.4.0 / 2014-06-28
+==================
+
+* fix error on line classlist access
+
 1.3.0 / 2014-05-21
 ==================
 
-* fix broken minimap when `useReactEditor` is enabled 
+* fix broken minimap when `useReactEditor` is enabled
 * 🐎  remove forced hardware acceleration on minimap
 
 1.2.0 / 2014-05-20

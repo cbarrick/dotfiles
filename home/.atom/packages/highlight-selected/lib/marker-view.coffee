@@ -3,10 +3,10 @@
 module.exports =
 class MarkerView
 
-  constructor: (range, parent, editor) ->
+  constructor: (range, parent, editorView) ->
     @range = range
     @parent = parent
-    @editor = editor
+    @editorView = editorView
     @element = document.createElement('div')
     @element.className = 'marker'
     rowSpan = range.end.row - range.start.row
@@ -20,11 +20,10 @@ class MarkerView
       @appendRegion(1, { row: range.end.row, column: 0 }, range.end)
 
   appendRegion: (rows, start, end) ->
-    { lineHeight, charWidth } = @editor
-    css = @editor.pixelPositionForScreenPosition(start)
-    css.height = lineHeight * rows
+    css = @editorView.pixelPositionForScreenPosition(start)
+    css.height = atom.config.getSettings().editor.lineHeight * atom.config.getSettings().editor.fontSize * rows
     if end
-      css.width = @editor.pixelPositionForScreenPosition(end).left - css.left
+      css.width = @editorView.pixelPositionForScreenPosition(end).left - css.left
     else
       css.right = 0
 

@@ -1,7 +1,7 @@
 {
   "name": "highlight-selected",
   "main": "./lib/highlight-selected",
-  "version": "0.2.11",
+  "version": "0.4.0",
   "description": "Highlights the current word selected when double clicking",
   "repository": {
     "type": "git",
@@ -20,10 +20,10 @@
     "url": "https://github.com/richrace/highlight-selected/issues"
   },
   "homepage": "https://github.com/richrace/highlight-selected",
-  "_id": "highlight-selected@0.2.11",
+  "_id": "highlight-selected@0.4.0",
   "dist": {
-    "shasum": "3e51483df7331bb0d47cc08715b0cfa09b40b012"
+    "shasum": "7b6f637fe689791d6b12903e63739d83cd6fb621"
   },
-  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11449-24869-16m0up4/package.tgz",
-  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11449-24869-16m0up4/package.tgz"
+  "_resolved": "/var/folders/_x/p3bsx_694dx6h4t_jmpybn6c0000gp/T/d-11422-15778-1djbgod/package.tgz",
+  "_from": "/Users/csb/.atom/.node-gyp/.atom/.apm/highlight-selected/0.4.0/package.tgz"
 }

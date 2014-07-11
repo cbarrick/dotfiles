@@ -1,0 +1,27 @@
+{
+  "name": "base-16-bright",
+  "theme": "syntax",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A conversion of the base-16-bright textmate theme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RyanMacG/atom-base-16-bright"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "readme": "# base-16-bright theme\n\nConversion of base-16-bright theme from textmate.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/RyanMacG/atom-base-16-bright/issues"
+  },
+  "homepage": "https://github.com/RyanMacG/atom-base-16-bright",
+  "_id": "base-16-bright@0.1.0",
+  "dist": {
+    "shasum": "0ed93d4d6cda68b08cd36e992ef8f042c5374557"
+  },
+  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114610-7096-qa0gve/package.tgz",
+  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114610-7096-qa0gve/package.tgz"
+}

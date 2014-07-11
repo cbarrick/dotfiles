@@ -1,7 +1,7 @@
 {
   "name": "minimap-highlight-selected",
   "main": "./lib/minimap-highlight-selected",
-  "version": "0.1.1",
+  "version": "0.3.0",
   "description": "A minimap binding for the highlight-selected package",
   "repository": {
     "type": "git",
@@ -20,10 +20,10 @@
     "url": "https://github.com/abe33/minimap-highlight-selected/issues"
   },
   "homepage": "https://github.com/abe33/minimap-highlight-selected",
-  "_id": "minimap-highlight-selected@0.1.1",
+  "_id": "minimap-highlight-selected@0.3.0",
   "dist": {
-    "shasum": "63782d80d02967325cbfadee95540da450f21621"
+    "shasum": "7ed23745c4df447f66ef9079adc0727ab4a45a8d"
   },
-  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11456-13927-igab67/package.tgz",
-  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11456-13927-igab67/package.tgz"
+  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114610-6697-19vm9ht/package.tgz",
+  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114610-6697-19vm9ht/package.tgz"
 }

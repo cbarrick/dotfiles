@@ -1,0 +1,26 @@
+{
+  "name": "base16-dark-syntax",
+  "theme": "syntax",
+  "version": "0.1.0",
+  "description": "Base16 dark syntax theme for Atom.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rockymadden/base16-dark-syntax-theme"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.59.0"
+  },
+  "readme": "# Base16 Dark Atom Syntax Theme\n\nAtom syntax theme using the ever popular Base16 Dark colors:\n\n![](https://raw.github.com/chriskempson/base16-textmate/master/base16-textmate-dark.png)\n",
+  "readmeFilename": "readme.md",
+  "bugs": {
+    "url": "https://github.com/rockymadden/base16-dark-syntax-theme/issues"
+  },
+  "homepage": "https://github.com/rockymadden/base16-dark-syntax-theme",
+  "_id": "base16-dark-syntax@0.1.0",
+  "dist": {
+    "shasum": "c4ec6cd5f7f7067dad360cd95c2b2326fda254db"
+  },
+  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114610-6915-1k1efvw/package.tgz",
+  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-114610-6915-1k1efvw/package.tgz"
+}

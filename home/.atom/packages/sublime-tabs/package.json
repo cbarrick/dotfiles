@@ -1,0 +1,34 @@
+{
+  "name": "sublime-tabs",
+  "main": "./lib/sublime-tabs",
+  "version": "0.4.1",
+  "description": "Sublime-style tabs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ddavison/sublime-tabs"
+  },
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "underscore-plus": "1.x",
+    "fs-plus": "^2.0.4",
+    "temp": "~0.7.0",
+    "theorist": "1.x",
+    "wrench": "1.5.x"
+  },
+  "readme": "# sublime-tabs\n\nThis enables sublime-style tabs in Atom.\n\nNormally, the Tabs package will open a new tab for each file, and it will stay open even if you don't edit it.\n\nsublime-tabs enables you to click a file through the Tree View on the left, it will open it as a \"temp\" file like sublime does,\nand will close the tab if another tab is opened without you editing it.\n\n[![Build Status](https://travis-ci.org/ddavison/sublime-tabs.svg?branch=master)](https://travis-ci.org/ddavison/sublime-tabs)\n\n![example](https://raw.githubusercontent.com/ddavison/sublime-tabs/master/images/example.gif)\n\n## To Use\nInstall either through the Atom package search, or by:\n```sh\n$ apm install sublime-tabs\n```\n**Note...** This package will replace the `Tabs` and `Tree View` package and disable them.  \n\n## If for some reason...\nsublime-tabs is not working... try:\n* Making sure sublime-tabs is installed, enabled, and up to date\n* Making sure the `Tabs` package is disabled.\n* Making sure the `Tree View` package is disabled.\n* Restart Atom\n* Right click somewhere in an open file, and click `Reveal in tree view`\n\n## Uninstall\nIf sublime-tabs isn't your thing, you can uninstall by following these steps:\n\n1. Open your Settings\n2. Search for `\"Sublime Tabs\"` and Uninstall\n3. For the `Tabs` and `Tree View` packages, do the following:\n  1. Search for the package\n  2. Click `\"Enable\"`\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/ddavison/sublime-tabs/issues"
+  },
+  "homepage": "https://github.com/ddavison/sublime-tabs",
+  "_id": "sublime-tabs@0.4.1",
+  "dist": {
+    "shasum": "b8dabefe2f190de693bf142e34974fa64719b0a7"
+  },
+  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11462-29705-1ctpera/package.tgz",
+  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11462-29705-1ctpera/package.tgz"
+}

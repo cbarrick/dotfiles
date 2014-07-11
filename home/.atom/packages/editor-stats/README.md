@@ -1,6 +1,8 @@
-# Editor Stats package
+# Editor Stats package [![Build Status](https://travis-ci.org/atom/editor-stats.svg?branch=master)](https://travis-ci.org/atom/editor-stats)
 
 View a graph of your mouse and keyboard activity for the last 6 hours.
+
+The blue bar indicates the time of greatest activity.
 
 Use `cmd-alt-s` to open and close the graph.
 

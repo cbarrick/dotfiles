@@ -1,6 +1,6 @@
 {
   "name": "editorconfig",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Helps developers maintain consistent coding styles between different editors",
   "license": "MIT",
   "repository": {
@@ -20,16 +20,15 @@
     "emissary": "^1.0.0",
     "editorconfig": "^0.11.4"
   },
-  "readme": "# EditorConfig\n\n[Atom package](https://atom.io/packages/editorconfig)\n\n> [EditorConfig](http://editorconfig.org) helps developers maintain consistent coding styles between different editors\n\n![](https://f.cloud.github.com/assets/170270/2327994/dfe40cb4-a3f6-11e3-862f-894999973373.png)\n\n\n## Install\n\n```bash\n$ apm install editorconfig\n```\n\nOr Settings ➔ Packages ➔ Search for `editorconfig`\n\n\n## Getting started\n\nSee the EditorConfig [documentation](http://editorconfig.org).\n\n\n## Supported properties\n\n- root\n- indent_style\n- indent_size\n\n\n## Features\n\n- Applies the above settings from your `.editorconfig` file\n- Syntax highlights `.editorconfig` files\n\n\n## Example file\n\n```ini\n# editorconfig.org\nroot = true\n\n[*]\nindent_style = space\nindent_size = 4\nend_of_line = lf\ncharset = utf-8\ntrim_trailing_whitespace = true\ninsert_final_newline = true\n```\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
+  "readme": "# EditorConfig\n\n[Atom package](https://atom.io/packages/editorconfig)\n\n> [EditorConfig](http://editorconfig.org) helps developers maintain consistent coding styles between different editors\n\n![](https://f.cloud.github.com/assets/170270/2327994/dfe40cb4-a3f6-11e3-862f-894999973373.png)\n\n\n## Install\n\n```bash\n$ apm install editorconfig\n```\n\nOr Settings ➔ Packages ➔ Search for `editorconfig`\n\n\n## Getting started\n\nSee the EditorConfig [documentation](http://editorconfig.org).\n\n\n## Supported properties\n\n- root\n- indent_style\n- indent_size\n\n\n## Features\n\n- Applies the above settings from your `.editorconfig` file\n- Syntax highlights `.editorconfig` files\n\n\n## Example file\n\n```ini\n# editorconfig.org\nroot = true\n\n[*]\nindent_style = space\nindent_size = 4\nend_of_line = lf\ncharset = utf-8\ntrim_trailing_whitespace = true\ninsert_final_newline = true\n```\n\n\n## License\n\n[MIT](http://opensource.org/licenses/MIT) © [Sindre Sorhus](http://sindresorhus.com)\n",
   "readmeFilename": "readme.md",
   "bugs": {
     "url": "https://github.com/sindresorhus/atom-editorconfig/issues"
   },
   "homepage": "https://github.com/sindresorhus/atom-editorconfig",
-  "_id": "editorconfig@0.1.1",
+  "_id": "editorconfig@0.2.0",
   "dist": {
-    "shasum": "e7158a979a83519ea8c6a389cb00f26102c3721f"
+    "shasum": "4415d4d3e7e934c7724289a250111cfcbb0a2c08"
   },
-  "_resolved": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11448-17531-3ad1sp/package.tgz",
-  "_from": "/var/folders/_8/6kvs0xqj3n5dxcv_9zspyrph0000gn/T/d-11448-17531-3ad1sp/package.tgz"
+  "_from": "/Users/csb/.atom/.node-gyp/.atom/.apm/editorconfig/0.2.0/package.tgz"
 }

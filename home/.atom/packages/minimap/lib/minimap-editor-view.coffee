@@ -13,6 +13,7 @@ class MinimapEditorView extends ScrollView
         @div class: 'lines', outlet: 'lines'
 
   frameRequested: false
+  dummyNode: document.createElement('div')
 
   constructor: ->
     super
@@ -21,12 +22,17 @@ class MinimapEditorView extends ScrollView
 
   initialize: ->
     @lineOverdraw = atom.config.get('minimap.lineOverdraw')
+
     atom.config.observe 'minimap.lineOverdraw', =>
       @lineOverdraw = atom.config.get('minimap.lineOverdraw')
 
-    @lines.css 'line-height', atom.config.get('editor.lineHeight') + 'em'
     atom.config.observe 'editor.lineHeight', =>
-      @lines.css 'line-height', atom.config.get('editor.lineHeight') + 'em'
+      if @editorView?
+        @lines.css lineHeight: "#{@getLineHeight()}px"
+
+    atom.config.observe 'editor.fontSize', =>
+      if @editorView?
+        @lines.css fontSize: "#{@getFontSize()}px"
 
   destroy: ->
     @unsubscribe()
@@ -35,6 +41,10 @@ class MinimapEditorView extends ScrollView
   setEditorView: (@editorView) ->
     @editor = @editorView.getModel()
     @buffer = @editorView.getEditor().buffer
+
+    @lines.css
+      lineHeight: "#{@getLineHeight()}px"
+      fontSize: "#{@getFontSize()}px"
 
     @subscribe @editor, 'screen-lines-changed.minimap', (changes) =>
       @pendingChanges.push changes
@@ -63,7 +73,7 @@ class MinimapEditorView extends ScrollView
 
     if @firstRenderedScreenRow? and line >= @firstRenderedScreenRow and line <= @lastRenderedScreenRow
       index = line - @firstRenderedScreenRow - 1
-      @lines.children()[index].classList.add(cls)
+      @lines.children()[index]?.classList.add(cls)
 
   removeLineClass: (line, cls) ->
     if @lineClasses[line] and (index = @lineClasses[line].indexOf cls) isnt -1
@@ -71,7 +81,7 @@ class MinimapEditorView extends ScrollView
 
     if @firstRenderedScreenRow? and line >= @firstRenderedScreenRow and line <= @lastRenderedScreenRow
       index = line - @firstRenderedScreenRow - 1
-      @lines.children()[index].classList.remove(cls)
+      @lines.children()[index]?.classList.remove(cls)
 
   removeAllLineClasses: (classesToRemove...) ->
     for k,classes of @lineClasses
@@ -85,7 +95,8 @@ class MinimapEditorView extends ScrollView
     @pendingChanges.push event
 
   getMinimapHeight: -> @getLinesCount() * @getLineHeight()
-  getLineHeight: -> @lineHeight ||= parseInt @editorView.css('line-height')
+  getLineHeight: -> @lineHeight ||= parseInt @editorView.find('.lines').css('line-height')
+  getFontSize: -> @fontSize ||= parseInt @editorView.find('.lines').css('font-size')
   getLinesCount: -> @editorView.getEditor().getScreenLineCount()
 
   getMinimapScreenHeight: -> @minimapView.height() / @minimapView.scaleY
@@ -108,8 +119,6 @@ class MinimapEditorView extends ScrollView
     firstVisibleScreenRow = @getFirstVisibleScreenRow()
     lastScreenRowToRender = firstVisibleScreenRow + @getMinimapHeightInLines() - 1
     lastScreenRow = @editor.getLastScreenRow()
-
-    @lines.css fontSize: "#{@editorView.getFontSize()}px"
 
     if @firstRenderedScreenRow? and firstVisibleScreenRow >= @firstRenderedScreenRow and lastScreenRowToRender <= @lastRenderedScreenRow
       renderFrom = Math.min(lastScreenRow, @firstRenderedScreenRow)
@@ -212,13 +221,23 @@ class MinimapEditorView extends ScrollView
     if intactRanges.length == 0
       @lines[0].innerHTML = ''
     else if currentLine = @lines[0].firstChild
+      unless currentLine?
+        console.warn "Unexpected undefined first line in clearing dirty ranges"
+        return
+
       domPosition = 0
       for intactRange in intactRanges
         while intactRange.domStart > domPosition
+          unless currentLine?
+            console.warn "Unexpected undefined line at dom position #{domPosition} with range starting at position #{intactRange.domStart} (#{intactRange.start}..#{intactRange.end})"
+            return
           currentLine = @clearLine(currentLine)
           domPosition++
 
         for i in [intactRange.start..intactRange.end]
+          unless currentLine?
+            console.warn "Unexpected undefined line when clearing dirty range #{intactRange.start}..#{intactRange.end}"
+            return
           currentLine = currentLine.nextSibling
           domPosition++
 
@@ -229,7 +248,6 @@ class MinimapEditorView extends ScrollView
     next = lineElement.nextSibling
     @lines[0].removeChild(lineElement)
     next
-
 
   fillDirtyRanges: (intactRanges, renderFrom, renderTo) ->
     i = 0
@@ -247,11 +265,32 @@ class MinimapEditorView extends ScrollView
         else
           dirtyRangeEnd = renderTo
 
-        for lineElement in @editorView.buildLineElementsForScreenRows(row, dirtyRangeEnd)
-          classes = @lineClasses[row+1]
-          lineElement.classList.add(classes...) if classes?
-          @lines[0].insertBefore(lineElement, currentLine)
-          row++
+        if @editorView instanceof EditorView
+          for lineElement in @editorView.buildLineElementsForScreenRows(row, dirtyRangeEnd)
+            classes = @lineClasses[row+1]
+            lineElement?.classList.add(classes...) if classes?
+            @lines[0].insertBefore(lineElement, currentLine)
+            row++
+        else
+          linesComponent = @editorView.component.refs.lines
+          lines = @editor.linesForScreenRows(row, dirtyRangeEnd)
+
+          linesComponent.props.lineDecorations ||= {}
+
+          for line,i in lines
+            screenRow = row + i
+            html = linesComponent.buildLineHTML(line, screenRow)
+            @dummyNode.innerHTML = html
+            lineElement = @dummyNode.childNodes[0]
+            unless lineElement?
+              console.warn "Unexpected undefined line element at screen row #{screenRow}"
+              continue
+            classes = @lineClasses[row+1]
+            lineElement.className = 'line'
+            lineElement.classList.add(classes...) if classes?
+            lineElement.style.cssText=""
+            @lines[0].insertBefore(lineElement, currentLine)
+            row++
       else
         currentLine = currentLine?.nextSibling
         row++

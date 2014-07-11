@@ -11,11 +11,14 @@ updateCallback = null
 describe "MinimapEditorView", ->
   afterEach -> minimapView?.detach()
   beforeEach ->
+    atom.config.set 'editor.useReactEditor', false
+
     runs ->
       atom.workspaceView = new WorkspaceView
       atom.project.setPath(path.join(__dirname, 'fixtures'))
 
-      atom.workspaceView.openSync('two-hundred.txt')
+    waitsForPromise ->
+      atom.workspaceView.open('two-hundred.txt')
 
     runs ->
       atom.workspaceView.attachToDom()
@@ -33,7 +36,7 @@ describe "MinimapEditorView", ->
 
     describe '::getMinimapHeight', ->
       it 'returns its content height based on its line-height', ->
-        lineHeight = parseInt editorView.css('line-height')
+        lineHeight = parseInt editorView.find('.lines').css('line-height')
         linesCount = editorView.editor.buffer.getLines().length
 
         height = lineHeight * linesCount
