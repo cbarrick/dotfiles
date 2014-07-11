@@ -13,15 +13,22 @@ function prompt_cbarrick_setup {
 	autoload -Uz add-zsh-hook
 	autoload -Uz vcs_info
 
-	# Update the version control data before every command
+	# Update the prompt before every command
 	add-zsh-hook precmd prompt_cbarrick_precmd
 
 	# The colors
 	local main_color=${1:-'green'}
 	local alt_color=${2:-'red'}
 
-	# The static parts of the prompt; includes the exit status of the last command if not 0
-	local main="%(?.%#.%F{${alt_color}}%#(%?%)%f) "
+	# The universal part of the prompt; shows the exit status of the last command and the number
+	# of jobs if either is not 0.
+	# [Ternary expressions][13.3] must be escaped with an additional `%` because of the way
+	# vcs_info expands %-formats. Any formats used by both vcs_info and the prompt must also be
+	# escaped to pass through to the prompt expansion. To use this format string in vcs_info
+	# nvcsformats, you must have my modified VCS_INFO_nvcsformats script on your fpath before the
+	# builtin script.
+	# [13.3]: http://tinyurl.com/zsh-13-3
+	local main="%%(?.%(1j.[:%j].).%F{${alt_color}}[%?%%(1j.:%j.)])%#%f "
 
 	# These variables are composed into the $vcs_info_msg_0_ environment variable
 	local project="%F{${main_color}}%r%f"  # The name of the root directory of the project
@@ -31,25 +38,26 @@ function prompt_cbarrick_setup {
 	local non_vcs_path="%1~"  # The name of the current directory
 
 	# Configure vcs_info
-	# These options set the $vcs_info_msg_0_ variable dynamically depending on the context:
-	# - 'formats' is is the value when in a version controled directory
-	# - 'actionformats' is the value during a merge, rebase, etc
-	# - 'nvcsformats' is the value when outside of version control
-	zstyle ':vcs_info:*:cbarrick:*' formats "${project}:${branch} ${vcs_path}"
-	zstyle ':vcs_info:*:cbarrick:*' actionformats "${project}:${branch}${action} ${vcs_path}"
-	zstyle ':vcs_info:*:cbarrick:*' nvcsformats "${non_vcs_path}"
+	# These options determine the value of `$vcs_info_msg_0_` after running `vcs_info cbarrick`.
+	# The prompt is reset to `$vcs_info_msg_0_` after every command--these options set the prompt.
 
-	# The prompt is the dynamic vcs info followed by the static parts of the prompt
-	PROMPT='${(e)vcs_info_msg_0_} '
-	PROMPT+="${main}"
-	export PROMPT
+	## Determines the value when inside a version controled directory
+	zstyle ':vcs_info:*:cbarrick:*' formats \
+		"${project}:${branch} ${vcs_path} ${main}"
 
-	# SSH Hostname on the right.
-	export RPROMPT='${SSH_CONNECTION:+ %m}'
+	## Determines the value during a merge, rebase, etc
+	zstyle ':vcs_info:*:cbarrick:*' actionformats \
+		"${project}:${branch}${action} ${vcs_path} ${main}"
+
+	## Determines the value when outside of version control
+	zstyle ':vcs_info:*:cbarrick:*' nvcsformats \
+		"${non_vcs_path} ${main}"
 }
 
 function prompt_cbarrick_precmd {
 	vcs_info cbarrick
+	PROMPT=${vcs_info_msg_0_}
+	RPROMPT=${SSH_CONNECTION:+ %m}
 }
 
 prompt_cbarrick_setup "$@"
