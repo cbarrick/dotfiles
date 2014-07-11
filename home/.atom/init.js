@@ -4,11 +4,14 @@
 
 'use strict';
 
-var path = require('path');
+/* global atom */
+
+var pathlib = require('path');
 
 // Always open markdown files with softwrap
 atom.workspaceView.eachEditorView(function (view) {
-	var path = view.getEditor().getPath();
-	var extension = path.extname(path);
+	var editor = view.getEditor();
+	var path = editor.getPath();
+	var extension = pathlib.extname(path);
 	if (extension === '.md') editor.setSoftWrap(true);
 });
