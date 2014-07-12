@@ -1,20 +1,25 @@
 #!/bin/zsh
 
 
-# Shell Options. See zshoptions(1) or online at
-# http://zsh.sourceforge.net/Doc/Release/Options.html
+# Shell Options
 #--------------------
+# zshoptions(1)  /  http://zsh.sourceforge.net/Doc/Release/Options.html
 
 # Changing Directories
+setopt auto_cd # If command is a directory path, cd to it
+setopt auto_pushd # cd is really pushd
+setopt chase_dots # Resolve paths with dots i.e. `foo/../bar/baz` becomes `bar/baz`
 setopt chase_links # Resolve links to their true directory
-setopt autocd # If command is a directory path, cd to it
+setopt pushd_ignore_dups # Don't put duplicates on the directory stack
+setopt pushd_minus # Make `cd -1` go to the previous directory, `cd -2` is the one before that
+setopt pushd_to_home # pushd with no arguments goes home, like cd
 
 # Completion
-setopt auto_list # List choices on ambiguous completion
 setopt auto_name_dirs # Parameters set to a path can be used as ~param
 setopt auto_remove_slash # Remove trailing slash if next char is a word delim
 setopt hash_list_all # Before completion, make sure entire path is hashed
-setopt menu_complete # Tab cycles through completion possibilities
+setopt glob_complete # Expand globs upon completion
+setopt complete_in_word # Completions happen at the cursor's location
 
 # Expansion and Globbing
 setopt glob # Perform filename generation (i.e. the use of the * operator)
@@ -46,17 +51,21 @@ setopt prompt_sp # Try to preserve lines that would be covered by the \r
 setopt prompt_subst # Substitute in parameter/command/arithmetic expansions
 
 # ZLE
-setopt no_beep # The shell shouldn't beep on ZLE errors (most beeps)
+# setopt no_beep # The shell shouldn't beep on ZLE errors (most beeps)
 setopt zle # Use ZLE. This is default, but I like to be explicit
 
 
-# Interactive environment
+# Environment
 #--------------------
 
-[[ -a $(which atom) ]] && EDITOR="atom -w" || EDITOR=vim
-[[ -a $(which atom) ]] && VISUAL="atom -w" || VISUAL=vim
-[[ -a $(which most) ]] && PAGER=most  || PAGER=less
+[[ -a $(which atom) ]] && EDITOR="atom -w" || EDITOR="vim"
+[[ -a $(which atom) ]] && VISUAL="atom -w" || VISUAL="vim"
+[[ -a $(which most) ]] && PAGER="most"     || PAGER="less"
 export EDITOR VISUAL PAGER
+
+
+# History
+#--------------------
 
 HISTSIZE=2000
 HISTFILE=${ZDOTDIR}/.history
@@ -72,14 +81,14 @@ autoload -Uz zkbd
 source ${ZDOTDIR}/zkbd/${TERM}-${HOST}
 
 bindkey -e
-[[ -n "${key[Home]}"       ]] && bindkey "${key[Home]}"   beginning-of-line
-[[ -n "${key[End]}"        ]] && bindkey "${key[End]}"    end-of-line
-[[ -n "${key[Insert]}"     ]] && bindkey "${key[Insert]}" overwrite-mode
-[[ -n "${key[Delete]}"     ]] && bindkey "${key[Delete]}" delete-char
-[[ -n "${key[Up]}"         ]] && bindkey "${key[Up]}"     up-line-or-search
-[[ -n "${key[Down]}"       ]] && bindkey "${key[Down]}"   down-line-or-search
-[[ -n "${key[Left]}"       ]] && bindkey "${key[Left]}"   backward-char
-[[ -n "${key[Right]}"      ]] && bindkey "${key[Right]}"  forward-char
+[[ -n "${key[Home]}"       ]] && bindkey "${key[Home]}"       beginning-of-line
+[[ -n "${key[End]}"        ]] && bindkey "${key[End]}"        end-of-line
+[[ -n "${key[Insert]}"     ]] && bindkey "${key[Insert]}"     overwrite-mode
+[[ -n "${key[Delete]}"     ]] && bindkey "${key[Delete]}"     delete-char
+[[ -n "${key[Up]}"         ]] && bindkey "${key[Up]}"         up-line-or-search
+[[ -n "${key[Down]}"       ]] && bindkey "${key[Down]}"       down-line-or-search
+[[ -n "${key[Left]}"       ]] && bindkey "${key[Left]}"       backward-char
+[[ -n "${key[Right]}"      ]] && bindkey "${key[Right]}"      forward-char
 [[ -n "${key[Ctrl-Left]}"  ]] && bindkey "${key[Ctrl-Left]}"  backward-word
 [[ -n "${key[Ctrl-Right]}" ]] && bindkey "${key[Ctrl-Right]}" forward-word
 
@@ -87,110 +96,113 @@ bindkey -e
 # Prompt
 #--------------------
 
-# Set a default prompt to be used if the prompt library fails
-PS1='%1~ %# '
-
-# Initialize the prompt library and select the prompt
-autoload -U promptinit && promptinit
+autoload -Uz promptinit && promptinit
 prompt cbarrick
 
 
 # Completion
 #--------------------
 
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 
-# Cache completion results (nice for package managers)
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ${ZDOTDIR}/.cache
+zstyle ':completion:*' use-cache true # Cache completion to `${ZDOTDIR}/.zcompcache`
+zstyle ':completion:*' squeeze-slashes true # Strip slashes from directories
+zstyle ':completion:*' menu select # Make the menu interactive with arrow keys
 
-# When you use a completed directory as an argument, strip the trailing slash
-zstyle ':completion:*' squeeze-slashes true
+# Custom tab completion.
+# Like a hybrid of the `auto_list` and `menu_complete` options with extra awesomesauce.
+# First press completes and shows a list of the next completions.
+# Second press starts menu completion.
+function tab-completion {
+	if [[ ${LASTLBUFFER} == ${LBUFFER} ]]; then
+		zle menu-expand-or-complete
+	else
+		zle expand-or-complete
+		zle list-choices
+		LASTLBUFFER=$LBUFFER
+	fi
+}
+zle -N tab-completion
+bindkey '	' tab-completion
+
+# Binds shift-tab to cycle backwards through the menu
+# TODO: Add shift-tab to zkbd for portability
+bindkey '^[[Z' reverse-menu-complete
 
 
 # zmv - Batch Rename
 #--------------------
 
-# EX: Rename all .cpp files to .cc ::
-#   zmv '(*).cpp' '$1.cc'
-# Remember that arguments are quoted
-# Use `-n` for a dry-run
-autoload -U zmv
+autoload -Uz zmv
 alias mv="noglob zmv"
 
+# EX: Rename all .cpp files to .cc
+#     zmv '(*).cpp' '$1.cc'
+# Arguments are quoted to escape the globbing system
+# Use `-n` for a dry-run
 
-# Rationaloze Dots
+
+# Rationalize Dots
 #--------------------
 
-# Credit: Mikael Magnusson (Mikachu)
-# Type '...' to get '../..'  etc
-function rationalise-dot {
-	local MATCH # keep the regex match from leaking to the environment
-	if [[ $LBUFFER =~ '(^|/| |      |'$'\n''|\||;|&)\.\.$' ]]; then
-		LBUFFER+=/
-		zle self-insert
-		zle self-insert
+function rationalize-dot {
+	if [[ $LBUFFER = *.. ]]; then
+		LBUFFER+=/..
 	else
-		zle self-insert
+		LBUFFER+=.
 	fi
 }
-zle -N rationalise-dot
-bindkey . rationalise-dot
-bindkey -M isearch . self-insert
+zle -N rationalize-dot
+bindkey . rationalize-dot
 
 
 # Apple Terminal.app
 #--------------------
-# Set Apple Terminal.app resume directory
-# based on this answer: http://superuser.com/a/315029
-# 2012-10-26: (javageek) Changed code using the updated answer
+# Alert Terminal.app of the current directory (for the resume feature among others)
+# based on this answer: http://superuser.com/a/328148
 
 update_terminal_cwd() {
-	# Identify the directory using a "file:" scheme URL, including
-	# the host name to disambiguate local vs. remote paths.
-
-	# Percent-encode the pathname.
+	# Get the directory as a "file:" URL, including the hostname.
 	local URL_PATH=''
 	{
-		# Use LANG=C to process text byte-by-byte.
+		# LANG=C to process text byte-by-byte.
 		local i ch hexch LANG=C
 		for ((i = 1; i <= ${#PWD}; ++i)); do
 			ch="$PWD[i]"
 			if [[ "$ch" =~ [/._~A-Za-z0-9-] ]]; then
 				URL_PATH+="$ch"
 			else
+				# Percent-encode special characters
 				hexch=$(printf "%02X" "'$ch")
 				URL_PATH+="%$hexch"
 			fi
 		done
 	}
 
+	# Print the pathname through a special escape sequence to inform Terminal.app
 	local PWD_URL="file://$HOST$URL_PATH"
-	#echo "$PWD_URL"        # testing
 	printf '\e]7;%s\a' "$PWD_URL"
 }
 
-if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]]; then
-	# Register the function so it is called whenever the working
-	# directory changes.
+if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
 	autoload add-zsh-hook
 	add-zsh-hook precmd update_terminal_cwd
-
-	# Tell the terminal about the initial directory.
-	update_terminal_cwd
 fi
 
 
 # Aliases
 #--------------------
 
-alias l="printf 'pwd: ' && pwd && $(which ls) -lhF --group-directories-first"
-alias la="l -a"
+# ls defaults
+alias ls="ls --human-readable --classify --group-directories-first --color=auto"
+alias l="ls --format=long"
+alias la="l --almost-all"
 
+# Use hub instead of git when avaliable
 which hub > /dev/null && alias git=hub
 
 
-# Execute on startup
+# Startup
 #--------------------
 
 print "${USER} @ ${HOST}"
