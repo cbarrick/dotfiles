@@ -103,7 +103,7 @@ prompt cbarrick
 # Completion
 #--------------------
 
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -u
 
 zstyle ':completion:*' use-cache true # Cache completion to `${ZDOTDIR}/.zcompcache`
 zstyle ':completion:*' squeeze-slashes true # Strip slashes from directories
