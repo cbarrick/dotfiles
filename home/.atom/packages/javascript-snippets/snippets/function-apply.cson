@@ -1,6 +1,0 @@
-".source.js":
-  "function apply":
-    "prefix": "apply"
-    "body": """
-    ${1:methodName}.apply(${2:context}, [${3:arguments}])
-    """

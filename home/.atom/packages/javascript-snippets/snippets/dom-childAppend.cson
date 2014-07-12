@@ -1,6 +1,0 @@
-".source.js":
-  "appendChild":
-    "prefix": "ac"
-    "body": """
-    ${1:document}.appendChild(${2:elem});
-    """

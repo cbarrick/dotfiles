@@ -1,5 +1,0 @@
-'.editor':
-  'alt-up': 'block-travel:move-up'
-  'alt-down': 'block-travel:move-down'
-  'alt-shift-up': 'block-travel:select-up'
-  'alt-shift-down': 'block-travel:select-down'

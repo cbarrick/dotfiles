@@ -1,6 +1,0 @@
-".source.js":
-  "classList.toggle":
-    "prefix": "ct"
-    "body": """
-    ${1:document}.classList.toggle('${2:class}');
-    """

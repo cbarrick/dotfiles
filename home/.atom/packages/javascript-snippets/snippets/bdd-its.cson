@@ -1,8 +1,0 @@
-".source.js":
-  "it synchronous":
-    "prefix": "its"
-    "body": """
-    it('${1:description}', function() {
-      ${0:// body...}
-    });
-    """

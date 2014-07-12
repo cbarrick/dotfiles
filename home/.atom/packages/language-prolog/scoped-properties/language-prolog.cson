@@ -1,4 +1,0 @@
-'.source.prolog':
-  'editor':
-    'commentStart': '% '
-    'increaseIndentPattern': ':-\\s*$'

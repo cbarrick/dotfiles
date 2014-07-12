@@ -1,8 +1,0 @@
-".source.js":
-  "prototype":
-    "prefix": "pr"
-    "body": """
-    ${1:ClassName}.prototype.${2:methodName} = function(${3:arguments}) {
-      ${0:// body...}
-    }
-    """

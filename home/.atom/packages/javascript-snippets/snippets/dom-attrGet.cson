@@ -1,6 +1,0 @@
-".source.js":
-  "getAttribute":
-    "prefix": "ga"
-    "body": """
-    ${1:document}.getAttribute('${2:attr}');
-    """

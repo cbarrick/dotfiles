@@ -1,6 +1,0 @@
-".source.js":
-  "innerHTML":
-    "prefix": "ih"
-    "body": """
-    ${1:document}.innerHTML = '${2:elem}';
-    """
