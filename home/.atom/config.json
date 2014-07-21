@@ -18,13 +18,13 @@
     "softWrap": true,
     "softWrapAtPreferredLineLength": true,
     "tabLength": 4,
-    "fontSize": 14,
     "invisibles": {
       "tab": "",
       "eol": ""
     },
     "showIndentGuide": true,
-    "fontFamily": "Source Code Pro"
+    "fontFamily": "Source Code Pro",
+    "fontSize": 14
   },
   "core": {
     "themes": [
@@ -37,8 +37,7 @@
       "feedback",
       "minimap-git-diff",
       "autosave",
-      "tabs",
-      "tree-view"
+      "sublime-tabs"
     ],
     "useReactEditor": true,
     "audioBeep": false
@@ -59,7 +58,8 @@
   },
   "jshint": {},
   "linter": {
-    "showHightlighting": false
+    "showHightlighting": false,
+    "lintOnChange": false
   },
   "minimap": {
     "autoToggle": true
