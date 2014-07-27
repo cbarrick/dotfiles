@@ -130,6 +130,16 @@ bindkey '	' tab-completion
 bindkey '^[[Z' reverse-menu-complete
 
 
+# nvm - Node Version Manager
+#---------------------------
+
+# TODO: Make this setup more portable (i.e. what happens if I'm not on my Mac? Fail.)
+source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR=~/.nvm
+nvm alias default 0.11 > /dev/null
+nvm use default > /dev/null
+
+
 # zmv - Batch Rename
 #--------------------
 
