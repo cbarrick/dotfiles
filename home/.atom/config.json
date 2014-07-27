@@ -35,7 +35,6 @@
     "disabledPackages": [
       "autocomplete",
       "feedback",
-      "minimap-git-diff",
       "autosave",
       "sublime-tabs"
     ],
