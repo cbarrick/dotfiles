@@ -3,5 +3,6 @@
 	name = Chris Barrick
 [core]
 	excludesfile = ~/.gitignore
+	notesRef = refs/notes/csb
 [push]
 	default = simple
