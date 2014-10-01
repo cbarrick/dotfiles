@@ -123,7 +123,7 @@ function tab-completion {
 	fi
 }
 zle -N tab-completion
-bindkey '	' tab-completion
+bindkey '^I' tab-completion
 
 # Binds shift-tab to cycle backwards through the menu
 # TODO: Add shift-tab to zkbd for portability
@@ -209,7 +209,7 @@ alias l="ls --format=long"
 alias la="l --almost-all"
 
 # Use hub instead of git when avaliable
-which hub > /dev/null && alias git=hub
+[[ -a $(which hub) ]] && alias git=hub
 
 
 # Startup
