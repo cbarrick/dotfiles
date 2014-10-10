@@ -34,7 +34,7 @@ setopt hist_ignore_space # Ignore commands that begin with spaces
 setopt inc_append_history # Write commands to history file as soon as possible
 
 # Input/Output
-setopt clobber # Allows '>' to truncate files and '>>' to create files
+# setopt noclobber # Prevents `>` from clobbering files. Use `>|` to clobber.
 setopt correct # Try to correct the spelling of commands
 setopt interactive_comments # Allow comments in interactive shells
 
@@ -202,6 +202,8 @@ fi
 
 # Aliases
 #--------------------
+
+alias grep="grep -E"
 
 # ls defaults
 alias ls="ls --human-readable --classify --group-directories-first --color=auto"
