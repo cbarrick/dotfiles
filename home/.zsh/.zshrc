@@ -8,10 +8,10 @@
 # Changing Directories
 setopt auto_cd # If command is a directory path, cd to it
 setopt auto_pushd # cd is really pushd
-setopt chase_dots # Resolve paths with dots i.e. `foo/../bar/baz` becomes `bar/baz`
-setopt chase_links # Resolve links to their true directory
+setopt chase_dots # Resolve `..` directories to their true location
+setopt chase_links # Resolve links to their true location
 setopt pushd_ignore_dups # Don't put duplicates on the directory stack
-setopt pushd_minus # Make `cd -1` go to the previous directory, `cd -2` is the one before that
+setopt pushd_minus # Make `cd -1` go to the previous directory, etc
 setopt pushd_to_home # pushd with no arguments goes home, like cd
 
 # Completion
@@ -24,7 +24,7 @@ setopt complete_in_word # Completions happen at the cursor's location
 # Expansion and Globbing
 setopt glob # Perform filename generation (i.e. the use of the * operator)
 setopt extended_glob # Use additional glob operators
-setopt glob_dots # Do not require a leading ‘.’ in a filename to be matched explicitly.
+setopt glob_dots # Glob dotfiles
 setopt mark_dirs # Directories resulting from globbing have trailing slashes
 setopt nomatch # If a glob fails, the command isn't executed
 
