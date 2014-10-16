@@ -204,6 +204,7 @@ fi
 #--------------------
 
 alias grep="grep -E"
+alias sed="sed -r"
 
 # ls defaults
 alias ls="ls --human-readable --classify --group-directories-first --color=auto"
