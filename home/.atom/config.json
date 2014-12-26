@@ -1,74 +1,65 @@
 {
-  "exception-reporting": {
-    "userId": "a8f790ed-8f9f-d36f-d131-fc4bbc0fb421"
-  },
-  "welcome": {
-    "showOnStartup": false
-  },
-  "metrics": {
-    "userId": "35a1c8fd015943f28e11c8894ffaf446d8d57501"
-  },
-  "release-notes": {
-    "viewedVersion": "0.95.0"
-  },
-  "editor": {
-    "showInvisibles": true,
-    "softTabs": false,
-    "preferredLineLength": 100,
-    "softWrap": true,
-    "softWrapAtPreferredLineLength": true,
-    "tabLength": 4,
-    "invisibles": {
-      "tab": "",
-      "eol": ""
+  "global": {
+    "exception-reporting": {
+      "userId": "a8f790ed-8f9f-d36f-d131-fc4bbc0fb421"
     },
-    "showIndentGuide": true,
-    "fontFamily": "Source Code Pro",
-    "fontSize": 14
-  },
-  "core": {
-    "themes": [
-      "atom-dark-ui",
-      "base16-tomorrow-dark-theme"
-    ],
-    "projectHome": "/Users/csb/dev",
-    "disabledPackages": [
-      "autocomplete",
-      "feedback",
-      "autosave",
-      "sublime-tabs"
-    ],
-    "useReactEditor": true,
-    "audioBeep": false
-  },
-  "tree-view": {
-    "hideVcsIgnoredFiles": true,
-    "hideIgnoredNames": true,
-    "showOnRightSide": true
-  },
-  "highlight-line": {
-    "opacity": "10%",
-    "underline": {}
-  },
-  "git-diff": {},
-  "autocomplete-plus": {},
-  "tabs": {
-    "showIcons": true
-  },
-  "jshint": {},
-  "linter": {
-    "showHightlighting": false,
-    "lintOnChange": false
-  },
-  "minimap": {
-    "autoToggle": true
-  },
-  "sublime-tabs": {
-    "showOnRightSide": true,
-    "hideVcsIgnoredFiles": true,
-    "hideIgnoredNames": true
-  },
-  "grammar-selector": {
-    "showOnRightSideOfStatusBar": true
+    "welcome": {
+      "showOnStartup": false
+    },
+    "metrics": {
+      "userId": "35a1c8fd015943f28e11c8894ffaf446d8d57501"
+    },
+    "release-notes": {
+      "viewedVersion": "0.95.0"
+    },
+    "editor": {
+      "showInvisibles": true,
+      "softTabs": false,
+      "preferredLineLength": 100,
+      "softWrap": true,
+      "softWrapAtPreferredLineLength": true,
+      "tabLength": 4,
+      "showIndentGuide": true,
+      "fontFamily": "Source Code Pro",
+      "fontSize": 14,
+      "invisibles": {
+        "eol": " ",
+        "tab": " ",
+        "cr": "⏎"
+      }
+    },
+    "core": {
+      "themes": [
+        "atom-dark-ui",
+        "base16-tomorrow-dark-theme"
+      ],
+      "projectHome": "/Users/csb/dev",
+      "disabledPackages": [
+        "autocomplete",
+        "feedback",
+        "autosave",
+        "language-perl"
+      ],
+      "useReactEditor": true,
+      "audioBeep": false
+    },
+    "tree-view": {
+      "hideVcsIgnoredFiles": true,
+      "hideIgnoredNames": true,
+      "showOnRightSide": true
+    },
+    "highlight-line": {
+      "opacity": "10%"
+    },
+    "linter": {
+      "showHightlighting": false,
+      "lintOnChange": false
+    },
+    "minimap": {
+      "plugins": {
+        "selection": true
+      }
+    },
+    "autoclose-html": {}
   }
 }
