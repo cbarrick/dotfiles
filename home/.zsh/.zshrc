@@ -109,24 +109,7 @@ zstyle ':completion:*' use-cache true # Cache completion to `${ZDOTDIR}/.zcompca
 zstyle ':completion:*' squeeze-slashes true # Strip slashes from directories
 zstyle ':completion:*' menu select # Make the menu interactive with arrow keys
 
-# Custom tab completion.
-# Like a hybrid of the `auto_list` and `menu_complete` options with extra awesomesauce.
-# First press completes and shows a list of the next completions.
-# Second press starts menu completion.
-function tab-completion {
-	if [[ ${LASTLBUFFER} == ${LBUFFER} ]]; then
-		zle menu-expand-or-complete
-	else
-		zle expand-or-complete
-		zle list-choices
-		LASTLBUFFER=$LBUFFER
-	fi
-}
-zle -N tab-completion
-bindkey '^I' tab-completion
-
-# Binds shift-tab to cycle backwards through the menu
-# TODO: Add shift-tab to zkbd for portability
+bindkey '^I' menu-expand-or-complete
 bindkey '^[[Z' reverse-menu-complete
 
 
