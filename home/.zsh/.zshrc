@@ -58,9 +58,9 @@ setopt zle # Use ZLE. This is default, but I like to be explicit
 # Environment
 #--------------------
 
-[[ -a $(which atom) ]] && EDITOR="atom -w" || EDITOR="vim"
-[[ -a $(which atom) ]] && VISUAL="atom -w" || VISUAL="vim"
-[[ -a $(which most) ]] && PAGER="most"     || PAGER="less"
+[[ -a $(which atom 2> /dev/null) ]] && EDITOR="atom -w" || EDITOR="vim"
+[[ -a $(which atom 2> /dev/null) ]] && VISUAL="atom -w" || VISUAL="vim"
+[[ -a $(which most 2> /dev/null) ]] && PAGER="most"     || PAGER="less"
 export EDITOR VISUAL PAGER
 
 
@@ -116,11 +116,12 @@ bindkey '^[[Z' reverse-menu-complete
 # nvm - Node Version Manager
 #---------------------------
 
-# TODO: Make this setup more portable (i.e. what happens if I'm not on my Mac? Fail.)
-source $(brew --prefix nvm)/nvm.sh
-export NVM_DIR=~/.nvm
-nvm alias default 0.11 > /dev/null
-nvm use default > /dev/null
+if [[ $(hostname) == 'roronoa' ]]; then
+	source $(brew --prefix nvm)/nvm.sh
+	export NVM_DIR=~/.nvm
+	nvm alias default 0.11 > /dev/null
+	nvm use default > /dev/null
+fi
 
 
 # zmv - Batch Rename
@@ -195,7 +196,7 @@ alias l="ls --format=long"
 alias la="l --almost-all"
 
 # Use hub instead of git when avaliable
-[[ -a $(which hub) ]] && alias git=hub
+[[ -a $(which hub 2> /dev/null) ]] && alias git=hub
 
 
 # Startup
