@@ -202,4 +202,4 @@ alias la="l --almost-all"
 # Startup
 #--------------------
 
-print "${USER} @ ${HOST}"
+print "\r${USER} @ ${HOST}"
