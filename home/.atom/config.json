@@ -14,7 +14,6 @@
     },
     "editor": {
       "fontFamily": "Source Code Pro",
-      "fontSize": 19,
       "showInvisibles": true,
       "showIndentGuide": true,
       "tabLength": 4,
@@ -35,7 +34,7 @@
         "language-perl"
       ],
       "themes": [
-        "atom-dark-ui",
+        "one-dark-ui",
         "base16-tomorrow-dark-theme"
       ],
       "projectHome": "/Users/csb/dev",
@@ -56,6 +55,8 @@
       }
     },
     "autoclose-html": {},
-    "autocomplete-plus": {}
+    "autocomplete-plus": {
+      "suggestionListFollows": "Word"
+    }
   }
 }
