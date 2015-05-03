@@ -119,8 +119,7 @@ bindkey '^[[Z' reverse-menu-complete
 if [[ $(hostname) == 'roronoa' ]]; then
 	source $(brew --prefix nvm)/nvm.sh
 	export NVM_DIR=~/.nvm
-	nvm alias default 0.11 > /dev/null
-	nvm use default > /dev/null
+	nvm use stable > /dev/null
 fi
 
 
