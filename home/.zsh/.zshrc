@@ -186,7 +186,7 @@ fi
 # Aliases
 #--------------------
 
-alias grep="grep -E"
+alias grep="grep -EHn --color=auto"
 alias sed="sed -r"
 
 # ls defaults
