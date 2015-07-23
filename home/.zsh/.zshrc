@@ -58,10 +58,14 @@ setopt zle # Use ZLE. This is default, but I like to be explicit
 # Environment
 #--------------------
 
+# Core tools
 [[ -a $(which atom 2> /dev/null) ]] && EDITOR="atom -w" || EDITOR="vim"
 [[ -a $(which atom 2> /dev/null) ]] && VISUAL="atom -w" || VISUAL="vim"
 [[ -a $(which most 2> /dev/null) ]] && PAGER="most"     || PAGER="less"
 export EDITOR VISUAL PAGER
+
+# Go programming language
+export GOPATH=${HOME}/Dev/go
 
 
 # History
