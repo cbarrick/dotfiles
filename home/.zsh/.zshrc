@@ -117,16 +117,6 @@ bindkey '^I' menu-expand-or-complete
 bindkey '^[[Z' reverse-menu-complete
 
 
-# nvm - Node Version Manager
-#---------------------------
-
-if [[ $(hostname) == 'roronoa' ]]; then
-	source $(brew --prefix nvm)/nvm.sh
-	export NVM_DIR=~/.nvm
-	nvm use stable > /dev/null
-fi
-
-
 # zmv - Batch Rename
 #--------------------
 
