@@ -14,49 +14,105 @@
     },
     "editor": {
       "fontFamily": "Source Code Pro",
-      "showInvisibles": true,
-      "showIndentGuide": true,
       "tabLength": 4,
-      "softWrap": true,
-      "softTabs": false,
       "softWrapAtPreferredLineLength": true,
       "scrollPastEnd": true,
       "invisibles": {
         "eol": " ",
         "tab": " ",
         "cr": "⏎"
-      }
+      },
+      "showInvisibles": true,
+      "showIndentGuide": true,
+      "fontSize": 17,
+      "softTabs": false
     },
     "core": {
       "disabledPackages": [
         "autocomplete",
         "feedback",
-        "language-perl"
-      ],
-      "themes": [
-        "one-dark-ui",
-        "base16-tomorrow-dark-theme"
+        "language-perl",
+        "autosave"
       ],
       "projectHome": "/Users/csb/dev",
       "audioBeep": false
     },
     "tree-view": {
       "hideVcsIgnoredFiles": true,
-      "hideIgnoredNames": true,
-      "showOnRightSide": true
+      "showOnRightSide": true,
+      "hideIgnoredNames": true
     },
-    "highlight-line": {},
     "linter": {
-      "lintOnChange": false
+      "lintOnChange": false,
+      "showErrorPanel": false
     },
     "minimap": {
       "plugins": {
-        "selection": true
-      }
+        "selection": true,
+        "bookmarks": true,
+        "highlight-selected": true,
+        "find-and-replace": true
+      },
+      "scrollAnimation": true
+    },
+    "autocomplete-plus": {
+      "suggestionListFollows": "Word",
+      "minimumWordLength": 2,
+      "strictMatching": true,
+      "confirmCompletion": "tab"
+    },
+    "Zen": {
+      "fullscreen": false,
+      "softWrap": true
+    },
+    "the-closer": {
+      "closeWindowTogetherWithLastTab": false
+    },
+    "highlight-line": {
+      "enableBackgroundColor": false
+    },
+    "highlight-selected": {
+      "hideHighlightOnSelectedWord": true,
+      "lightTheme": true,
+      "onlyHighlightWholeWords": true
     },
     "autoclose-html": {},
-    "autocomplete-plus": {
-      "suggestionListFollows": "Word"
+    "whitespace": {
+      "ignoreWhitespaceOnCurrentLine": false
+    },
+    "typewriter": {},
+    "go-plus": {
+      "goPath": "~/Dev/go",
+      "getMissingTools": false
+    },
+    "theme-cycle": {},
+    "one-light-ui": {},
+    "tabs": {
+      "usePreviewTabs": true
+    },
+    "status-bar": {},
+    "linter-javac": {},
+    "linter-jshint": {},
+    "one-dark-ui": {},
+    "autosave": {
+      "enabled": true
+    },
+    "spell-check": {},
+    "git-diff": {}
+  },
+  ".coffee.source": {
+    "editor": {
+      "tabLength": 2
+    }
+  },
+  ".litcoffee.source": {
+    "editor": {
+      "tabLength": 4
+    }
+  },
+  "source.gfm": {
+    "editor": {
+      "softWrap": true
     }
   }
 }
