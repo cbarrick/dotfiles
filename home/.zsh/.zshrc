@@ -66,6 +66,8 @@ export EDITOR VISUAL PAGER
 
 # Go programming language
 export GOPATH=${HOME}/Dev/go
+path=(${GOPATH}/bin ${path})
+cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
 
 
 # History
