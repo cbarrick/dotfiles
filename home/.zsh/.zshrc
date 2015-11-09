@@ -135,7 +135,8 @@ alias mv="noglob zmv"
 #--------------------
 
 function rationalize-dot {
-	if [[ $LBUFFER = *.. ]]; then
+	if [[ $LBUFFER = *... ]]; then
+		LBUFFER=$LBUFFER[1,-2]
 		LBUFFER+=/..
 	else
 		LBUFFER+=.
