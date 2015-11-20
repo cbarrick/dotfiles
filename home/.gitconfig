@@ -5,7 +5,7 @@
 	excludesfile = ~/.gitignore
 	notesRef = refs/notes/csb
 [push]
-	default = simple
+	default = current
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
