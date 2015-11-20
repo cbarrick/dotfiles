@@ -55,6 +55,21 @@ setopt prompt_subst # Substitute in parameter/command/arithmetic expansions
 setopt zle # Use ZLE. This is default, but I like to be explicit
 
 
+# Aliases
+#--------------------
+
+alias grep="grep -EHn --color=auto"
+alias sed="sed -r"
+
+# ls defaults
+alias ls="ls --human-readable --classify --group-directories-first --color=auto"
+alias ll="ls --format=long"
+alias la="l --almost-all"
+
+# Use hub instead of git when avaliable
+[[ -a $(which hub 2> /dev/null) ]] && alias git=hub
+
+
 # Environment
 #--------------------
 
@@ -193,21 +208,6 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
 	autoload add-zsh-hook
 	add-zsh-hook precmd update_terminal_cwd
 fi
-
-
-# Aliases
-#--------------------
-
-alias grep="grep -EHn --color=auto"
-alias sed="sed -r"
-
-# ls defaults
-alias ls="ls --human-readable --classify --group-directories-first --color=auto"
-alias ll="ls --format=long"
-alias la="l --almost-all"
-
-# Use hub instead of git when avaliable
-[[ -a $(which hub 2> /dev/null) ]] && alias git=hub
 
 
 # Startup
