@@ -131,6 +131,21 @@ alias mv="noglob zmv"
 # Use `-n` for a dry-run
 
 
+# Quick Status
+#--------------------
+
+function l {
+	if (($+1)); then
+		pushd $1 >/dev/null
+	fi
+	git status -sb 2>/dev/null
+	if (($+1)); then
+		popd >/dev/null
+	fi
+	ll "$@"
+}
+
+
 # Rationalize Dots
 #--------------------
 
@@ -188,7 +203,7 @@ alias sed="sed -r"
 
 # ls defaults
 alias ls="ls --human-readable --classify --group-directories-first --color=auto"
-alias l="ls --format=long"
+alias ll="ls --format=long"
 alias la="l --almost-all"
 
 # Use hub instead of git when avaliable
