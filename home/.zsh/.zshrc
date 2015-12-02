@@ -47,7 +47,7 @@ setopt monitor # Enable job control. This is default.
 
 # Prompting
 setopt prompt_cr # Print a \r before the prompt
-setopt no_prompt_sp # Do not preserve lines that would be covered by the \r
+setopt prompt_sp # Preserve lines that would be covered by the \r
 setopt prompt_subst # Substitute in parameter/command/arithmetic expansions
 
 # ZLE
