@@ -60,11 +60,7 @@ setopt zle # Use ZLE. This is default, but I like to be explicit
 
 alias grep="grep -EHn --color=auto"
 alias sed="sed -r"
-
-# ls defaults
 alias ls="ls --human-readable --classify --group-directories-first --color=auto"
-alias ll="ls --format=long"
-alias la="l --almost-all"
 
 # Use hub instead of git when avaliable
 [[ -a $(which hub 2> /dev/null) ]] && alias git=hub
@@ -148,16 +144,17 @@ alias mv="noglob zmv"
 
 # Quick Status
 #--------------------
+# Use the `l` command to print both the directory listing and git status
+# Use `la` to include dotfiles
 
 function l {
-	if (($+1)); then
-		pushd $1 >/dev/null
-	fi
-	git status -sb 2>/dev/null
-	if (($+1)); then
-		popd >/dev/null
-	fi
-	ll "$@"
+	git -C $PWD/$1:h/$1:t status -sb $PWD/$1 2>/dev/null
+	ls $@ --format=long
+}
+
+function la {
+	git -C $PWD/$1:h/$1:t status -sb $PWD/$1 2>/dev/null
+	l $@ --format=long --almost-all
 }
 
 
