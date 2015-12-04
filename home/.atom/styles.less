@@ -1,11 +1,48 @@
-atom-text-editor {
+@import (reference) "syntax-variables";
+
+// UI
+// ==================================================
+atom-text-editor::shadow {
+
+	// Show invisibles only in selection
+	.invisible-character {
+		color: @syntax-background-color;
+		&.indent-guide {
+			box-shadow: inset 1px 0 0 0 @syntax-indent-guide-color;
+		}
+	}
+
+	// // Pulse the cursor
+	// .cursor {
+	// 	transition: opacity 0.5s;
+	// }
+}
+
+// Improve UI legibility by enabling kerning, ligatures, and antialiasing.
+atom-workspace {
+	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 }
 
-.with-minimap ::-webkit-scrollbar {
-	display: none;
-}
 
-.zen .wrap-guide {
-	visibility: hidden;
+// Printed markdown files (gfm-pdf package)
+// ==================================================
+.gfm-pdf {
+	// width: 210mm; // ISO A4
+	width: 8.5in; // US Letter
+
+	h1 { font-size: 200% }
+	h2 { font-size: 125% }
+	pre { font-size: 75% }
+
+	h1, h2, h3, h4, h5, h6 {
+		display: block;
+		page-break-after: avoid;
+	}
+
+	// Page breaks using inline html: <hr class="page-break">
+	.page-break {
+		page-break-after: always;
+		visibility: hidden;
+	}
 }

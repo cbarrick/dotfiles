@@ -17,25 +17,22 @@
       "tabLength": 4,
       "softWrapAtPreferredLineLength": true,
       "scrollPastEnd": true,
-      "invisibles": {
-        "eol": " ",
-        "tab": " ",
-        "cr": "⏎"
-      },
       "showInvisibles": true,
-      "showIndentGuide": true,
-      "fontSize": 17,
-      "softTabs": false
+      "softTabs": false,
+      "invisibles": {},
+      "showIndentGuide": true
     },
     "core": {
       "disabledPackages": [
         "autocomplete",
         "feedback",
         "language-perl",
-        "autosave"
+        "autosave",
+        "autocomplete-go"
       ],
       "projectHome": "/Users/csb/dev",
-      "audioBeep": false
+      "audioBeep": false,
+      "openEmptyEditorOnStart": false
     },
     "tree-view": {
       "hideVcsIgnoredFiles": true,
@@ -44,6 +41,9 @@
     },
     "linter": {
       "lintOnChange": false,
+      "gutterEnabled": false,
+      "statusIconScope": "Line",
+      "showProviderName": false,
       "showErrorPanel": false
     },
     "minimap": {
@@ -57,7 +57,6 @@
     },
     "autocomplete-plus": {
       "suggestionListFollows": "Word",
-      "minimumWordLength": 2,
       "strictMatching": true,
       "confirmCompletion": "tab"
     },
@@ -82,8 +81,12 @@
     },
     "typewriter": {},
     "go-plus": {
-      "goPath": "~/Dev/go",
-      "getMissingTools": false
+      "getMissingTools": false,
+      "lintOnSave": false,
+      "suppressBuiltinAutocompleteProvider": false,
+      "vetOnSave": false,
+      "syntaxCheckOnSave": false,
+      "showPanel": false
     },
     "theme-cycle": {},
     "one-light-ui": {},
@@ -98,16 +101,17 @@
       "enabled": true
     },
     "spell-check": {},
-    "git-diff": {}
-  },
-  ".coffee.source": {
-    "editor": {
-      "tabLength": 2
-    }
+    "git-diff": {},
+    "gfm-pdf": {}
   },
   ".litcoffee.source": {
     "editor": {
       "tabLength": 4
+    }
+  },
+  ".coffee.source": {
+    "editor": {
+      "tabLength": 2
     }
   },
   "source.gfm": {
