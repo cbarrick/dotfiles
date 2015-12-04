@@ -1,22 +1,13 @@
-:pineapple: Awesomesauce :metal:
-================================
+/home/csb
+=========
 
-This is my home, built with [Zsh], [Git], and [Atom]. :house_with_garden:
+This is my home, built on [Zsh], [Git], and [Atom].
 
 [Atom]: https://atom.io
 [Git]: http://git-scm.com
 [Zsh]: http://www.zsh.org
 
-
-Zsh
----
-
 ![zsh screenshot](./home/.zsh/zsh.png)
-
-- Minimal prompt, with version control info where appropriate.
-- Modified zkbd plugin (for key maps) that works better on OS X.
-- Supports Terminal.app advanced features, like session resume.
-- Easy setup for `path`, `manpath`, `fpath`, and `cdpath` on a per-host basis.
 
 The font used in the screen-shot is the excellent [Source Code Pro][] from Adobe. The color scheme used is [Base16 Bright][] with the saturation pulled up to 100% for every color.
 
@@ -24,54 +15,23 @@ The font used in the screen-shot is the excellent [Source Code Pro][] from Adobe
 [Base16 Bright]: http://chriskempson.github.io/base16/#bright
 
 
-Atom
-----
-- Atom
-	- Hard tabs ([ftw][smarttabs])
-	- [Base16 Tomorrow] Dark theme.
-
-[Base16 Tomorrow]: http://chriskempson.github.io/base16/#tomorrow
-[smarttabs]: http://www.emacswiki.org/SmartTabs
-
-
-Misc
-----
-- Git
-	- Global `.gitignore` to keep OS level stuff like `.DS_Store` out of all repositories.
-
-
 Installation
 ------------
 
-This repository is compatible with [homesick], a tool to manage, version control, and symlink dotfiles.
-
-```sh
-homesick clone cbarrick/dotfiles
-homesick link dotfiles
-```
-
-[homesick]: https://github.com/technicalpickles/homesick
+Use the included zsh install script to symlink the dotfiles under your home directory.
 
 
 ### Setup Zsh
 
-My Zsh config lives under `~/.zsh` rather than directly under the home directory. On most systems, you'll need to let Zsh know where to find its config files by setting the `$ZDOTDIR` environmental variable to `${HOME}/.zsh`.
+My Zsh config lives under `~/.zsh` rather than directly under the home directory. The `ZDOTDIR` environmental variable tells Zsh where to find its config and must be set to `~/.zsh` (the default is your home directory).
 
-If you have root access, find the global Zsh config (`/etc/zshenv` on OS X and `/etc/zsh/zshenv` on Debian and Arch iirc). Then add the following line somewhere:
-
-```sh
-export ZDOTDIR=${HOME}/.zsh
-```
-
-Alternatively, if you can't or don't want to modify global files, symlink `~/.zsh/.zshenv` as `~/.zshenv`:
+This can be set at compile time, in the global `zshenv` file, or by linking the local `.zshenv` to the default `ZDOTDIR`.
 
 ```sh
-ln -s ~/.zsh/.zshenv ~/.zshenv
+ln -s ~/.zsh/.zshenv $ZDOTDIR/.zshenv
 ```
 
 
-### Configuring your path
+### Configuring the path
 
-My Zsh config sources its paths from files, like a portable version of the `path_helper` command in OS X with support for host dependent paths.
-
-Each line in the files `.zsh/paths/paths` and `.zsh/paths/paths.d/${HOST}` are added to your `$PATH`. Likewise, similar files exist to customize your `$MANPATH`, `$FPATH`, and `$CDPATH`.
+Each line in the files `.zsh/paths/paths` and `.zsh/paths/paths.d/$HOST` are added to your `$PATH`. Likewise, similar files exist to customize your `$MANPATH`, `$FPATH`, and `$CDPATH`.
