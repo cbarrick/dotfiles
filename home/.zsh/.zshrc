@@ -145,14 +145,14 @@ alias mv="noglob zmv"
 # Quick Status
 #--------------------
 # Use the `l` command to print both the directory listing and git status
-# Use `la` to include dotfiles
+# Use `ll` to include dotfiles
 
 function l {
 	git -C $PWD/$1:h/$1:t status -sb $PWD/$1 2>/dev/null
 	ls $@ --format=long
 }
 
-function la {
+function ll {
 	git -C $PWD/$1:h/$1:t status -sb $PWD/$1 2>/dev/null
 	l $@ --format=long --almost-all
 }
