@@ -154,7 +154,7 @@ function l {
 
 function ll {
 	git -C $PWD/$1:h/$1:t status -sb $PWD/$1 2>/dev/null
-	l $@ --format=long --almost-all
+	ls $@ --format=long --almost-all
 }
 
 
