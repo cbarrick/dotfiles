@@ -14,6 +14,14 @@ ZDOTDIR=${HOME}/.zsh
 export ZDOTDIR
 
 
+# Host-specific envirnonment
+#--------------------
+
+if [[ -e ${ZDOTDIR}/env/$(hostname) ]]; then
+	source ${ZDOTDIR}/env/$(hostname)
+fi
+
+
 # Path
 #--------------------
 # Sets path in a way similar to path_helper(8) on OS X
