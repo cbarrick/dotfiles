@@ -58,7 +58,6 @@ setopt zle # Use ZLE. This is default, but I like to be explicit
 # Aliases
 #--------------------
 
-alias grep="grep -EHn --color=auto"
 alias sed="sed -r"
 alias ls="ls --human-readable --classify --group-directories-first --color=auto"
 
