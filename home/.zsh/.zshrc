@@ -60,6 +60,7 @@ setopt zle # Use ZLE. This is default, but I like to be explicit
 
 alias sed="sed -r"
 alias ls="ls --human-readable --classify --group-directories-first --color=auto"
+alias mkdir="mkdir -p"
 
 # Use hub instead of git when avaliable
 [[ -a $(which hub 2> /dev/null) ]] && alias git=hub
