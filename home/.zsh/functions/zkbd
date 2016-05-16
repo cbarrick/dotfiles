@@ -35,7 +35,7 @@ getmbkey () {
 	local mbk=$k
 	while read -t -k 1 k
 	do
-		mbk=$mbk$k 
+		mbk=$mbk$k
 	done
 	print -Rn $mbk
 }
@@ -54,7 +54,7 @@ getseq () {
 	seq=$k
 	while read -t -k 1 k
 	do
-	   seq=$seq$k 
+	   seq=$seq$k
 	done
 	print -Rn ${(V)seq}
 }
@@ -244,7 +244,7 @@ else
 	fi
 fi
 
-local termId=${TERM}-${HOST}
+local termId=${TERM}
 command mv $zkbd/$TERM.tmp $zkbd/${termId}
 
 cat <<EOF

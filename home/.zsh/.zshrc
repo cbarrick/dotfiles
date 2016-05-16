@@ -94,8 +94,8 @@ export HISTSIZE HISTFILE SAVEHIST
 #--------------------
 
 autoload -Uz zkbd
-[[ ! -f ${ZDOTDIR}/zkbd/${TERM}-${HOST} ]] && zkbd
-source ${ZDOTDIR}/zkbd/${TERM}-${HOST}
+[[ ! -f ${ZDOTDIR}/zkbd/${TERM} ]] && zkbd
+source ${ZDOTDIR}/zkbd/${TERM}
 
 bindkey -e
 [[ -n "${key[Home]}"       ]] && bindkey "${key[Home]}"       beginning-of-line
