@@ -24,7 +24,7 @@ setopt complete_in_word # Completions happen at the cursor's location
 # Expansion and Globbing
 setopt glob # Perform filename generation (i.e. the use of the * operator)
 setopt extended_glob # Use additional glob operators
-setopt glob_dots # Glob dotfiles
+# setopt glob_dots # Glob dotfiles
 setopt mark_dirs # Directories resulting from globbing have trailing slashes
 setopt nomatch # If a glob fails, the command isn't executed
 
