@@ -132,18 +132,6 @@ bindkey '^I' menu-expand-or-complete
 bindkey '^[[Z' reverse-menu-complete
 
 
-# zmv - Batch Rename
-#--------------------
-
-autoload -Uz zmv
-alias mv="noglob zmv"
-
-# EX: Rename all .cpp files to .cc
-#     zmv '(*).cpp' '$1.cc'
-# Arguments are quoted to escape the globbing system
-# Use `-n` for a dry-run
-
-
 # Quick Status
 #--------------------
 # Use the `l` command to print both the directory listing and git status
