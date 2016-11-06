@@ -1,72 +1,56 @@
 {
   "*": {
-    "exception-reporting": {
-      "userId": "a8f790ed-8f9f-d36f-d131-fc4bbc0fb421"
-    },
-    "welcome": {
-      "showOnStartup": false
-    },
-    "metrics": {
-      "userId": "35a1c8fd015943f28e11c8894ffaf446d8d57501"
-    },
-    "release-notes": {
-      "viewedVersion": "0.95.0"
-    },
-    "editor": {
-      "fontFamily": "Source Code Pro",
-      "tabLength": 4,
-      "softWrapAtPreferredLineLength": true,
-      "scrollPastEnd": true,
-      "showInvisibles": true,
-      "softTabs": false,
-      "invisibles": {},
-      "showIndentGuide": true
-    },
-    "core": {
-      "disabledPackages": [
-        "autocomplete",
-        "feedback",
-        "language-perl",
-        "autosave",
-        "autocomplete-go"
-      ],
-      "projectHome": "/Users/csb/dev",
-      "audioBeep": false,
-      "openEmptyEditorOnStart": false
-    },
-    "tree-view": {
-      "hideVcsIgnoredFiles": true,
-      "showOnRightSide": true,
-      "hideIgnoredNames": true
-    },
-    "linter": {
-      "lintOnChange": false,
-      "gutterEnabled": false,
-      "statusIconScope": "Line",
-      "showProviderName": false,
-      "showErrorPanel": false
-    },
-    "minimap": {
-      "plugins": {
-        "selection": true,
-        "bookmarks": true,
-        "highlight-selected": true,
-        "find-and-replace": true
-      },
-      "scrollAnimation": true
-    },
-    "autocomplete-plus": {
-      "suggestionListFollows": "Word",
-      "strictMatching": true,
-      "confirmCompletion": "tab"
-    },
     "Zen": {
       "fullscreen": false,
       "softWrap": true
     },
-    "the-closer": {
-      "closeWindowTogetherWithLastTab": false
+    "autoclose-html": {},
+    "autocomplete-go": {},
+    "autocomplete-plus": {
+      "confirmCompletion": "tab",
+      "strictMatching": true,
+      "suggestionListFollows": "Word"
     },
+    "autosave": {
+      "enabled": true
+    },
+    "core": {
+      "audioBeep": false,
+      "disabledPackages": [
+        "autocomplete",
+        "feedback",
+        "autosave",
+        "autocomplete-snippets",
+        "linter-jshint",
+        "go-plus"
+      ],
+      "excludeVcsIgnoredPaths": false,
+      "openEmptyEditorOnStart": false,
+      "projectHome": "/Users/csb/dev",
+      "telemetryConsent": "limited",
+      "useCustomTitleBar": true
+    },
+    "editor": {
+      "fontFamily": "Source Code Pro",
+      "invisibles": {},
+      "scrollPastEnd": true,
+      "showIndentGuide": true,
+      "showInvisibles": true,
+      "softTabs": false,
+      "softWrapAtPreferredLineLength": true,
+      "tabLength": 4
+    },
+    "exception-reporting": {
+      "userId": "a8f790ed-8f9f-d36f-d131-fc4bbc0fb421"
+    },
+    "go-debug": {
+      "panelInitialVisible": false
+    },
+    "go-plus": {
+      "panelDisplayMode": "closed"
+    },
+    "gofmt": {},
+    "gometalinter-linter": {},
     "highlight-line": {
       "enableBackgroundColor": false
     },
@@ -75,43 +59,164 @@
       "lightTheme": true,
       "onlyHighlightWholeWords": true
     },
-    "autoclose-html": {},
-    "whitespace": {
-      "ignoreWhitespaceOnCurrentLine": false
+    "latex": {
+      "alwaysOpenResultInAtom": true,
+      "buildOnSave": true,
+      "openResultAfterBuild": false,
+      "outputDirectory": ".latex",
+      "texPath": "/Library/TeX/texbin"
     },
-    "typewriter": {},
-    "go-plus": {
-      "getMissingTools": false,
-      "lintOnSave": false,
-      "suppressBuiltinAutocompleteProvider": false,
-      "vetOnSave": false,
-      "syntaxCheckOnSave": false,
-      "showPanel": false
+    "latex-plus": {
+      "ghostscriptBin": "/usr/local/bin",
+      "texBin": "/Library/TeX/texbin"
     },
-    "theme-cycle": {},
-    "one-light-ui": {},
-    "tabs": {
-      "usePreviewTabs": true
+    "latextools": {
+      "viewer": "pdf-view"
     },
-    "status-bar": {},
+    "linter": {
+      "displayLinterInfo": false,
+      "gutterEnabled": false,
+      "gutterPosition": "Left",
+      "lintOnChange": false,
+      "showErrorPanel": false,
+      "showErrorTabProject": false,
+      "showProviderName": false,
+      "statusIconScope": "File"
+    },
+    "linter-golinter": {},
+    "linter-gotype": {},
+    "linter-govet": {},
     "linter-javac": {},
     "linter-jshint": {},
-    "one-dark-ui": {},
-    "autosave": {
-      "enabled": true
+    "metrics": {
+      "userId": "35a1c8fd015943f28e11c8894ffaf446d8d57501"
     },
-    "spell-check": {},
-    "git-diff": {},
-    "gfm-pdf": {}
+    "minimap": {
+      "plugins": {
+        "bookmarks": true,
+        "bookmarksDecorationsZIndex": 0,
+        "find-and-replace": true,
+        "find-and-replaceDecorationsZIndex": 0,
+        "highlight-selected": true,
+        "highlight-selectedDecorationsZIndex": 0,
+        "selection": true,
+        "selectionDecorationsZIndex": 0
+      },
+      "scrollAnimation": true
+    },
+    "one-dark-ui": {
+      "tabSizing": "Even"
+    },
+    "pdf-view": {
+      "fitToWidthOnOpen": true,
+      "reverseSyncBehaviour": "Double click"
+    },
+    "spell-check": {
+      "grammars": [
+        "string.quoted.double.block.sql.python",
+        "text.tex.latex",
+        "source.asciidoc",
+        "source.gfm",
+        "text.git-commit",
+        "text.plain",
+        "text.plain.null-grammar"
+      ]
+    },
+    "tabs": {},
+    "theme-switcher": {
+      "syntaxThemeOne": "one-dark-syntax",
+      "syntaxThemeTwo": "one-light-syntax"
+    },
+    "tree-view": {
+      "hideIgnoredNames": true,
+      "hideVcsIgnoredFiles": true,
+      "showOnRightSide": true
+    },
+    "welcome": {
+      "showOnStartup": false
+    },
+    "whitespace": {
+      "ignoreWhitespaceOnCurrentLine": false
+    }
   },
-  ".litcoffee.source": {
+  ".beamer.latex.tex.text": {
     "editor": {
+      "tabLength": 4
+    }
+  },
+  ".bibtex.text": {
+    "editor": {
+      "softWrap": true,
       "tabLength": 4
     }
   },
   ".coffee.source": {
     "editor": {
       "tabLength": 2
+    }
+  },
+  ".console.python.text": {
+    "editor": {
+      "tabLength": 4
+    }
+  },
+  ".go.source": {
+    "editor": {
+      "tabLength": 4
+    }
+  },
+  ".gohtml.html.text": {
+    "editor": {
+      "tabLength": 4
+    }
+  },
+  ".gotemplate.source": {
+    "editor": {
+      "tabLength": 4
+    }
+  },
+  ".latex.log.text": {
+    "editor": {
+      "tabLength": 4
+    }
+  },
+  ".latex.memoir.tex.text": {
+    "editor": {
+      "tabLength": 4
+    }
+  },
+  ".latex.tex.text": {
+    "editor": {
+      "softWrap": true,
+      "tabLength": 4
+    }
+  },
+  ".litcoffee.source": {
+    "editor": {
+      "tabLength": 4
+    }
+  },
+  ".plain.text": {
+    "editor": {
+      "softWrap": true,
+      "softWrapAtPreferredLineLength": true,
+      "tabLength": 4
+    }
+  },
+  ".python.text.traceback": {
+    "editor": {
+      "tabLength": 4
+    }
+  },
+  ".tex.text": {
+    "editor": {
+      "softWrap": true,
+      "tabLength": 4
+    }
+  },
+  ".text.todo": {
+    "editor": {
+      "tabLength": 4
     }
   },
   "source.gfm": {
