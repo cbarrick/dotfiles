@@ -197,6 +197,11 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
 fi
 
 
+# iTerm2 integration
+#--------------------
+source $ZDOTDIR/iterm2.zsh
+
+
 # Startup
 #--------------------
 
