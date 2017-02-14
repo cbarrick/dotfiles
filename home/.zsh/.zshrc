@@ -55,37 +55,8 @@ setopt prompt_subst # Substitute in parameter/command/arithmetic expansions
 setopt zle # Use ZLE. This is default, but I like to be explicit
 
 
-# Aliases
-#--------------------
-
-alias sed="sed -r"
-alias ls="ls --human-readable --classify --group-directories-first --color=auto"
-alias mkdir="mkdir -p"
-alias grep="grep --extended-regexp --color"
-alias ipy="ipython3"
-
-# Use hub instead of git when avaliable
-[[ -a $(which hub 2> /dev/null) ]] && alias git=hub
-
-
-# Environment
-#--------------------
-
-# Core tools
-[[ -a $(which atom 2> /dev/null) ]] && EDITOR="atom -w" || EDITOR="vim"
-[[ -a $(which atom 2> /dev/null) ]] && VISUAL="atom -w" || VISUAL="vim"
-PAGER="less"
-export EDITOR VISUAL PAGER
-
-# Go programming language
-export GOPATH=${HOME}/.go
-path=(${GOPATH}/bin ${path})
-cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
-
-
 # History
 #--------------------
-
 HISTSIZE=2000
 HISTFILE=${ZDOTDIR}/.history
 SAVEHIST=$HISTSIZE
@@ -94,7 +65,6 @@ export HISTSIZE HISTFILE SAVEHIST
 
 # Keyboard
 #--------------------
-
 autoload -Uz zkbd
 [[ ! -f ${ZDOTDIR}/zkbd/${TERM} ]] && zkbd
 source ${ZDOTDIR}/zkbd/${TERM}
@@ -114,14 +84,12 @@ bindkey -e
 
 # Prompt
 #--------------------
-
 autoload -Uz promptinit && promptinit
 prompt cbarrick
 
 
 # Completion
 #--------------------
-
 autoload -Uz compinit && compinit -u
 
 zstyle ':completion:*' use-cache true # Cache completion to `${ZDOTDIR}/.zcompcache`
@@ -130,6 +98,21 @@ zstyle ':completion:*' menu select # Make the menu interactive with arrow keys
 
 bindkey '^I' menu-expand-or-complete
 bindkey '^[[Z' reverse-menu-complete
+
+# Core utils
+#--------------------
+alias sed="sed -r"
+alias ls="ls --human-readable --classify --group-directories-first --color=auto"
+alias mkdir="mkdir -p"
+alias grep="grep --extended-regexp --color"
+
+# Use hub instead of git when avaliable
+[[ -a $(which hub 2> /dev/null) ]] && alias git=hub
+
+[[ -a $(which atom 2> /dev/null) ]] && EDITOR="atom -w" || EDITOR="vim"
+[[ -a $(which atom 2> /dev/null) ]] && VISUAL="atom -w" || VISUAL="vim"
+PAGER="less"
+export EDITOR VISUAL PAGER
 
 
 # Quick Status
@@ -150,7 +133,6 @@ function ll {
 
 # Rationalize Dots
 #--------------------
-
 function rationalize-dot {
 	if [[ $LBUFFER = *... ]]; then
 		LBUFFER=$LBUFFER[1,-2]
@@ -202,7 +184,20 @@ fi
 source $ZDOTDIR/iterm2.zsh
 
 
+# Go environment
+#--------------------
+export GOPATH=${HOME}/.go
+path=(${GOPATH}/bin ${path})
+cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
+
+
+# iPython
+#--------------------
+export IPYTHONDIR="${HOME}/.ipython"
+alias ipy="ipython3 --classic --pylab=osx --no-confirm-exit --no-term-title \
+                    --no-banner --nosep"
+
+
 # Startup
 #--------------------
-
 print "\r${USER} @ ${HOST}"
