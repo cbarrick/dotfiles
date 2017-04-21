@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-
 # Shell Options
 #--------------------
 # zshoptions(1)  /  http://zsh.sourceforge.net/Doc/Release/Options.html
@@ -102,9 +101,11 @@ bindkey '^[[Z' reverse-menu-complete
 # Core utils
 #--------------------
 alias sed="sed -r"
-alias ls="ls --human-readable --classify --group-directories-first --color=auto"
 alias mkdir="mkdir -p"
 alias grep="grep --extended-regexp --color"
+alias ls="ls --human-readable --classify --group-directories-first --color=auto"
+alias l="ls --format=long"
+alias ll="l --almost-all"
 
 # Use hub instead of git when avaliable
 [[ -a $(which hub 2> /dev/null) ]] && alias git=hub
@@ -113,22 +114,6 @@ alias grep="grep --extended-regexp --color"
 [[ -a $(which atom 2> /dev/null) ]] && VISUAL="atom -w" || VISUAL="vim"
 PAGER="less"
 export EDITOR VISUAL PAGER
-
-
-# Quick Status
-#--------------------
-# Use the `l` command to print both the directory listing and git status
-# Use `ll` to include dotfiles
-
-function l {
-	git -C $PWD/$1:h/$1:t status -sb $PWD/$1 2>/dev/null
-	ls $@ --format=long
-}
-
-function ll {
-	git -C $PWD/$1:h/$1:t status -sb $PWD/$1 2>/dev/null
-	ls $@ --format=long --almost-all
-}
 
 
 # Rationalize Dots
@@ -191,11 +176,12 @@ path=(${GOPATH}/bin ${path})
 cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
 
 
-# iPython
+# Python
 #--------------------
 export IPYTHONDIR="${HOME}/.ipython"
-alias ipy="ipython3 --classic --pylab=osx --no-confirm-exit --no-term-title \
-                    --no-banner --nosep"
+alias ipy="ipython3 --no-confirm-exit --no-term-title --classic"
+alias ipylab="ipy --pylab"
+alias pip="pip3"
 
 
 # Startup
