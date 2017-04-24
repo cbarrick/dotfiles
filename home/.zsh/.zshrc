@@ -107,6 +107,8 @@ alias ls="ls --human-readable --classify --group-directories-first --color=auto"
 alias l="ls --format=long"
 alias ll="l --almost-all"
 
+alias atom="atom-beta"
+
 # Use hub instead of git when avaliable
 [[ -a $(which hub 2> /dev/null) ]] && alias git=hub
 
@@ -119,8 +121,8 @@ export EDITOR VISUAL PAGER
 # Rationalize Dots
 #--------------------
 function rationalize-dot {
-	if [[ $LBUFFER = *... ]]; then
-		LBUFFER=$LBUFFER[1,-2]
+	if [[ $LBUFFER = *.. ]]; then
+		LBUFFER=$LBUFFER[1,-1]
 		LBUFFER+=/..
 	else
 		LBUFFER+=.
@@ -164,12 +166,12 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
 fi
 
 
-# iTerm2 integration
+# iTerm2
 #--------------------
 source $ZDOTDIR/iterm2.zsh
 
 
-# Go environment
+# Go
 #--------------------
 export GOPATH=${HOME}/.go
 path=(${GOPATH}/bin ${path})
@@ -181,6 +183,7 @@ cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
 export IPYTHONDIR="${HOME}/.ipython"
 alias ipy="ipython3 --no-confirm-exit --no-term-title --classic"
 alias ipylab="ipy --pylab"
+alias python="python3"
 alias pip="pip3"
 
 
