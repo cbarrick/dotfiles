@@ -1,13 +1,33 @@
 {
   "*": {
+    "Hydrogen": {
+      "debug": true,
+      "gateways": "[{\"name\": \"localhost\",\"options\": {\"baseUrl\": \"http://127.0.0.1:8888\"}}, {\"name\": \"AIGPC3\", \"options\": {\"baseUrl\": \"http://172.22.147.21:9999\"}}]"
+    },
     "Zen": {
       "fullscreen": false,
+      "gutter": true,
       "softWrap": true
+    },
+    "atom-beautify": {
+      "general": {
+        "_analyticsUserId": "a7dce35f-3216-4576-87c8-df013a434090",
+        "muteAllErrors": true
+      },
+      "rust": {
+        "beautify_on_save": true,
+        "rustfmt_path": "/Users/csb/.cargo/bin/rustfmt"
+      }
+    },
+    "atom-package-deps": {
+      "ignored": []
     },
     "autoclose-html": {},
     "autocomplete-go": {},
     "autocomplete-plus": {
-      "confirmCompletion": "tab",
+      "confirmCompletion": "tab always, enter when suggestion explicitly selected",
+      "consumeSuffix": false,
+      "minimumWordLength": 0,
       "strictMatching": true,
       "suggestionListFollows": "Word"
     },
@@ -15,28 +35,28 @@
       "enabled": true
     },
     "core": {
-      "audioBeep": false,
+      "closeDeletedFileTabs": true,
       "disabledPackages": [
         "autocomplete",
         "feedback",
         "autosave",
         "autocomplete-snippets",
         "linter-jshint",
-        "go-plus"
+        "deprecation-cop",
+        "autocomplete-paths"
       ],
-      "excludeVcsIgnoredPaths": false,
       "openEmptyEditorOnStart": false,
       "projectHome": "/Users/csb/dev",
       "telemetryConsent": "limited",
-      "useCustomTitleBar": true
+      "titleBar": "custom"
     },
     "editor": {
       "fontFamily": "Source Code Pro",
       "invisibles": {},
       "scrollPastEnd": true,
+      "showCursorOnSelection": false,
       "showIndentGuide": true,
       "showInvisibles": true,
-      "softTabs": false,
       "softWrapAtPreferredLineLength": true,
       "tabLength": 4
     },
@@ -47,7 +67,15 @@
       "panelInitialVisible": false
     },
     "go-plus": {
-      "panelDisplayMode": "closed"
+      "config": {
+        "gopath": "/Users/csb/.go"
+      },
+      "panelDisplayMode": "closed",
+      "test": {
+        "coverageDisplayMode": "gutter",
+        "coverageHighlightMode": "disabled",
+        "focusPanelIfTestsFail": false
+      }
     },
     "gofmt": {},
     "gometalinter-linter": {},
@@ -60,9 +88,10 @@
       "onlyHighlightWholeWords": true
     },
     "latex": {
-      "alwaysOpenResultInAtom": true,
       "buildOnSave": true,
+      "engine": "xelatex",
       "openResultAfterBuild": false,
+      "opener": "pdf-view",
       "outputDirectory": ".latex",
       "texPath": "/Library/TeX/texbin"
     },
@@ -74,24 +103,22 @@
       "viewer": "pdf-view"
     },
     "linter": {
-      "displayLinterInfo": false,
-      "gutterEnabled": false,
-      "gutterPosition": "Left",
-      "lintOnChange": false,
-      "showErrorPanel": false,
-      "showErrorTabProject": false,
-      "showProviderName": false,
-      "statusIconScope": "File"
+      "lintOnChange": false
     },
     "linter-golinter": {},
     "linter-gotype": {},
     "linter-govet": {},
     "linter-javac": {},
     "linter-jshint": {},
+    "linter-ui-default": {
+      "showStatusBar": false
+    },
     "metrics": {
       "userId": "35a1c8fd015943f28e11c8894ffaf446d8d57501"
     },
     "minimap": {
+      "absoluteMode": true,
+      "disablePythonDocLinks": true,
       "plugins": {
         "bookmarks": true,
         "bookmarksDecorationsZIndex": 0,
@@ -99,18 +126,29 @@
         "find-and-replaceDecorationsZIndex": 0,
         "highlight-selected": true,
         "highlight-selectedDecorationsZIndex": 0,
+        "minimap-autohide": true,
+        "minimap-autohideDecorationsZIndex": 0,
         "selection": true,
         "selectionDecorationsZIndex": 0
       },
       "scrollAnimation": true
     },
-    "one-dark-ui": {
+    "nebula-ui": {
+      "focusMode": false
+    },
+    "one-dark-ui": {},
+    "one-light-ui": {
       "tabSizing": "Even"
     },
     "pdf-view": {
       "fitToWidthOnOpen": true,
       "reverseSyncBehaviour": "Double click"
     },
+    "python-yapf": {
+      "formatOnSave": true,
+      "yapfStyle": "{column_limit: 100}"
+    },
+    "rustfmt": {},
     "spell-check": {
       "grammars": [
         "string.quoted.double.block.sql.python",
@@ -122,7 +160,9 @@
         "text.plain.null-grammar"
       ]
     },
-    "tabs": {},
+    "tabs": {
+      "enableMruTabSwitching": false
+    },
     "theme-switcher": {
       "syntaxThemeOne": "one-dark-syntax",
       "syntaxThemeTwo": "one-light-syntax"
@@ -175,6 +215,26 @@
       "tabLength": 4
     }
   },
+  ".js.regexp.replacement.source": {
+    "editor": {
+      "tabLength": 2
+    }
+  },
+  ".js.regexp.source": {
+    "editor": {
+      "tabLength": 2
+    }
+  },
+  ".js.source": {
+    "editor": {
+      "tabLength": 2
+    }
+  },
+  ".json.source": {
+    "editor": {
+      "tabLength": 2
+    }
+  },
   ".latex.log.text": {
     "editor": {
       "tabLength": 4
@@ -201,6 +261,16 @@
       "softWrap": true,
       "softWrapAtPreferredLineLength": true,
       "tabLength": 4
+    }
+  },
+  ".python.regexp.source": {
+    "editor": {
+      "preferredLineLength": 100
+    }
+  },
+  ".python.source": {
+    "editor": {
+      "preferredLineLength": 100
     }
   },
   ".python.text.traceback": {

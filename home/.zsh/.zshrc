@@ -105,7 +105,7 @@ alias mkdir="mkdir -p"
 alias grep="grep --extended-regexp --color"
 alias ls="ls --human-readable --classify --group-directories-first --color=auto"
 alias l="ls --format=long"
-alias ll="l --almost-all"
+alias la="l --almost-all"
 
 alias atom="atom-beta"
 

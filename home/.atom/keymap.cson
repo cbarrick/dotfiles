@@ -1,3 +1,0 @@
-'atom-text-editor':
-	'ctrl-cmd-left': 'window:focus-pane-on-left'
-	'ctrl-cmd-right': 'window:focus-pane-on-right'
