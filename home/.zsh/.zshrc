@@ -107,8 +107,6 @@ alias ls="ls --human-readable --classify --group-directories-first --color=auto"
 alias l="ls --format=long"
 alias la="l --almost-all"
 
-alias atom="atom-beta"
-
 # Use hub instead of git when avaliable
 [[ -a $(which hub 2> /dev/null) ]] && alias git=hub
 
