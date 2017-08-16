@@ -2,10 +2,31 @@
 @import (reference) "ui-variables";
 
 atom-workspace {
+
+	// Make text easier on the eyes.
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 
+	// Turn off ligatures in strings and regexp
+	atom-text-editor.editor .syntax--string.syntax--quoted,
+	atom-text-editor.editor .syntax--string.syntax--regexp {
+		-webkit-font-feature-settings: "liga" off, "calt" off;
+	}
+
+	// Disable vertical scrolling in markdown-preview code blocks
+	.markdown-preview {
+		position: relative;
+		z-index: 2;
+		background: transparent;
+
+		atom-text-editor.editor {
+			position: relative;
+			z-index: -1;
+		}
+	}
+
 	atom-text-editor.editor {
+
 		// Show invisibles only in selection
 		.invisible-character {
 			color: @syntax-background-color;
@@ -19,6 +40,9 @@ atom-workspace {
 		// 	transition: opacity 0.4s;
 		// }
 
+		// Fade in the minimap on scroll and hover.
+		// Requires the minimap to be in absolute mode.
+		// Requires the minimap-autohide package for the `.scrolling` class.
 		atom-text-editor-minimap {
 			background: transparent;
 			position: absolute;
@@ -29,6 +53,8 @@ atom-workspace {
 				opacity: 1;
 			}
 		}
+
+		// Hide the native scrollbar.
 		::-webkit-scrollbar {
 			display: none;
 		}

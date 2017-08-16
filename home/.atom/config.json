@@ -36,6 +36,18 @@
     },
     "core": {
       "closeDeletedFileTabs": true,
+      "customFileTypes": {
+        "source.ini": [
+          ".buckconfig",
+          ".hgrc"
+        ],
+        "source.json": [
+          "BUCK.autodeps"
+        ],
+        "source.python": [
+          "BUCK"
+        ]
+      },
       "disabledPackages": [
         "autocomplete",
         "feedback",
@@ -43,7 +55,8 @@
         "autocomplete-snippets",
         "linter-jshint",
         "deprecation-cop",
-        "autocomplete-paths"
+        "python-yapf",
+        "rustfmt"
       ],
       "openEmptyEditorOnStart": false,
       "projectHome": "/Users/csb/dev",
@@ -51,12 +64,13 @@
       "titleBar": "custom"
     },
     "editor": {
-      "fontFamily": "Source Code Pro",
+      "fontFamily": "Fira Code",
       "invisibles": {},
       "scrollPastEnd": true,
       "showCursorOnSelection": false,
       "showIndentGuide": true,
       "showInvisibles": true,
+      "softTabs": false,
       "softWrapAtPreferredLineLength": true,
       "tabLength": 4
     },
@@ -79,6 +93,9 @@
     },
     "gofmt": {},
     "gometalinter-linter": {},
+    "hey-pane": {
+      "expandedWidth": 75
+    },
     "highlight-line": {
       "enableBackgroundColor": false
     },
@@ -86,6 +103,9 @@
       "hideHighlightOnSelectedWord": true,
       "lightTheme": true,
       "onlyHighlightWholeWords": true
+    },
+    "languageserver-rust": {
+      "rustup": "/Users/csb/.cargo/bin/rustup"
     },
     "latex": {
       "buildOnSave": true,
@@ -111,6 +131,7 @@
     "linter-javac": {},
     "linter-jshint": {},
     "linter-ui-default": {
+      "panelHeight": 69,
       "showStatusBar": false
     },
     "metrics": {
@@ -133,8 +154,18 @@
       },
       "scrollAnimation": true
     },
+    "minimap-plus": {
+      "absoluteMode": true
+    },
     "nebula-ui": {
       "focusMode": false
+    },
+    "no-title-bar": {},
+    "nuclide": {
+      "atom-ide-outline-view": {},
+      "nuclide-home": {
+        "showHome": false
+      }
     },
     "one-dark-ui": {},
     "one-light-ui": {
@@ -261,6 +292,11 @@
       "softWrap": true,
       "softWrapAtPreferredLineLength": true,
       "tabLength": 4
+    }
+  },
+  ".prolog.source": {
+    "editor": {
+      "preferredLineLength": 100
     }
   },
   ".python.regexp.source": {

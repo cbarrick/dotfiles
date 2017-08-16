@@ -1,0 +1,6 @@
+{
+	"atom-text-editor":{
+		"ctrl-cmd-left": "pane:show-previous-item",
+		"ctrl-cmd-right": "pane:show-next-item"
+	}
+}
