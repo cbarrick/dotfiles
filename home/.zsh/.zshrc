@@ -1,5 +1,5 @@
-#!/bin/zsh
 
+#!/bin/zsh
 # Shell Options
 #--------------------
 # zshoptions(1)  /  http://zsh.sourceforge.net/Doc/Release/Options.html
@@ -130,38 +130,46 @@ zle -N rationalize-dot
 bindkey . rationalize-dot
 
 
-# Apple Terminal.app
+# Window Title
 #--------------------
-# Alert Terminal.app of the current directory (for the resume feature among others)
-# based on this answer: http://superuser.com/a/328148
 
-update_terminal_cwd() {
-	# Get the directory as a "file:" URL, including the hostname.
-	local URL_PATH=''
+# Get the cwd as a "file:" URL, including the hostname.
+# cwurl = Current Working URL
+function cwurl {
+	# Percent-encode the cwd
+	# LANG=C to process text byte-by-byte.
+	local pct_encoded_cwd=''
 	{
-		# LANG=C to process text byte-by-byte.
 		local i ch hexch LANG=C
 		for ((i = 1; i <= ${#PWD}; ++i)); do
 			ch="$PWD[i]"
 			if [[ "$ch" =~ [/._~A-Za-z0-9-] ]]; then
-				URL_PATH+="$ch"
+				pct_encoded_cwd+="$ch"
 			else
-				# Percent-encode special characters
 				hexch=$(printf "%02X" "'$ch")
-				URL_PATH+="%$hexch"
+				pct_encoded_cwd+="%$hexch"
 			fi
 		done
 	}
 
-	# Print the pathname through a special escape sequence to inform Terminal.app
-	local PWD_URL="file://$HOST$URL_PATH"
-	printf '\e]7;%s\a' "$PWD_URL"
+	printf "file://$HOST$pct_encoded_cwd"
 }
 
-if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
-	autoload add-zsh-hook
-	add-zsh-hook precmd update_terminal_cwd
-fi
+# Sets the terminal tital
+function set_term_title {
+	# Titles are set with this escape sequence: "\e]$TYPE;$TITLE\a"
+	printf "\e]0;\a"         # - type 0: ??
+	printf "\e]1;$HOST\a"    # - type 1: Tab title
+	printf "\e]2;\a"         # - type 2: Window title
+	printf "\e]3;\a"         # - type 3: ??
+	printf "\e]4;\a"         # - type 4: ??
+	printf "\e]5;\a"         # - type 5: ??
+	printf "\e]6;\a"         # - type 6: Current document as a URL (e.g. set by editors)
+	printf "\e]7;$(cwurl)\a" # - type 7: CWD as a URL
+}
+
+autoload add-zsh-hook
+add-zsh-hook precmd set_term_title
 
 
 # iTerm2
