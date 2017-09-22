@@ -1,6 +1,5 @@
 channels:
   - soumith
-  - menpo
   - conda-forge
   - defaults
 ssl_verify: true
