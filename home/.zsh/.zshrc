@@ -1,5 +1,6 @@
-
 #!/bin/zsh
+
+
 # Shell Options
 #--------------------
 # zshoptions(1)  /  http://zsh.sourceforge.net/Doc/Release/Options.html
@@ -98,6 +99,7 @@ zstyle ':completion:*' menu select # Make the menu interactive with arrow keys
 bindkey '^I' menu-expand-or-complete
 bindkey '^[[Z' reverse-menu-complete
 
+
 # Core utils
 #--------------------
 alias sed="sed -r"
@@ -191,6 +193,10 @@ alias ipy="ipython3 --no-confirm-exit --no-term-title --classic"
 alias ipylab="ipy --pylab"
 alias python="python3"
 alias pip="pip3"
+
+# Use `csb` as the default conda environment.
+# This helps keep the root env pristine.
+source activate csb
 
 
 # Startup
