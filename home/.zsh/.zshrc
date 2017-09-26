@@ -149,12 +149,12 @@ function cwurl {
 				pct_encoded_cwd+="$ch"
 			else
 				hexch=$(printf "%02X" "'$ch")
-				pct_encoded_cwd+="%$hexch"
+				pct_encoded_cwd+="%%$hexch"
 			fi
 		done
 	}
 
-	printf "file://$HOST$pct_encoded_cwd"
+	echo "file://$HOST$pct_encoded_cwd"
 }
 
 # Sets the terminal tital
