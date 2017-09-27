@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+# Startup
+#--------------------
+printf "\r${USER} @ ${HOST}\n"
+printf "..."
+
 
 # Shell Options
 #--------------------
@@ -47,7 +52,7 @@ setopt monitor # Enable job control. This is default.
 
 # Prompting
 setopt prompt_cr # Print a \r before the prompt
-setopt prompt_sp # Preserve lines that would be covered by the \r
+setopt no_prompt_sp # Allow the prompt to overwrite the previous line
 setopt prompt_subst # Substitute in parameter/command/arithmetic expansions
 
 # ZLE
@@ -197,8 +202,3 @@ alias pip="pip3"
 # Use `csb` as the default conda environment.
 # This helps keep the root env pristine.
 source activate csb
-
-
-# Startup
-#--------------------
-print "\r${USER} @ ${HOST}"

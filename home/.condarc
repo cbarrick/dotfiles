@@ -1,5 +1,7 @@
 channels:
-  - soumith
+  - soumith  # PyTorch
   - conda-forge
   - defaults
-ssl_verify: true
+
+ssl_verify: True
+changeps1: False
