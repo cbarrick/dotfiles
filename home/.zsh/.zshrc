@@ -197,12 +197,13 @@ cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
 
 # Python
 #--------------------
+
+# Use `csb` as the default conda environment.
+# This helps keep the root env pristine.
+[[ -a $(which activate 2> /dev/null) ]] && source activate csb
+
 export IPYTHONDIR="${HOME}/.ipython"
 alias ipy="ipython3 --no-confirm-exit --no-term-title --classic"
 alias ipylab="ipy --pylab"
 alias python="python3"
 alias pip="pip3"
-
-# Use `csb` as the default conda environment.
-# This helps keep the root env pristine.
-source activate csb
