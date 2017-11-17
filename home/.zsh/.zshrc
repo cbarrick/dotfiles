@@ -175,13 +175,17 @@ function set_term_title {
 	printf "\e]7;$(cwurl)\a" # - type 7: CWD as a URL
 }
 
-autoload add-zsh-hook
-add-zsh-hook precmd set_term_title
+if [[ $TERM_PROGRAM == 'Apple_Terminal' ]]; then
+	autoload add-zsh-hook
+	add-zsh-hook precmd set_term_title
+fi
 
 
 # iTerm2
 #--------------------
-source $ZDOTDIR/iterm2.zsh
+if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
+	source $ZDOTDIR/iterm2.zsh
+fi
 
 
 # Go

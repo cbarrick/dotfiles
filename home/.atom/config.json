@@ -19,6 +19,11 @@
         "rustfmt_path": "/Users/csb/.cargo/bin/rustfmt"
       }
     },
+    "atom-ide-ui": {
+      "use": {
+        "hyperclick": false
+      }
+    },
     "atom-package-deps": {
       "ignored": []
     },
