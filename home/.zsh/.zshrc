@@ -162,8 +162,8 @@ function cwurl {
 	echo "file://$HOST$pct_encoded_cwd"
 }
 
-# Sets the terminal tital
-function set_term_title {
+# Sets the terminal title
+function set-term-title {
 	# Titles are set with this escape sequence: "\e]$TYPE;$TITLE\a"
 	printf "\e]0;\a"         # - type 0: ??
 	printf "\e]1;$HOST\a"    # - type 1: Tab title
@@ -177,7 +177,7 @@ function set_term_title {
 
 if [[ $TERM_PROGRAM == 'Apple_Terminal' ]]; then
 	autoload add-zsh-hook
-	add-zsh-hook precmd set_term_title
+	add-zsh-hook precmd set-term-title
 fi
 
 
