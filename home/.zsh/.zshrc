@@ -190,7 +190,7 @@ fi
 
 # tmux
 #--------------------
-if [[ -x $TMUX ]]; then
+if [[ -z $TMUX ]]; then
 	tmux -CC new -A -s default
 fi
 
