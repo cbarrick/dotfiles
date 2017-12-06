@@ -85,6 +85,8 @@ bindkey -e
 [[ -n "${key[Right]}"      ]] && bindkey "${key[Right]}"      forward-char
 [[ -n "${key[Ctrl-Left]}"  ]] && bindkey "${key[Ctrl-Left]}"  backward-word
 [[ -n "${key[Ctrl-Right]}" ]] && bindkey "${key[Ctrl-Right]}" forward-word
+[[ -n "${key[Alt-Left]}"   ]] && bindkey "${key[Alt-Left]}"   backward-word
+[[ -n "${key[Alt-Right]}"  ]] && bindkey "${key[Alt-Right]}"  forward-word
 
 
 # Prompt
