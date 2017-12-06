@@ -164,17 +164,23 @@ function cwurl {
 
 # Sets the terminal title
 function set-term-title {
-	local tab=$(print -P '%M:%~')
+	local title=$(print -P '%n @ %M : %~')
 
-	# printf "\e]0;\a"    # Both tab and window
-	printf "\e]1;$tab\a"  # Tab title
-	printf "\e]2;\a"      # Window title
+	printf "\e]0;$title\a"    # Both tab and window
+	# printf "\e]1;$title\a"  # Tab title
+	# printf "\e]2;$title\a"  # Window title
 
 	# Codes 6 and 7 are used by Terminal.app on macOS,
 	# but they conflict with other escapes on gnome-terminal.
 	if [[ $TERM_PROGRAM == 'Apple_Terminal' ]]; then
 		printf "\e]6;\a"          # Current document as a URL
 		printf "\e]7;$(cwurl)\a"  # CWD as a URL
+	fi
+
+	# Tabs must be named through tmux with iTerm2
+	# when using tmux -CC integration
+	if [[ -n $TMUX ]]; then
+		tmux rename-window $title
 	fi
 }
 
