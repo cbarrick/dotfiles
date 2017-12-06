@@ -1,5 +1,5 @@
 /home/csb
-=========
+==================================================
 
 This is my home, built on [Zsh], [Git], and [Atom].
 
@@ -7,31 +7,34 @@ This is my home, built on [Zsh], [Git], and [Atom].
 [Git]: http://git-scm.com
 [Zsh]: http://www.zsh.org
 
+**TODO:** Get a more recent screenshot
+
 ![zsh screenshot](./home/.zsh/zsh.png)
 
-The font used in the screen-shot is the excellent [Source Code Pro][] from Adobe. The color scheme used is [Base16 Bright][] with the saturation pulled up to 100% for every color.
 
-[Source Code Pro]: https://github.com/adobe/source-code-pro
-[Base16 Bright]: http://chriskempson.github.io/base16/#bright
+## Installation
 
+In the best case, you only need to run `install.zsh`. This will link all items in the `./home` directory into your home.
 
-Installation
-------------
-
-Use the included zsh install script to symlink the dotfiles under your home directory.
+In some cases, you'll need to perform additional steps, given below.
 
 
-### Setup Zsh
+### Configure `$ZDOTDIR`
 
-My Zsh config lives under `~/.zsh` rather than directly under the home directory. The `ZDOTDIR` environmental variable tells Zsh where to find its config and must be set to `~/.zsh` (the default is your home directory).
+My Zsh config lives under `~/.zsh` rather than directly under the home directory. The `$ZDOTDIR` environmental variable tells Zsh where to find its config and must be set to `~/.zsh` (the default for most installations is your home directory).
 
-This can be set at compile time, in the global `zshenv` file, or by linking the local `.zshenv` to the default `ZDOTDIR`.
+This can be set at compile time, in the global `zshenv` file, or by linking the included `.zshenv` into the current `$ZDOTDIR`.
 
 ```sh
 ln -s ~/.zsh/.zshenv $ZDOTDIR/.zshenv
 ```
 
 
-### Configuring the path
+### Configure `$PATH`
 
-Each line in the files `.zsh/paths/paths` and `.zsh/paths/paths.d/$HOST` are added to your `$PATH`. Likewise, similar files exist to customize your `$MANPATH`, `$FPATH`, and `$CDPATH`.
+These dotfiles have a simple way to set your `$PATH`, both globally and on a host-by-host basis. New paths can be added as lines in the files `.zsh/paths/paths` and `.zsh/paths/paths.d/$HOST`. Likewise, similar files exist to customize your `$MANPATH`, `$FPATH`, and `$CDPATH`.
+
+
+### Configure iTerm2
+
+iTerm2 needs to be told where to find it's configuration. The installation script will attempt to configure iTerm2 for you, but this can be iffy. To manually configure iTerm, go to **Preferences -> General** and check the box **Load preferences from a custom folder or URL** and specify `~/.iterm` as the location.
