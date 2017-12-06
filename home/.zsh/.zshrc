@@ -190,7 +190,7 @@ fi
 
 # tmux
 #--------------------
-if [[ -z $TMUX ]]; then
+if [[ -n $SSH_CONNECTION ]]; then
 	tmux -CC new -A -s default
 fi
 
