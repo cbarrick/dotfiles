@@ -1,8 +1,13 @@
 #!/bin/zsh --no-rcs
-# THIS IS A MODIFIED VERSION OF ZKBD THAT COMES WITH THE DEFAULT INSTALLATION
-# OF ZSH. IT HAS BEEN MODIFIED TO SUPPORT MAC OS X WHICH DOES NOT USE THE
-# $DISPLAY VARIABLE (or at least does not set it in a way zkbd expects) AND TO
-# USE A DIFFERENT DIRECTORY.
+# This is a modifier version of the zkbd script that comes with zsh.
+
+# The keys to prompt
+local -a fkeys pckeys modifiers
+fkeys=(F{1..12})
+pckeys=(Backspace Delete Up Left Down Right)
+modifiers=(Shift- Ctrl- Alt-)
+keys=($fkeys $pckeys $^modifiers$^pckeys)
+
 
 [[ -o interactive ]] && {
 	local -hi ARGC		# local is a no-op outside of a function
@@ -171,9 +176,7 @@ cat <<\EOF
 
 ---------
 
-You will now be asked to press in turn each of the 12 function keys, then
-the Backspace key, the 6 common keypad keys found on typical PC keyboards,
-plus the 4 arrow keys, and finally the Menu key (near Ctrl on the right).
+You will now be asked to press in a series of keys found on typical keyboards.
 If your keyboard does not have the requested key, press Space to skip to
 the next key.
 
@@ -195,30 +198,9 @@ If you make a mistake, stop typing and wait, then run this program again.
 
 EOF
 
-# There are 509 combinations of the following three arrays that represent
-# possible keystrokes.  (Actually, Sun keyboards don't have Meta or Menu,
-# though some have R{1..12} keys as well, so really there are either 433
-# or 517 combinations; but some X11 apps map Shift-F{1..11} to emulate the
-# unmodified Sun keys, so really only the 345 PC combinations are usable.
-# Let's not even get into distinguishing Left and Right Shift/Alt/Meta.)
-# No one would ever want to type them all into this program (would they?),
-# so by default ask for the 23 unmodified PC keys.  If you uncomment more,
-# you should fix the introductory text above.
-
-local -a fkeys pckeys sunkeys modifiers
-fkeys=(F{1..12})
-pckeys=(Backspace Delete Insert PageUp Home PageDown End Up Left Down Right Menu)
-sunkeys=(Stop Again Props Undo Front Copy Open Paste Find Cut Help)
-modifiers=(Shift- Ctrl- # Alt- Meta-
-		   # Ctrl-Shift- Alt-Shift- Meta-Shift-
-		   # Ctrl-Alt- Ctrl-Meta- Alt-Meta-
-		   # Ctrl-Alt-Shift- Ctrl-Meta-Shift-
-		   # Alt-Meta-Shift- Ctrl-Alt-Meta-Shift-
-		  )
-
 exec 3>/dev/tty
 
-for key in $fkeys $pckeys $^modifiers$^pckeys # $sunkeys $^modifiers$^sunkeys
+for key in $keys
 do
 	print -u3 -Rn "Press $key: "
 	seq="$(getseq)" || return 1
