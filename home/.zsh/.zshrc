@@ -188,6 +188,13 @@ if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
 fi
 
 
+# tmux
+#--------------------
+if [[ -x $TMUX ]]; then
+	tmux -CC new -A -s default
+fi
+
+
 # Go
 #--------------------
 export GOPATH=${HOME}/.go
