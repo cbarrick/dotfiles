@@ -164,21 +164,22 @@ function cwurl {
 
 # Sets the terminal title
 function set-term-title {
-	# Titles are set with this escape sequence: "\e]$TYPE;$TITLE\a"
-	printf "\e]0;\a"         # - type 0: ??
-	printf "\e]1;$HOST\a"    # - type 1: Tab title
-	printf "\e]2;\a"         # - type 2: Window title
-	printf "\e]3;\a"         # - type 3: ??
-	printf "\e]4;\a"         # - type 4: ??
-	printf "\e]5;\a"         # - type 5: ??
-	printf "\e]6;\a"         # - type 6: Current document as a URL (e.g. set by editors)
-	printf "\e]7;$(cwurl)\a" # - type 7: CWD as a URL
+	local tab=$(print -P '%M:%~')
+
+	# printf "\e]0;\a"    # Both tab and window
+	printf "\e]1;$tab\a"  # Tab title
+	printf "\e]2;\a"      # Window title
+
+	# Codes 6 and 7 are used by Terminal.app on macOS,
+	# but they conflict with other escapes on gnome-terminal.
+	if [[ $TERM_PROGRAM == 'Apple_Terminal' ]]; then
+		printf "\e]6;\a"          # Current document as a URL
+		printf "\e]7;$(cwurl)\a"  # CWD as a URL
+	fi
 }
 
-if [[ $TERM_PROGRAM == 'Apple_Terminal' ]]; then
-	autoload add-zsh-hook
-	add-zsh-hook precmd set-term-title
-fi
+autoload add-zsh-hook
+add-zsh-hook precmd set-term-title
 
 
 # iTerm2
