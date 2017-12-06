@@ -164,7 +164,7 @@ function cwurl {
 
 # Sets the terminal title
 function set-term-title {
-	local title=$(print -P '%n @ %M : %~')
+	local title=$(print -P '%M : %~')
 
 	printf "\e]0;$title\a"    # Both tab and window
 	# printf "\e]1;$title\a"  # Tab title
