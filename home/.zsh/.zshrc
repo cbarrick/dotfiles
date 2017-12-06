@@ -168,19 +168,21 @@ function cwurl {
 function set-term-title {
 	local title=$(print -P '%M : %~')
 
-	printf "\e]0;$title\a"    # Both tab and window
-	# printf "\e]1;$title\a"  # Tab title
-	# printf "\e]2;$title\a"  # Window title
+	# OSC 0, 1, and 2 are the portable escape codes for setting window titles.
+	printf "\e]0;$title\a"  # Both tab and window
+	printf "\e]1;$title\a"  # Tab title
+	printf "\e]2;$title\a"  # Window title
 
-	# Codes 6 and 7 are used by Terminal.app on macOS,
-	# but they conflict with other escapes on gnome-terminal.
-	if [[ $TERM_PROGRAM == 'Apple_Terminal' ]]; then
-		printf "\e]6;\a"          # Current document as a URL
-		printf "\e]7;$(cwurl)\a"  # CWD as a URL
+	# OSC 6 and 7 are used on macOS to advertise user, host and pwd.
+	# These codes may foobar other terminals on Linux, like gnome-terminal.
+	if [[ $TERM_PROGRAM == 'Apple_Terminal' || $TERM_PROGRAM == 'iTerm.app' ]]
+	then
+		printf "\e]6;\a"          # Current document as a URL (Terminal.app)
+		printf "\e]7;$(cwurl)\a"  # CWD as a URL (Terminal.app and iTerm2)
 	fi
 
-	# Tabs must be named through tmux with iTerm2
-	# when using tmux -CC integration
+	# When using tmux -CC integration with iTerm2,
+	# tabs and windows must be named through tmux.
 	if [[ -n $TMUX ]]; then
 		tmux rename-window $title
 	fi
