@@ -1,2 +1,8 @@
 # Global ignores for all projects
+# --------------------------------------------------
+
+# Fuck Finder
 .DS_Store
+
+# iPython likes to leave these lying around
+.ropeproject
