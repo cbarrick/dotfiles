@@ -33,7 +33,7 @@ function prompt_cbarrick_setup {
 
 	## Determines the value during a merge, rebase, etc
 	zstyle ':vcs_info:*:cbarrick:*' actionformats \
-		"${project}:${branch}${action} ${vcs_path}"
+		"${project}:${branch} ${action} ${vcs_path}"
 
 	## Determines the value when outside of version control
 	zstyle ':vcs_info:*:cbarrick:*' nvcsformats \
@@ -41,7 +41,7 @@ function prompt_cbarrick_setup {
 
 	# To avoid conflicts with other uses of vcs_info, we reset the $PROMPT for every command
 	function set_prompt {
-		local main="%(?.%(1j.%F{${prompt_csb_color_info}}[:%j].).%F{${prompt_csb_color_err}}[%?%(1j.:%j.)])%#%f "
+		local main="%(1j.%F{${prompt_csb_color_info}}[%j]%f .)%(?..%F{${prompt_csb_color_err}})%#%f "
 		vcs_info cbarrick
 		PROMPT="${vcs_info_msg_0_} ${main}"
 		RPROMPT=${SSH_CONNECTION:+ %m}
