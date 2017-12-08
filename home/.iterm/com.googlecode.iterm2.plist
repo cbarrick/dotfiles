@@ -36411,7 +36411,7 @@ tmux.Detach</string>
 	<key>NSFontPanelAttributes</key>
 	<string>1, 4</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~</string>
+	<string>~/Desktop</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
@@ -36464,13 +36464,13 @@ tmux.Detach</string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>530 496 700 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>572 86 606 469 0 0 1680 1028 </string>
+	<string>572 151 606 404 0 0 1680 1028 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>681 206 796 473 0 0 1680 1028 </string>
+	<string>681 278 796 473 0 0 1680 1028 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>127 443 592 584 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>233 526 910 502 0 0 1680 1028 </string>
+	<string>651 184 910 502 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>212 101 910 502 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
@@ -37203,7 +37203,7 @@ tmux.Detach</string>
 			<key>Triggers</key>
 			<array/>
 			<key>Unicode Version</key>
-			<integer>8</integer>
+			<integer>9</integer>
 			<key>Unlimited Scrollback</key>
 			<true/>
 			<key>Use Bold Font</key>
@@ -37249,9 +37249,9 @@ tmux.Detach</string>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
-	<integer>0</integer>
+	<integer>1</integer>
 	<key>NoSyncNewWindowOrTabFromTmuxOpensTmux</key>
-	<true/>
+	<false/>
 	<key>NoSyncNewWindowOrTabFromTmuxOpensTmux_selection</key>
 	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
@@ -37426,7 +37426,7 @@ tmux.Detach</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-12-06T05:55:51Z</date>
+	<date>2017-12-07T06:47:18Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
