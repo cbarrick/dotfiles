@@ -119,10 +119,15 @@ alias la="l --almost-all"
 # Use hub instead of git when avaliable
 [[ -a $(which hub 2> /dev/null) ]] && alias git=hub
 
-[[ -a $(which atom 2> /dev/null) ]] && EDITOR="atom -w" || EDITOR="vim"
-[[ -a $(which atom 2> /dev/null) ]] && VISUAL="atom -w" || VISUAL="vim"
+# Editors in order of preference, least to most
+[[ -a $(which nano 2> /dev/null) ]] && EDITOR="nano"    && VISUAL="nano"
+[[ -a $(which vim 2> /dev/null) ]]  && EDITOR="vim"     && VISUAL="vim"
+[[ -a $(which atom 2> /dev/null) ]] && EDITOR="atom -w" && VISUAL="atom -w"
+export EDITOR VISUAL
+
 PAGER="less"
-export EDITOR VISUAL PAGER
+LESS="-MSR"
+export PAGER LESS
 
 
 # Rationalize Dots
