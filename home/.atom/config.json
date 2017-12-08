@@ -71,6 +71,7 @@
     "editor": {
       "fontFamily": "Fira Code",
       "invisibles": {},
+      "preferredLineLength": 100,
       "scrollPastEnd": true,
       "showCursorOnSelection": false,
       "showIndentGuide": true,
@@ -236,6 +237,11 @@
       "tabLength": 4
     }
   },
+  ".gfm.source": {
+    "editor": {
+      "preferredLineLength": 80
+    }
+  },
   ".go.source": {
     "editor": {
       "tabLength": 4
@@ -305,11 +311,6 @@
     }
   },
   ".python.regexp.source": {
-    "editor": {
-      "preferredLineLength": 100
-    }
-  },
-  ".python.source": {
     "editor": {
       "preferredLineLength": 100
     }
