@@ -115,7 +115,6 @@
     },
     "latex": {
       "buildOnSave": true,
-      "engine": "xelatex",
       "openResultAfterBuild": false,
       "opener": "pdf-view",
       "outputDirectory": ".latex",
