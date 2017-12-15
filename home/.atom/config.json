@@ -110,6 +110,13 @@
       "lightTheme": true,
       "onlyHighlightWholeWords": true
     },
+    "ide-python": {
+      "pylsPlugins": {
+        "yapf": {
+          "enabled": false
+        }
+      }
+    },
     "languageserver-rust": {
       "rustup": "/Users/csb/.cargo/bin/rustup"
     },
