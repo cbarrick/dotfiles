@@ -12,3 +12,5 @@
 	required = true
 [rebase]
 	autoSquash = true
+[alias]
+	l = --no-pager log -20 --oneline
