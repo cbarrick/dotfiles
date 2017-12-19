@@ -115,6 +115,8 @@ alias grep="grep --extended-regexp --color"
 alias ls="ls --human-readable --classify --group-directories-first --color=auto"
 alias l="ls --format=long"
 alias la="l --almost-all"
+alias df="df -h --total"
+alias du="du -h --total"
 
 # Use hub instead of git when avaliable
 [[ -x ${commands[hub]} ]] && alias git=hub
