@@ -133,7 +133,8 @@ export PAGER LESS
 # Rationalize Dots
 #--------------------
 function rationalize-dot {
-	if [[ $LBUFFER = *.. ]]; then
+	if [[ $LBUFFER = *.. ]]
+	then
 		LBUFFER=$LBUFFER[1,-1]
 		LBUFFER+=/..
 	else
@@ -155,9 +156,11 @@ function cwurl {
 	local pct_encoded_cwd=''
 	{
 		local i ch hexch LANG=C
-		for ((i = 1; i <= ${#PWD}; ++i)); do
+		for ((i = 1; i <= ${#PWD}; ++i))
+		do
 			ch="$PWD[i]"
-			if [[ "$ch" =~ [/._~A-Za-z0-9-] ]]; then
+			if [[ "$ch" =~ [/._~A-Za-z0-9-] ]]
+			then
 				pct_encoded_cwd+="$ch"
 			else
 				hexch=$(printf "%02X" "'$ch")
@@ -188,7 +191,8 @@ function set-term-title {
 
 	# When using tmux -CC integration with iTerm2,
 	# tabs and windows must be named through tmux.
-	if [[ -n $TMUX ]]; then
+	if [[ -n $TMUX ]]
+	then
 		tmux rename-window $title
 	fi
 }
@@ -199,14 +203,16 @@ add-zsh-hook precmd set-term-title
 
 # iTerm2
 #--------------------
-if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
+if [[ $TERM_PROGRAM == 'iTerm.app' ]]
+then
 	source $ZDOTDIR/iterm2.zsh
 fi
 
 
 # tmux
 #--------------------
-if [[ -n $SSH_CONNECTION ]]; then
+if [[ -n $SSH_CONNECTION ]]
+then
 	tmux -CC new -A -s default
 fi
 
