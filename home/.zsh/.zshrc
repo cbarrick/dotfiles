@@ -64,7 +64,7 @@ setopt zle # Use ZLE. This is default, but I like to be explicit
 #--------------------
 HISTSIZE=2000
 HISTFILE=${ZDOTDIR}/.history
-SAVEHIST=$HISTSIZE
+SAVEHIST=${HISTSIZE}
 export HISTSIZE HISTFILE SAVEHIST
 
 
@@ -75,18 +75,18 @@ autoload -Uz zkbd
 source ${ZDOTDIR}/zkbd/${TERM}
 
 bindkey -e
-[[ -n "${key[Home]}"       ]] && bindkey "${key[Home]}"       beginning-of-line
-[[ -n "${key[End]}"        ]] && bindkey "${key[End]}"        end-of-line
-[[ -n "${key[Insert]}"     ]] && bindkey "${key[Insert]}"     overwrite-mode
-[[ -n "${key[Delete]}"     ]] && bindkey "${key[Delete]}"     delete-char
-[[ -n "${key[Up]}"         ]] && bindkey "${key[Up]}"         up-line-or-search
-[[ -n "${key[Down]}"       ]] && bindkey "${key[Down]}"       down-line-or-search
-[[ -n "${key[Left]}"       ]] && bindkey "${key[Left]}"       backward-char
-[[ -n "${key[Right]}"      ]] && bindkey "${key[Right]}"      forward-char
-[[ -n "${key[Ctrl-Left]}"  ]] && bindkey "${key[Ctrl-Left]}"  backward-word
-[[ -n "${key[Ctrl-Right]}" ]] && bindkey "${key[Ctrl-Right]}" forward-word
-[[ -n "${key[Alt-Left]}"   ]] && bindkey "${key[Alt-Left]}"   backward-word
-[[ -n "${key[Alt-Right]}"  ]] && bindkey "${key[Alt-Right]}"  forward-word
+[[ -n ${key[Home]}       ]] && bindkey ${key[Home]}       beginning-of-line
+[[ -n ${key[End]}        ]] && bindkey ${key[End]}        end-of-line
+[[ -n ${key[Insert]}     ]] && bindkey ${key[Insert]}     overwrite-mode
+[[ -n ${key[Delete]}     ]] && bindkey ${key[Delete]}     delete-char
+[[ -n ${key[Up]}         ]] && bindkey ${key[Up]}         up-line-or-search
+[[ -n ${key[Down]}       ]] && bindkey ${key[Down]}       down-line-or-search
+[[ -n ${key[Left]}       ]] && bindkey ${key[Left]}       backward-char
+[[ -n ${key[Right]}      ]] && bindkey ${key[Right]}      forward-char
+[[ -n ${key[Ctrl-Left]}  ]] && bindkey ${key[Ctrl-Left]}  backward-word
+[[ -n ${key[Ctrl-Right]} ]] && bindkey ${key[Ctrl-Right]} forward-word
+[[ -n ${key[Alt-Left]}   ]] && bindkey ${key[Alt-Left]}   backward-word
+[[ -n ${key[Alt-Right]}  ]] && bindkey ${key[Alt-Right]}  forward-word
 
 
 # Prompt
@@ -117,12 +117,12 @@ alias l="ls --format=long"
 alias la="l --almost-all"
 
 # Use hub instead of git when avaliable
-[[ -a $(which hub 2> /dev/null) ]] && alias git=hub
+[[ -x ${commands[hub]} ]] && alias git=hub
 
 # Editors in order of preference, least to most
-[[ -a $(which nano 2> /dev/null) ]] && EDITOR="nano"    && VISUAL="nano"
-[[ -a $(which vim 2> /dev/null) ]]  && EDITOR="vim"     && VISUAL="vim"
-[[ -a $(which atom 2> /dev/null) ]] && EDITOR="atom -w" && VISUAL="atom -w"
+[[ -x ${commands[nano]} ]] && EDITOR="nano"    && VISUAL="nano"
+[[ -x ${commands[vim]} ]]  && EDITOR="vim"     && VISUAL="vim"
+[[ -x ${commands[atom]} ]] && EDITOR="atom -w" && VISUAL="atom -w"
 export EDITOR VISUAL
 
 PAGER="less"
@@ -133,9 +133,9 @@ export PAGER LESS
 # Rationalize Dots
 #--------------------
 function rationalize-dot {
-	if [[ $LBUFFER = *.. ]]
+	if [[ ${LBUFFER} = *.. ]]
 	then
-		LBUFFER=$LBUFFER[1,-1]
+		LBUFFER=${LBUFFER}[1,-1]
 		LBUFFER+=/..
 	else
 		LBUFFER+=.
@@ -158,18 +158,18 @@ function cwurl {
 		local i ch hexch LANG=C
 		for ((i = 1; i <= ${#PWD}; ++i))
 		do
-			ch="$PWD[i]"
-			if [[ "$ch" =~ [/._~A-Za-z0-9-] ]]
+			ch="${PWD}[i]"
+			if [[ "${ch}" =~ [/._~A-Za-z0-9-] ]]
 			then
-				pct_encoded_cwd+="$ch"
+				pct_encoded_cwd+="${ch}"
 			else
-				hexch=$(printf "%02X" "'$ch")
-				pct_encoded_cwd+="%%$hexch"
+				hexch=$(printf "%02X" "'${ch}")
+				pct_encoded_cwd+="%%${hexch}"
 			fi
 		done
 	}
 
-	echo "file://$HOST$pct_encoded_cwd"
+	echo "file://${HOST}${pct_encoded_cwd}"
 }
 
 # Sets the terminal title
@@ -177,13 +177,13 @@ function set-term-title {
 	local title=$(print -P '%M : %~')
 
 	# OSC 0, 1, and 2 are the portable escape codes for setting window titles.
-	printf "\e]0;$title\a"  # Both tab and window
-	printf "\e]1;$title\a"  # Tab title
-	printf "\e]2;$title\a"  # Window title
+	printf "\e]0;${title}\a"  # Both tab and window
+	printf "\e]1;${title}\a"  # Tab title
+	printf "\e]2;${title}\a"  # Window title
 
 	# OSC 6 and 7 are used on macOS to advertise user, host and pwd.
 	# These codes may foobar other terminals on Linux, like gnome-terminal.
-	if [[ $TERM_PROGRAM == 'Apple_Terminal' || $TERM_PROGRAM == 'iTerm.app' ]]
+	if [[ ${TERM_PROGRAM} == 'Apple_Terminal' || ${TERM_PROGRAM} == 'iTerm.app' ]]
 	then
 		printf "\e]6;\a"          # Current document as a URL (Terminal.app)
 		printf "\e]7;$(cwurl)\a"  # CWD as a URL (Terminal.app and iTerm2)
@@ -191,9 +191,9 @@ function set-term-title {
 
 	# When using tmux -CC integration with iTerm2,
 	# tabs and windows must be named through tmux.
-	if [[ -n $TMUX ]]
+	if [[ -n ${TMUX} ]]
 	then
-		tmux rename-window $title
+		tmux rename-window ${title}
 	fi
 }
 
@@ -203,15 +203,15 @@ add-zsh-hook precmd set-term-title
 
 # iTerm2
 #--------------------
-if [[ $TERM_PROGRAM == 'iTerm.app' ]]
+if [[ ${TERM_PROGRAM} == 'iTerm.app' ]]
 then
-	source $ZDOTDIR/iterm2.zsh
+	source ${ZDOTDIR}/iterm2.zsh
 fi
 
 
 # tmux
 #--------------------
-if [[ -n $SSH_CONNECTION ]]
+if [[ -n ${SSH_CONNECTION} ]]
 then
 	tmux -CC new -A -s default
 fi
@@ -229,7 +229,7 @@ cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
 
 # Use `csb` as the default conda environment.
 # This helps keep the root env pristine.
-[[ -a $(which activate 2> /dev/null) ]] && source activate csb
+[[ -x ${commands[activate]} ]] && source activate csb
 
 export IPYTHONDIR="${HOME}/.ipython"
 alias ipy="ipython3 --no-confirm-exit --no-term-title --classic"

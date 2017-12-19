@@ -6,7 +6,7 @@ local -a fkeys pckeys modifiers
 fkeys=(F{1..12})
 pckeys=(Backspace Delete Up Left Down Right)
 modifiers=(Shift- Ctrl- Alt-)
-keys=($fkeys $pckeys $^modifiers$^pckeys)
+keys=(${fkeys} ${pckeys} ${^modifiers}${^pckeys})
 
 
 [[ -o interactive ]] && {
@@ -21,10 +21,10 @@ emulate -RL zsh
 local zkbd term key seq
 
 zkbd=${ZDOTDIR}/zkbd
-[[ -d $zkbd ]] || mkdir -p $zkbd || return 1
+[[ -d ${zkbd} ]] || mkdir -p ${zkbd} || return 1
 
-print 'typeset -g -A key\n' > $zkbd/$TERM.tmp || return 1
-trap "unfunction getmbkey getseq; command rm -f $zkbd/$TERM.tmp" 0
+print 'typeset -g -A key\n' > ${zkbd}/${TERM}.tmp || return 1
+trap "unfunction getmbkey getseq; command rm -f ${zkbd}/${TERM}.tmp" 0
 trap "return 1" 1 2 15
 
 getmbkey () {
@@ -34,15 +34,15 @@ getmbkey () {
 		read -t -k 1 k && break
 		sleep 1
 	done
-	[[ -n $k ]] || return 1
-	[[ $k = $'\012' || $k = $'\015' || $k = ' ' ]] && return 0
+	[[ -n ${k} ]] || return 1
+	[[ ${k} = $'\012' || ${k} = $'\015' || ${k} = ' ' ]] && return 0
 	# We might not be done yet, thanks to multibyte characters
-	local mbk=$k
+	local mbk=${k}
 	while read -t -k 1 k
 	do
-		mbk=$mbk$k
+		mbk=${mbk}${k}
 	done
-	print -Rn $mbk
+	print -Rn ${mbk}
 }
 
 getseq () {
@@ -51,21 +51,21 @@ getseq () {
 	local k='' seq='' i
 	for ((i=10; i>0; --i))
 	do
-	read -t -k 1 k && break
-	sleep 1
+		read -t -k 1 k && break
+		sleep 1
 	done
-	[[ -n $k ]] || return 1
-	[[ $k = $'\012' || $k = $'\015' || $k = ' ' ]] && return 0
-	seq=$k
+	[[ -n ${k} ]] || return 1
+	[[ ${k} = $'\012' || ${k} = $'\015' || ${k} = ' ' ]] && return 0
+	seq=${k}
 	while read -t -k 1 k
 	do
-	   seq=$seq$k
+	   seq=${seq}${k}
 	done
 	print -Rn ${(V)seq}
 }
 
-read term"?Enter current terminal type: [$TERM] "
-[[ -n $term ]] && TERM=$term
+read term"?Enter current terminal type: [${TERM}] "
+[[ -n ${term} ]] && TERM=${term}
 
 cat <<\EOF
 
@@ -83,7 +83,7 @@ print -n "Hold down Ctrl and press X: "
 ctrl=$(getmbkey) || return 1
 print
 
-if [[ $ctrl != $'\030' ]]
+if [[ ${ctrl} != $'\030' ]]
 then
 	print "Your keyboard does not have a working Ctrl key?"
 	print "Giving up ..."
@@ -97,11 +97,11 @@ print -n "Hold down Meta and press X: "
 meta=$(getmbkey) || return 1
 print
 
-if [[ $meta == x ]]
+if [[ ${meta} == x ]]
 then
 	print "Your keyboard or terminal does not recognize the Meta key."
 	unset meta
-elif [[ $meta > $'\177' ]]
+elif [[ ${meta} > $'\177' ]]
 then
 	print "Your keyboard uses the Meta key to send high-order characters."
 else
@@ -113,14 +113,14 @@ print -n "Hold down Alt and press X: "
 alt=$(getmbkey) || return 1
 print
 
-if [[ $alt == x ]]
+if [[ ${alt} == x ]]
 then
 	print "Your keyboard or terminal does not recognize the Alt key."
 	unset alt
-elif [[ $alt == $meta ]]
+elif [[ ${alt} == ${meta} ]]
 then
 	print "Your keyboard does not distinguish Alt from Meta."
-elif [[ $alt > $'\177' ]]
+elif [[ ${alt} > $'\177' ]]
 then
 	print "Your keyboard uses the Alt key to send high-order characters."
 else
@@ -155,7 +155,7 @@ See also "man stty" or the documentation for your terminal or emulator.
 EOF
 fi
 
-(( $+alt || $+meta )) && cat <<EOF
+(( ${+alt} || ${+meta} )) && cat <<EOF
 
 ---------
 
@@ -170,7 +170,7 @@ to your ${ZDOTDIR:-${HOME}}/.zshrc file.
 EOF
 
 read -k 1 key"?Press a key to proceed: "
-[[ $key != $'\n' ]] && print
+[[ ${key} != $'\n' ]] && print
 
 cat <<\EOF
 
@@ -189,7 +189,7 @@ use of that key.  Press Space to skip to the next key.
 EOF
 
 read -k 1 key"?Press a key when ready to begin: "
-[[ $key != $'\n' ]] && print
+[[ ${key} != $'\n' ]] && print
 
 cat <<\EOF
 
@@ -200,15 +200,15 @@ EOF
 
 exec 3>/dev/tty
 
-for key in $keys
+for key in ${keys}
 do
-	print -u3 -Rn "Press $key: "
+	print -u3 -Rn "Press ${key}: "
 	seq="$(getseq)" || return 1
-	print "key[$key]='${(q)seq}'"
-	print -u3 -R $seq
-done >> $zkbd/$TERM.tmp
+	print "key[${key}]='${(q)seq}'"
+	print -u3 -R ${seq}
+done >> ${zkbd}/${TERM}.tmp
 
-source $zkbd/$TERM.tmp || return 1
+source ${zkbd}/${TERM}.tmp || return 1
 if [[ "${key[Delete]}" == "${key[Backspace]}" ]]
 then
 	print
@@ -227,15 +227,15 @@ else
 fi
 
 local termId=${TERM}
-command mv $zkbd/$TERM.tmp $zkbd/${termId}
+command mv ${zkbd}/${TERM}.tmp ${zkbd}/${termId}
 
 cat <<EOF
 
 Parameter assignments for the keys you typed have been written to the file:
-$zkbd/$termId
+${zkbd}/${termId}
 
 You may read this file into ${ZDOTDIR:-$HOME}/.zshrc or another startup
-file with the "source" or "." commands, then reference the \$key parameter
+file with the "source" or "." commands, then reference the \${key} parameter
 in bindkey commands, like this:
 
 	source ${zkbd/$HOME/~}/\${termId}

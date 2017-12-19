@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 
 # Link all dotfiles into home directory
-for dotfile in $0:A:h/home/*(D)
+for dotfile in ${0}:A:h/home/*(D)
 do
-	ln -s -i $dotfile:A $HOME
+	ln -s -i ${dotfile:A} ${HOME}
 done
 
 # Tell iTerm2 about its profile
