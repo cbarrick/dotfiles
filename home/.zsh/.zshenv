@@ -23,6 +23,15 @@ then
 fi
 
 
+# Locale
+#--------------------
+
+LANG=en_US.UTF-8
+LANGUAGE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+export LANG LANGUAGE LC_ALL
+
+
 # Path
 #--------------------
 # Sets path in a way similar to path_helper(8) on OS X.
