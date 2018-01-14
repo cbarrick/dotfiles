@@ -2,6 +2,5 @@
 ${HOME}/.local/bin
 ${HOME}/.cargo/bin
 ${HOME}/.linuxbrew/bin
-${HOME}/miniconda3/bin
 /usr/local/bin
 /usr/local/sbin

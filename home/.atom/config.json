@@ -211,8 +211,6 @@
       "syntaxThemeTwo": "one-light-syntax"
     },
     "tree-view": {
-      "hideIgnoredNames": true,
-      "hideVcsIgnoredFiles": true,
       "showOnRightSide": true
     },
     "welcome": {
