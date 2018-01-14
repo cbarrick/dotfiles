@@ -144,7 +144,7 @@ export PAGER LESS
 function rationalize-dot {
 	if [[ ${LBUFFER} = *.. ]]
 	then
-		LBUFFER=${LBUFFER}[1,-1]
+		LBUFFER=${LBUFFER[1,-1]}
 		LBUFFER+=/..
 	else
 		LBUFFER+=.
