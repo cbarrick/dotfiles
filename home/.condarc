@@ -1,6 +1,6 @@
 channels:
-  - defaults
   - pytorch
+  - defaults
   - conda-forge
 
 ssl_verify: True
