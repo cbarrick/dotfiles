@@ -107,6 +107,13 @@ bindkey '^I' menu-expand-or-complete
 bindkey '^[[Z' reverse-menu-complete
 
 
+# Command checking
+#--------------------
+function exists {
+	type $1 &> /dev/null
+}
+
+
 # Core utils
 #--------------------
 alias sed="sed -r"
@@ -119,12 +126,12 @@ alias df="df -h --total"
 alias du="du -h --total"
 
 # Use hub instead of git when avaliable
-[[ -x ${commands[hub]} ]] && alias git=hub
+exists hub && alias git=hub
 
 # Editors in order of preference, least to most
-[[ -x ${commands[nano]} ]] && EDITOR="nano"    && VISUAL="nano"
-[[ -x ${commands[vim]} ]]  && EDITOR="vim"     && VISUAL="vim"
-[[ -x ${commands[atom]} ]] && EDITOR="atom -w" && VISUAL="atom -w"
+exists nano && EDITOR="nano"    && VISUAL="nano"
+exists vim  && EDITOR="vim"     && VISUAL="vim"
+exists atom && EDITOR="atom -w" && VISUAL="atom -w"
 export EDITOR VISUAL
 
 PAGER="less"
@@ -231,7 +238,7 @@ cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
 
 # Use `csb` as the default conda environment.
 # This helps keep the base env pristine.
-[[ -x ${commands[conda]} ]] && conda activate csb
+exists conda && conda activate csb
 
 export IPYTHONDIR="${HOME}/.ipython"
 alias ipy="ipython3 --no-confirm-exit --no-term-title --classic"
