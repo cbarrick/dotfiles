@@ -1,15 +1,18 @@
 #!/bin/zsh
 
-# Disable Global RCs
-#--------------------
-# Prevents zsh from reading config files from /etc, except for /etc/zshenv
-
-unsetopt global_rcs
-
-
 # Universal environment
 #--------------------
 
+# Prevent zsh from sourcing config files from /etc, except /etc/zshenv.
+unsetopt global_rcs
+
+# Locale
+LANG=en_US.UTF-8
+LANGUAGE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+export LANG LANGUAGE LC_ALL
+
+# Local config files are placed under $ZDOTDIR
 ZDOTDIR=${HOME}/.zsh
 export ZDOTDIR
 
@@ -23,13 +26,15 @@ then
 fi
 
 
-# Locale
+# Global profile
 #--------------------
+# The global profile may make changes to the PATH,
+# so we source it before setting our own PATHs.
 
-LANG=en_US.UTF-8
-LANGUAGE=en_US.UTF-8
-LC_ALL=en_US.UTF-8
-export LANG LANGUAGE LC_ALL
+if [[ -o login ]]
+then
+	emulate sh -c 'source /etc/profile'
+fi
 
 
 # Path
