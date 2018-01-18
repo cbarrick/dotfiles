@@ -36466,13 +36466,15 @@ tmux.Detach</string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>572 151 606 404 0 0 1680 1028 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>681 292 796 473 0 0 1680 1028 </string>
+	<string>681 297 796 473 0 0 1680 1028 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>127 443 592 584 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>212 101 910 502 0 0 1680 1028 </string>
+	<string>59 368 910 502 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>212 101 910 502 0 0 1680 1027 </string>
+	<string>212 140 910 502 0 0 1680 1028 </string>
+	<key>NSWindow Frame iTerm Window 2</key>
+	<string>233 526 910 502 0 0 1680 1028 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -36750,7 +36752,7 @@ tmux.Detach</string>
 			<key>Columns</key>
 			<integer>100</integer>
 			<key>Command</key>
-			<string>/usr/local/bin/tmux -CC new -A -s default</string>
+			<string></string>
 			<key>Cursor Boost</key>
 			<real>0.0</real>
 			<key>Cursor Color</key>
@@ -37506,7 +37508,7 @@ tmux.Detach</string>
 			<key>Columns</key>
 			<integer>100</integer>
 			<key>Command</key>
-			<string>ssh chris@192.168.11.136 -t tmux -CC new -A -s default</string>
+			<string>ssh kirby -t tmux -CC new -A -s default</string>
 			<key>Cursor Boost</key>
 			<real>0.0</real>
 			<key>Cursor Color</key>
@@ -38182,7 +38184,7 @@ tmux.Detach</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-01-16T22:10:44Z</date>
+	<date>2018-01-18T03:09:26Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -38192,7 +38194,7 @@ tmux.Detach</string>
 	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>SmartPlacement</key>
-	<true/>
+	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.10000000000000001</real>
 	<key>StretchTabsToFillBar</key>
@@ -38215,6 +38217,8 @@ tmux.Detach</string>
 	<false/>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>iTerm Version</key>
 	<string>3.1.5</string>
 	<key>kCPFavoritesUserDefaultsKey</key>
