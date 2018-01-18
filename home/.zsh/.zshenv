@@ -10,9 +10,9 @@ export ZDOTDIR
 # Host-specific envirnonment
 #--------------------
 
-if [[ -e ${ZDOTDIR}/env/$(hostname) ]]
+if [[ -e ${ZDOTDIR}/env/$(hostname).zsh ]]
 then
-	source ${ZDOTDIR}/env/$(hostname)
+	source ${ZDOTDIR}/env/$(hostname).zsh
 fi
 
 
