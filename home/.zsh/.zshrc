@@ -176,14 +176,12 @@ function cwurl {
 	echo "file://${HOST}${pct_encoded_cwd}"
 }
 
-# Sets the terminal title
+# Sets the title to whatever is passed as $1
 function set-term-title {
-	local title=$(print -P '%M : %~')
-
 	# OSC 0, 1, and 2 are the portable escape codes for setting window titles.
-	printf "\e]0;${title}\a"  # Both tab and window
-	printf "\e]1;${title}\a"  # Tab title
-	printf "\e]2;${title}\a"  # Window title
+	printf "\e]0;${1}\a"  # Both tab and window
+	printf "\e]1;${1}\a"  # Tab title
+	printf "\e]2;${1}\a"  # Window title
 
 	# OSC 6 and 7 are used on macOS to advertise user, host and pwd.
 	# These codes may foobar other terminals on Linux, like gnome-terminal.
@@ -197,12 +195,26 @@ function set-term-title {
 	# tabs and windows must be named through tmux.
 	if [[ -n ${TMUX} ]]
 	then
-		tmux rename-window ${title}
+		tmux rename-window ${1}
 	fi
 }
 
+# At the prompt, we set the title to "$HOST : $PWD".
+# We call `print -P` to use prompt expansion instead of variable expansion.
+function precmd-title {
+	set-term-title "$(print -P %m : %~)"
+}
+
+# When running a command, set the title to "$HOST : $COMMAND"
+# The command is passed as $1 to the preexec hook.
+function preexec-title {
+	set-term-title "$(print -P %M : $1)"
+}
+
+# Configure the hooks
 autoload add-zsh-hook
-add-zsh-hook precmd set-term-title
+add-zsh-hook precmd precmd-title
+add-zsh-hook preexec preexec-title
 
 
 # iTerm2
