@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-# Startup
-#--------------------
-printf "\r${USER} @ ${HOST}\n"
-printf "..."
-
 
 # Shell Options
 #--------------------
