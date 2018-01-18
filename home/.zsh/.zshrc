@@ -34,7 +34,7 @@ setopt hist_ignore_space # Ignore commands that begin with spaces
 setopt inc_append_history # Write commands to history file as soon as possible
 
 # Input/Output
-# setopt noclobber # Prevents `>` from clobbering files. Use `>|` to clobber.
+setopt no_clobber # Prevents `>` from clobbering files. Use `>|` to clobber.
 setopt correct # Try to correct the spelling of commands
 setopt interactive_comments # Allow comments in interactive shells
 
@@ -51,7 +51,7 @@ setopt no_prompt_sp # Allow the prompt to overwrite the previous line
 setopt prompt_subst # Substitute in parameter/command/arithmetic expansions
 
 # ZLE
-# setopt no_beep # The shell shouldn't beep on ZLE errors (most beeps)
+setopt no_beep # The shell shouldn't beep on ZLE errors (most beeps)
 setopt zle # Use ZLE. This is default, but I like to be explicit
 
 
