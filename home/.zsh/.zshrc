@@ -183,14 +183,6 @@ function set-term-title {
 	printf "\e]1;${1}\a"  # Tab title
 	printf "\e]2;${1}\a"  # Window title
 
-	# OSC 6 and 7 are used on macOS to advertise user, host and pwd.
-	# These codes may foobar other terminals on Linux, like gnome-terminal.
-	if [[ ${TERM_PROGRAM} == 'Apple_Terminal' || ${TERM_PROGRAM} == 'iTerm.app' ]]
-	then
-		printf "\e]6;\a"          # Current document as a URL (Terminal.app)
-		printf "\e]7;$(cwurl)\a"  # CWD as a URL (Terminal.app and iTerm2)
-	fi
-
 	# When using tmux -CC integration with iTerm2,
 	# tabs and windows must be named through tmux.
 	if [[ -n ${TMUX} ]]
@@ -199,10 +191,22 @@ function set-term-title {
 	fi
 }
 
+# Notify Terminals on macOS of PWD.
+function set-apple-title {
+	# OSC 6 and 7 are used on macOS to advertise user, host, and pwd.
+	# These codes may foobar other terminals on Linux, like gnome-terminal.
+	printf "\e]6;\a"          # Current document as a URL (Terminal.app)
+	printf "\e]7;$(cwurl)\a"  # CWD as a URL (Terminal.app and iTerm2)
+}
+
 # At the prompt, we set the title to "$HOST : $PWD".
 # We call `print -P` to use prompt expansion instead of variable expansion.
 function precmd-title {
 	set-term-title "$(print -P %m : %~)"
+	if [[ ${TERM_PROGRAM} == 'Apple_Terminal' || ${TERM_PROGRAM} == 'iTerm.app' ]]
+	then
+		set-apple-title
+	fi
 }
 
 # When running a command, set the title to "$HOST : $COMMAND"
