@@ -18,45 +18,33 @@ atom-workspace {
 		position: relative;
 		z-index: 2;
 		background: transparent;
-
 		atom-text-editor.editor {
 			position: relative;
 			z-index: -1;
 		}
 	}
 
-	atom-text-editor.editor {
-
-		// Show invisibles only in selection
-		.invisible-character {
-			color: @syntax-background-color;
-			&.indent-guide {
-				box-shadow: inset 1px 0 0 0 @syntax-indent-guide-color;
-			}
+	// Show invisibles only in selection
+	.invisible-character {
+		color: @syntax-background-color;
+		&.indent-guide {
+			box-shadow: inset 1px 0 0 0 @syntax-indent-guide-color;
 		}
+	}
 
-		// // Pulse the cursor
-		// .cursor {
-		// 	transition: opacity 0.4s;
-		// }
+	// // Pulse the cursor
+	// .cursor {
+	// 	transition: opacity 0.4s;
+	// }
 
-		// Fade in the minimap on scroll and hover.
-		// Requires the minimap to be in absolute mode.
-		// Requires the minimap-autohide package for the `.scrolling` class.
-		atom-text-editor-minimap {
-			background: transparent;
-			position: absolute;
-			left: auto;
-			opacity: 0;
-			transition: opacity 0.7s;
-			&.scrolling, &:hover {
-				opacity: 1;
-			}
-		}
+	// The minimap-autohide and minimap-autohider packages
+	// add an ugly background to the minimap. Remove it.
+	atom-text-editor-minimap {
+		background: transparent;
+	}
 
-		// Hide the native scrollbar.
-		::-webkit-scrollbar {
-			display: none;
-		}
+	// Hide the native scrollbar.
+	::-webkit-scrollbar {
+		display: none;
 	}
 }
