@@ -32,6 +32,7 @@
     "autocomplete-plus": {
       "confirmCompletion": "tab always, enter when suggestion explicitly selected",
       "consumeSuffix": false,
+      "enableExtendedUnicodeSupport": true,
       "minimumWordLength": 0,
       "strictMatching": true,
       "suggestionListFollows": "Word"
@@ -39,6 +40,7 @@
     "autosave": {
       "enabled": true
     },
+    "bracket-matcher": {},
     "core": {
       "closeDeletedFileTabs": true,
       "customFileTypes": {
@@ -56,12 +58,8 @@
       "disabledPackages": [
         "autocomplete",
         "feedback",
-        "autosave",
-        "autocomplete-snippets",
         "linter-jshint",
-        "deprecation-cop",
-        "python-yapf",
-        "rustfmt"
+        "python-yapf"
       ],
       "openEmptyEditorOnStart": false,
       "projectHome": "/Users/csb/dev",
@@ -122,6 +120,7 @@
     },
     "latex": {
       "buildOnSave": true,
+      "engine": "xelatex",
       "openResultAfterBuild": false,
       "opener": "pdf-view",
       "outputDirectory": ".latex",
@@ -146,6 +145,7 @@
       "panelHeight": 69,
       "showStatusBar": false
     },
+    "markdown-preview": {},
     "metrics": {
       "userId": "35a1c8fd015943f28e11c8894ffaf446d8d57501"
     },
@@ -161,10 +161,15 @@
         "highlight-selectedDecorationsZIndex": 0,
         "minimap-autohide": true,
         "minimap-autohideDecorationsZIndex": 0,
+        "minimap-autohider": true,
+        "minimap-autohiderDecorationsZIndex": 0,
         "selection": true,
         "selectionDecorationsZIndex": 0
       },
       "scrollAnimation": true
+    },
+    "minimap-autohider": {
+      "VisiblePercentage": 100
     },
     "minimap-plus": {
       "absoluteMode": true
@@ -211,7 +216,8 @@
       "syntaxThemeTwo": "one-light-syntax"
     },
     "tree-view": {
-      "showOnRightSide": true
+      "hideVcsIgnoredFiles": true,
+      "showOnRightSide": false
     },
     "welcome": {
       "showOnStartup": false
