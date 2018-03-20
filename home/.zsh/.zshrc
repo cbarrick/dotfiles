@@ -229,14 +229,6 @@ then
 fi
 
 
-# tmux
-#--------------------
-if [[ -n ${SSH_CONNECTION} ]]
-then
-	tmux -CC new -A -s default
-fi
-
-
 # Go
 #--------------------
 export GOPATH=${HOME}/.go
