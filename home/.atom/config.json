@@ -21,7 +21,7 @@
     },
     "atom-ide-ui": {
       "use": {
-        "hyperclick": false
+        "hyperclick": "never"
       }
     },
     "atom-package-deps": {
