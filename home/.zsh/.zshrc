@@ -149,6 +149,14 @@ zle -N rationalize-dot
 bindkey . rationalize-dot
 
 
+# Word Characters
+#--------------------
+# Where do words break when using `backward-word` (alt-left) etc.
+# This removes the '/' from the default.
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+export WORDCHARS
+
+
 # Window Title
 #--------------------
 
@@ -238,7 +246,6 @@ cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
 
 # Python
 #--------------------
-
 exists conda && conda activate
 
 export IPYTHONDIR="${HOME}/.ipython"
