@@ -37,4 +37,4 @@ These dotfiles have a simple way to set your `$PATH`, both globally and on a hos
 
 ### Configure iTerm2
 
-iTerm2 needs to be told where to find it's configuration. The installation script will attempt to configure iTerm2 for you, but this can be iffy. To manually configure iTerm, go to **Preferences -> General** and check the box **Load preferences from a custom folder or URL** and specify `~/.iterm` as the location.
+iTerm2 needs to be told where to find it's configuration. The installation script will attempt to configure iTerm2 for you, but this can be iffy. To manually configure iTerm, go to **Preferences -> General** and check the box **Load preferences from a custom folder or URL** and specify `~/.iterm2` as the location.
