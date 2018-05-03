@@ -246,6 +246,7 @@ cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
 
 # Python
 #--------------------
+source ~/.conda/etc/profile.d/conda.sh
 exists conda && conda activate
 
 export IPYTHONDIR="${HOME}/.ipython"
