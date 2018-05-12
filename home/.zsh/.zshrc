@@ -119,15 +119,17 @@ alias l="ls --format=long"
 alias la="l --almost-all"
 alias df="df -h --total"
 alias du="du -h --total"
+alias pacman="sudo pacman"
+alias systemctl="sudo systemctl"
 
 # Use hub instead of git when avaliable
 exists hub && alias git=hub
 
 # Editors in order of preference, least to most
-exists nano && EDITOR="nano"    && VISUAL="nano"
-exists vim  && EDITOR="vim"     && VISUAL="vim"
-exists atom && EDITOR="atom -w" && VISUAL="atom -w"
-export EDITOR VISUAL
+exists nano && EDITOR="nano"
+exists vim  && EDITOR="vim"
+exists atom && EDITOR="atom -w"
+export EDITOR VISUAL="$EDITOR"
 
 PAGER="less"
 LESS="-MSR"
