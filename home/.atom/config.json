@@ -20,6 +20,10 @@
       }
     },
     "atom-ide-ui": {
+      "atom-ide-code-format": {
+        "formatOnSave": true,
+        "formatOnType": false
+      },
       "use": {
         "hyperclick": "never"
       }
@@ -67,7 +71,7 @@
       "titleBar": "custom"
     },
     "editor": {
-      "fontFamily": "Fira Code",
+      "fontFamily": "Fira Mono",
       "invisibles": {},
       "preferredLineLength": 100,
       "scrollPastEnd": true,
@@ -110,6 +114,12 @@
     },
     "ide-python": {
       "pylsPlugins": {
+        "pydocstyle": {
+          "enabled": true
+        },
+        "rope_completion": {
+          "enabled": true
+        },
         "yapf": {
           "enabled": false
         }
@@ -196,6 +206,9 @@
       "formatOnSave": true,
       "yapfStyle": "{column_limit: 100}"
     },
+    "rst-preview-pandoc": {
+      "pandocOpts": "-fmarkdown_github -thtml --webtex"
+    },
     "rustfmt": {},
     "spell-check": {
       "grammars": [
@@ -205,7 +218,8 @@
         "source.gfm",
         "text.git-commit",
         "text.plain",
-        "text.plain.null-grammar"
+        "text.plain.null-grammar",
+        "text.restructuredtext"
       ]
     },
     "tabs": {
@@ -328,6 +342,12 @@
   ".python.text.traceback": {
     "editor": {
       "tabLength": 4
+    }
+  },
+  ".restructuredtext.text": {
+    "editor": {
+      "preferredLineLength": 80,
+      "softWrap": true
     }
   },
   ".tex.text": {
