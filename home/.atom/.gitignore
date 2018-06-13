@@ -1,7 +1,8 @@
-.apm
-.node-gyp
+.apm/
+.node-gyp/
 blob-store/
 compile-cache/
 dev/
 packages/
+recovery/
 storage/
