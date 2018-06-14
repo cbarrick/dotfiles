@@ -1,28 +1,10 @@
 "*":
-  Hydrogen:
-    debug: true
-    gateways: "[{\"name\": \"localhost\",\"options\": {\"baseUrl\": \"http://127.0.0.1:8888\"}}, {\"name\": \"AIGPC3\", \"options\": {\"baseUrl\": \"http://172.22.147.21:9999\"}}]"
   Zen:
     fullscreen: false
-    gutter: true
-    softWrap: true
-  "atom-beautify":
-    general:
-      _analyticsUserId: "a7dce35f-3216-4576-87c8-df013a434090"
-      muteAllErrors: true
-    rust:
-      beautify_on_save: true
-      rustfmt_path: "/Users/csb/.cargo/bin/rustfmt"
   "atom-ide-ui":
     "atom-ide-code-format":
       formatOnSave: true
       formatOnType: false
-    use:
-      hyperclick: "never"
-  "atom-package-deps":
-    ignored: []
-  "autoclose-html": {}
-  "autocomplete-go": {}
   "autocomplete-plus":
     confirmCompletion: "tab always, enter when suggestion explicitly selected"
     consumeSuffix: false
@@ -30,35 +12,14 @@
     minimumWordLength: 0
     strictMatching: true
     suggestionListFollows: "Word"
-  autosave:
-    enabled: true
-  "bracket-matcher": {}
   core:
     closeDeletedFileTabs: true
-    customFileTypes:
-      "source.ini": [
-        ".buckconfig"
-        ".hgrc"
-      ]
-      "source.json": [
-        "BUCK.autodeps"
-      ]
-      "source.python": [
-        "BUCK"
-      ]
-    disabledPackages: [
-      "autocomplete"
-      "feedback"
-      "linter-jshint"
-      "python-yapf"
-    ]
     openEmptyEditorOnStart: false
     projectHome: "/Users/csb/dev"
     telemetryConsent: "limited"
     titleBar: "custom"
   editor:
     fontFamily: "Fira Mono"
-    invisibles: {}
     preferredLineLength: 100
     scrollPastEnd: true
     showCursorOnSelection: false
@@ -69,20 +30,6 @@
     tabLength: 4
   "exception-reporting":
     userId: "a8f790ed-8f9f-d36f-d131-fc4bbc0fb421"
-  "go-debug":
-    panelInitialVisible: false
-  "go-plus":
-    config:
-      gopath: "/Users/csb/.go"
-    panelDisplayMode: "closed"
-    test:
-      coverageDisplayMode: "gutter"
-      coverageHighlightMode: "disabled"
-      focusPanelIfTestsFail: false
-  gofmt: {}
-  "gometalinter-linter": {}
-  "hey-pane":
-    expandedWidth: 75
   "highlight-line":
     enableBackgroundColor: false
   "highlight-selected":
@@ -91,14 +38,14 @@
     onlyHighlightWholeWords: true
   "ide-python":
     pylsPlugins:
+      autopep8:
+        enabled: false
       pydocstyle:
         enabled: true
       rope_completion:
         enabled: true
       yapf:
         enabled: false
-  "languageserver-rust":
-    rustup: "/Users/csb/.cargo/bin/rustup"
   latex:
     buildOnSave: true
     engine: "xelatex"
@@ -106,21 +53,6 @@
     opener: "pdf-view"
     outputDirectory: ".latex"
     texPath: "/Library/TeX/texbin"
-  "latex-plus":
-    ghostscriptBin: "/usr/local/bin"
-    texBin: "/Library/TeX/texbin"
-  latextools:
-    viewer: "pdf-view"
-  linter:
-    lintOnChange: false
-  "linter-golinter": {}
-  "linter-gotype": {}
-  "linter-govet": {}
-  "linter-javac": {}
-  "linter-jshint": {}
-  "linter-ui-default":
-    panelHeight: 69
-    showStatusBar: false
   "markdown-preview": {}
   metrics:
     userId: "35a1c8fd015943f28e11c8894ffaf446d8d57501"
@@ -143,37 +75,19 @@
     scrollAnimation: true
   "minimap-autohider":
     VisiblePercentage: 100
-  "minimap-plus":
-    absoluteMode: true
-  "nebula-ui":
-    focusMode: false
-  "no-title-bar": {}
-  nuclide:
-    "atom-ide-outline-view": {}
-    "nuclide-home":
-      showHome: false
-  "one-dark-ui": {}
-  "one-light-ui":
-    tabSizing: "Even"
   "pdf-view":
     fitToWidthOnOpen: true
     reverseSyncBehaviour: "Double click"
-  "python-yapf":
-    formatOnSave: true
-    yapfStyle: "{column_limit: 100}"
-  "rst-preview-pandoc":
-    pandocOpts: "-fmarkdown_github -thtml --webtex"
-  rustfmt: {}
   "spell-check":
     grammars: [
-      "string.quoted.double.block.sql.python"
-      "text.tex.latex"
       "source.asciidoc"
       "source.gfm"
+      "string.quoted.double.block.sql.python"
       "text.git-commit"
       "text.plain"
       "text.plain.null-grammar"
       "text.restructuredtext"
+      "text.tex.latex"
     ]
   tabs:
     enableMruTabSwitching: false
@@ -187,81 +101,28 @@
     showOnStartup: false
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
-".beamer.latex.tex.text":
-  editor:
-    tabLength: 4
-".bibtex.text":
-  editor:
-    softWrap: true
-    tabLength: 4
-".coffee.source":
-  editor:
-    tabLength: 2
 ".console.python.text":
   editor:
-    tabLength: 4
-".gfm.source":
-  editor:
-    preferredLineLength: 80
-".go.source":
-  editor:
-    tabLength: 4
-".gohtml.html.text":
-  editor:
-    tabLength: 4
-".gotemplate.source":
-  editor:
-    tabLength: 4
-".js.regexp.replacement.source":
-  editor:
-    tabLength: 2
-".js.regexp.source":
-  editor:
-    tabLength: 2
-".js.source":
-  editor:
-    tabLength: 2
-".json.source":
-  editor:
-    tabLength: 2
-".latex.log.text":
-  editor:
-    tabLength: 4
-".latex.memoir.tex.text":
-  editor:
-    tabLength: 4
-".latex.tex.text":
-  editor:
-    softWrap: true
-    tabLength: 4
-".litcoffee.source":
-  editor:
-    tabLength: 4
+    tabType: "soft"
 ".plain.text":
   editor:
     softWrap: true
     softWrapAtPreferredLineLength: true
-    tabLength: 4
-".prolog.source":
-  editor:
-    preferredLineLength: 100
 ".python.regexp.source":
   editor:
-    preferredLineLength: 100
-".python.text.traceback":
+    tabType: "soft"
+".python.source":
   editor:
-    tabLength: 4
+    tabType: "soft"
 ".restructuredtext.text":
   editor:
-    preferredLineLength: 80
     softWrap: true
+    softWrapAtPreferredLineLength: true
 ".tex.text":
   editor:
     softWrap: true
-    tabLength: 4
-".text.todo":
-  editor:
-    tabLength: 4
+    softWrapAtPreferredLineLength: true
 "source.gfm":
   editor:
     softWrap: true
+    softWrapAtPreferredLineLength: true
