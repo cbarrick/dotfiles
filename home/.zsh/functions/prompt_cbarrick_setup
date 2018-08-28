@@ -3,50 +3,64 @@
 
 function prompt_cbarrick_help {
 	cat<<'EOF'
-Usage: prompt cbarrick [<prompt-color=green> [<info-color=blue> [<error-color=red>]]]
+Usage: prompt cbarrick [<main_color=green> [<info_color=blue> [<error_color=red>]]]
 EOF
+}
+
+function prompt_cbarrick_precmd {
+	vcs_info prompt_cbarrick
+	PROMPT="${vcs_info_msg_0_}"
+	RPROMPT="${vcs_info_msg_1_}"
 }
 
 function prompt_cbarrick_setup {
 	autoload -Uz add-zsh-hook
 	autoload -Uz vcs_info
 
-	# The colors
-	prompt_csb_color_main=${1:-'green'}
-	prompt_csb_color_info=${2:-'blue'}
-	prompt_csb_color_err=${3:-'red'}
+	# The prompt is reset every precmd.
+	# The prompt library automatically cleans up when the prompt is deactivated.
+	add-zsh-hook precmd prompt_cbarrick_precmd
 
-	# These variables are composed into the $vcs_info_msg_0_ environment variable
-	local project="%F{${prompt_csb_color_main}}%r%f"
-	local branch="%F{${prompt_csb_color_main}}%b%f"
-	local action="%F{${prompt_csb_color_info}}(%a)%f"
-	local vcs_path="%S"       # The path relative to the root of the project
-	local non_vcs_path="%1~"  # The name of the current directory
+	# Prompt options to enable while this theme is active,
+	# e.g. `prompt_opts=(percent)` is like `setopt prompt_percent`, but the
+	# option is reverted to its original value when the theme is disabled.
+	# In particular, we do not set `prompt_subst`. Instead, we manually
+	# substitute for the prompt in the precmd hook.
+	# http://zsh.sourceforge.net/Doc/Release/Options.html#Prompting
+	prompt_opts=(cr percent)
 
-	# Configure vcs_info
-	# These options determine the value of `$vcs_info_msg_0_` after running `vcs_info cbarrick`.
-	# The prompt is reset to `$vcs_info_msg_0_` after every command--these options set the prompt.
+	# Set colors from the command line arguments, with sane defaults.
+	local main_color=${1:-'green'}
+	local info_color=${2:-'blue'}
+	local err_color=${3:-'red'}
 
-	## Determines the value when inside a version controled directory
-	zstyle ':vcs_info:*:cbarrick:*' formats \
-		"${project}:${branch} ${vcs_path}"
+	# Pieces of the prompt.
+	# These may include both prompt expansions and vcs_info expansions.
+	# When both expand the same character, use `%%` for prompt expansion.
+	# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+	# http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#Version-Control-Information
+	local repo="%F{${main_color}}%r%f"
+	local branch="%F{${main_color}}%b%f"
+	local action="%F{${info_color}}(%a)%f"
+	local vcs_path="%S"       # The path relative to the root of the repo.
+	local non_vcs_path="%1~"  # The name of the current directory.
+	local main="%%(1j.%F{${info_color}}[%j]%f .)%%(?..%F{${err_color}})%#%f "
+	export ssh_conn="${SSH_CONNECTION:+%m}"  # Needs a leading '%' in VCS but not otherwise.
 
-	## Determines the value during a merge, rebase, etc
-	zstyle ':vcs_info:*:cbarrick:*' actionformats \
-		"${project}:${branch} ${action} ${vcs_path}"
+	# The prompt when inside a version controled directory.
+	zstyle ':vcs_info:*:prompt_cbarrick:*' formats \
+		"${repo}:${branch} ${vcs_path} ${main}" \
+		"%${ssh_conn}"
 
-	## Determines the value when outside of version control
-	zstyle ':vcs_info:*:cbarrick:*' nvcsformats \
-		"${non_vcs_path}"
+	# The prompt during a merge, rebase, etc.
+	zstyle ':vcs_info:*:prompt_cbarrick:*' actionformats \
+		"${repo}:${branch} ${action} ${vcs_path} ${main}" \
+		"%${ssh_conn}"
 
-	# To avoid conflicts with other uses of vcs_info, we reset the $PROMPT for every command
-	function set_prompt {
-		local main="%(1j.%F{${prompt_csb_color_info}}[%j]%f .)%(?..%F{${prompt_csb_color_err}})%#%f "
-		vcs_info cbarrick
-		PROMPT="${vcs_info_msg_0_} ${main}"
-		RPROMPT=${SSH_CONNECTION:+ %m}
-	}
-	add-zsh-hook precmd set_prompt
+	# The prompt when outside of version control.
+	zstyle ':vcs_info:*:prompt_cbarrick:*' nvcsformats \
+		"${non_vcs_path} ${main}" \
+		"${ssh_conn}"
 }
 
 prompt_cbarrick_setup "$@"

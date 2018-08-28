@@ -1,5 +1,5 @@
 #!/bin/zsh --no-rcs
-# This is a modifier version of the zkbd script that comes with zsh.
+# This is a modified version of the zkbd script that ships with zsh.
 
 # The keys to prompt
 local -a fkeys pckeys modifiers
@@ -10,9 +10,9 @@ keys=(${fkeys} ${pckeys} ${^modifiers}${^pckeys})
 
 
 [[ -o interactive ]] && {
-	local -hi ARGC		# local is a no-op outside of a function
-	(ARGC=0) 2>/dev/null || {	# so ARGC remains read-only for "source"
-		print -u2 ${0}: must be run as a function or shell script, not sourced
+	local -hi ARGC
+	(ARGC=0) 2>/dev/null || {
+		print -u2 "${0}: must be run as a function or shell script, not sourced"
 		return 1
 	}
 }

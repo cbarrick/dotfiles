@@ -6,61 +6,63 @@
 # zshoptions(1)  /  http://zsh.sourceforge.net/Doc/Release/Options.html
 
 # Changing Directories
-setopt auto_cd # If command is a directory path, cd to it
-setopt auto_pushd # cd is really pushd
-setopt chase_dots # Resolve `..` directories to their true location
-setopt chase_links # Resolve links to their true location
-setopt pushd_ignore_dups # Don't put duplicates on the directory stack
-setopt pushd_minus # Make `cd -1` go to the previous directory, etc
-setopt pushd_to_home # pushd with no arguments goes home, like cd
+setopt auto_cd # If command is a directory path, cd to it.
+setopt auto_pushd # cd is really pushd.
+setopt chase_links # Resolve symbolic links to their true location.
+setopt pushd_ignore_dups # Don't put duplicates on the directory stack.
+setopt pushd_minus # Make `cd -1` go to the previous directory, etc.
+setopt pushd_to_home # pushd with no arguments goes home, like cd.
 
 # Completion
-setopt auto_name_dirs # Parameters set to a path can be used as ~param
-setopt auto_remove_slash # Remove trailing slash if next char is a word delim
-setopt hash_list_all # Before completion, make sure entire path is hashed
-setopt glob_complete # Expand globs upon completion
-setopt complete_in_word # Completions happen at the cursor's location
+setopt auto_param_keys # Intelligently add a space after variable completion.
+setopt auto_param_slash # Intelligently add a slash after directory completion.
+setopt auto_remove_slash # Remove trailing slash if next char is a word delim.
+setopt complete_aliases # Treat aliases as distinct commands.
+setopt complete_in_word # Completions happen at the cursor's location.
+setopt glob_complete # Tab completion expands globs.
+setopt hash_list_all # Ensure the command path is hashed before completion.
+setopt menu_complete # Expand first match and use the interactive menu.
 
 # Expansion and Globbing
-setopt glob # Perform filename generation (i.e. the use of the * operator)
-setopt extended_glob # Use additional glob operators
-# setopt glob_dots # Glob dotfiles
-setopt mark_dirs # Directories resulting from globbing have trailing slashes
-setopt nomatch # If a glob fails, the command isn't executed
+setopt glob # Enable globbing (i.e. the use of the '*' operator).
+setopt extended_glob # Use additional glob operators ('#', '~', and '^').
+# setopt glob_dots # Do not require a leading '.' to be matched explicitly.
+setopt mark_dirs # Mark directories resulting from globs with trailing slashes.
+setopt nomatch # If a glob fails, the command isn't executed.
 
 # History
-setopt hist_ignore_all_dups # Ignore all duplicates when writing history
-setopt hist_ignore_space # Ignore commands that begin with spaces
-setopt inc_append_history # Write commands to history file as soon as possible
+setopt hist_ignore_all_dups # Ignore all duplicates when writing history.
+setopt hist_ignore_space # Ignore commands that begin with spaces.
+setopt inc_append_history # Write commands to history file as soon as possible.
 
 # Input/Output
-setopt no_clobber # Prevents `>` from clobbering files. Use `>|` to clobber.
-setopt correct # Try to correct the spelling of commands
-setopt interactive_comments # Allow comments in interactive shells
+setopt append_create # Allow '>>' to create a file.
+setopt no_clobber # Prevent `>` from clobbering files. Use `>!` to clobber.
+setopt correct # Offer to correct the spelling of commands.
+setopt interactive_comments # Allow comments in interactive shells.
+setopt short_loops # Enable short loop syntax: `for <var> in <seq>; <command>`.
 
 # Job Control
-setopt auto_continue # When suspended jobs are disowned, resume them in the bg
-setopt auto_resume # single-word simple commands are candidates for resumption
-setopt bg_nice # Run background jobs at lower priority
-setopt check_jobs # Warn about background & suspended jobs on exit
-setopt monitor # Enable job control. This is default.
+setopt auto_continue # When suspended jobs are disowned, resume them in the bg.
+setopt auto_resume # Single-word simple commands are candidates for resumption.
+setopt bg_nice # Run background jobs at lower priority.
+setopt check_jobs # Warn about suspended jobs on exit.
+setopt check_running_jobs # Warn about background jobs on exit.
 
-# Prompting
-setopt prompt_cr # Print a \r before the prompt
-setopt no_prompt_sp # Allow the prompt to overwrite the previous line
-setopt prompt_subst # Substitute in parameter/command/arithmetic expansions
+# Scripts and Functions
+setopt local_loops # Do not allow `break` etc. to propogate outside function scope.
 
 # ZLE
-setopt no_beep # The shell shouldn't beep on ZLE errors (most beeps)
-setopt zle # Use ZLE. This is default, but I like to be explicit
+setopt no_beep # The shell shouldn't beep on ZLE errors (most beeps).
+setopt zle # Use ZLE. This is default, but I like to be explicit.
 
 
 # History
 #--------------------
 HISTSIZE=2000
-HISTFILE=${ZDOTDIR}/.history
 SAVEHIST=${HISTSIZE}
-export HISTSIZE HISTFILE SAVEHIST
+HISTFILE=${ZDOTDIR}/.history
+export HISTSIZE SAVEHIST HISTFILE
 
 
 # Keyboard
@@ -86,18 +88,20 @@ bindkey -e
 
 # Prompt
 #--------------------
-autoload -Uz promptinit && promptinit
+autoload -Uz promptinit
+promptinit
 prompt cbarrick
 
 
 # Completion
 #--------------------
-autoload -Uz compinit && compinit -u
+autoload -Uz compinit
+compinit -u
 
-zstyle ':completion:*' use-cache true # Cache completion to `${ZDOTDIR}/.zcompcache`
-zstyle ':completion:*' squeeze-slashes true # Strip slashes from directories
-zstyle ':completion:*' menu select # Make the menu interactive with arrow keys
+zstyle ':completion:*' use-cache true # Cache completion to `${ZDOTDIR}/.zcompcache`.
+zstyle ':completion:*' menu 'select' # Make the menu interactive with arrow keys.
 
+# TODO: Setup 'Tab' key combos in zkbd.
 bindkey '^I' menu-expand-or-complete
 bindkey '^[[Z' reverse-menu-complete
 
@@ -138,6 +142,8 @@ export PAGER LESS
 
 # Rationalize Dots
 #--------------------
+# Automatically expands '...' to '../..'
+
 function rationalize-dot {
 	if [[ ${LBUFFER} = *.. ]]
 	then
@@ -163,6 +169,7 @@ export WORDCHARS
 #--------------------
 
 # Get the cwd as a "file:" URL, including the hostname.
+# This is needed for advanced features of iTerm2 and Terminal.app.
 # cwurl = Current Working URL
 function cwurl {
 	# Percent-encode the cwd
@@ -225,7 +232,7 @@ function preexec-title {
 	set-term-title "$(print -P %M : $1)"
 }
 
-# Configure the hooks
+# Setup the hooks
 autoload add-zsh-hook
 add-zsh-hook precmd precmd-title
 add-zsh-hook preexec preexec-title
