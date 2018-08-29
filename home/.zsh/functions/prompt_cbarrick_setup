@@ -8,6 +8,9 @@ EOF
 }
 
 function prompt_cbarrick_precmd {
+	# We reset the prompt every time since the vcs_info messages may change.
+	# Alternativly, we could `setopt prompt_subst` and just set the prompt once,
+	# but that is less transparent, e.g. `echo $PROMPT` won't tell us much.
 	vcs_info prompt_cbarrick
 	PROMPT="${vcs_info_msg_0_}"
 	RPROMPT="${vcs_info_msg_1_}"
@@ -24,8 +27,6 @@ function prompt_cbarrick_setup {
 	# Prompt options to enable while this theme is active,
 	# e.g. `prompt_opts=(percent)` is like `setopt prompt_percent`, but the
 	# option is reverted to its original value when the theme is disabled.
-	# In particular, we do not set `prompt_subst`. Instead, we manually
-	# substitute for the prompt in the precmd hook.
 	# http://zsh.sourceforge.net/Doc/Release/Options.html#Prompting
 	prompt_opts=(cr percent)
 
@@ -36,7 +37,7 @@ function prompt_cbarrick_setup {
 
 	# Pieces of the prompt.
 	# These may include both prompt expansions and vcs_info expansions.
-	# When both expand the same character, use `%%` for prompt expansion.
+	# When ambiguous (or buggy), write `%%` to specify prompt expansion.
 	# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 	# http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#Version-Control-Information
 	local repo="%F{${main_color}}%r%f"
@@ -45,22 +46,26 @@ function prompt_cbarrick_setup {
 	local vcs_path="%S"       # The path relative to the root of the repo.
 	local non_vcs_path="%1~"  # The name of the current directory.
 	local main="%%(1j.%F{${info_color}}[%j]%f .)%%(?..%F{${err_color}})%#%f "
-	export ssh_conn="${SSH_CONNECTION:+%m}"  # Needs a leading '%' in VCS but not otherwise.
+	local ssh_conn=" ${SSH_CONNECTION:+%%m}"
+
+	# The prompt is determined by `vcs_info prompt_cbarrick`.
+	# The messages become PROMPT and RPROMPT respectivly.
 
 	# The prompt when inside a version controled directory.
 	zstyle ':vcs_info:*:prompt_cbarrick:*' formats \
 		"${repo}:${branch} ${vcs_path} ${main}" \
-		"%${ssh_conn}"
+		"${ssh_conn}"
 
 	# The prompt during a merge, rebase, etc.
 	zstyle ':vcs_info:*:prompt_cbarrick:*' actionformats \
 		"${repo}:${branch} ${action} ${vcs_path} ${main}" \
-		"%${ssh_conn}"
-
-	# The prompt when outside of version control.
-	zstyle ':vcs_info:*:prompt_cbarrick:*' nvcsformats \
-		"${non_vcs_path} ${main}" \
 		"${ssh_conn}"
+
+	# The prompt outside of version control.
+	# In this case, vcs_info does NOT expand, so we manually replace s/%%/%.
+	zstyle ':vcs_info:*:prompt_cbarrick:*' nvcsformats \
+		"${non_vcs_path} ${main:gs/%%/%}" \
+		"${ssh_conn:gs/%%/%}"
 }
 
 prompt_cbarrick_setup "$@"
