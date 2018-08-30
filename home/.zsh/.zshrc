@@ -94,10 +94,19 @@ setopt zle # Use ZLE. This is default, but I like to be explicit.
 # certain key combinations to escape codes. Here are some that make the terminal
 # feel like any other macOS app:
 #
-#     ⌘↑  =  PageUp    =  Esc + [5~
-#     ⌘↓  =  PageDown  =  Esc + [6~
-#     ⌘←  =  Home      =  Esc + OH  (xterm application mode)
-#     ⌘→  =  End       =  Esc + OF  (xterm application mode)
+#     ⌘ + ↑        =  PageUp    =  Esc + [5~
+#     ⌘ + ↓        =  PageDown  =  Esc + [6~
+#     ⌘ + ←        =  Home      =  Esc + OH  (xterm application mode)
+#     ⌘ + →        =  End       =  Esc + OF  (xterm application mode)
+#     ⌘ + ←Delete  =  Ctrl + U  =  Hex: 0x15 (^U) (bound to kill-whole-line by default)
+#     ⌥ + ←Delete  =  Alt + ^?  =  Hex: 0x1b 0x7F (traditional Alt + Backspace)
+#
+# There's long been a debate about the behavior of the backspace key. The vt100
+# emulated by xterm sends an ASCII BS (^H) while the vt220 emulated by the Linux
+# virtual terminal sends an ASCII DEL (^?). Most modern terminals emulate xterm,
+# *except* they send DEL for backspace. This lets applications use Ctrl-h and
+# backspace as separate keys. We explicitly set backspace to ^? even though
+# terminfo wants us to use ^H.
 
 # The terminfo module exposes a hashmap, `$terminfo[CAP]`, which maps terminfo
 # capabilities to their values. It also exposes a command `echoti` which echos
@@ -124,9 +133,6 @@ fi
 # Create a hashmap from key names to their codes.
 typeset -gA key
 
-key[Backspace]=${terminfo[kbs]}
-key[PageUp]=${terminfo[kpp]}
-key[PageDown]=${terminfo[knp]}
 key[Home]=${terminfo[khome]}
 key[End]=${terminfo[kend]}
 key[Insert]=${terminfo[kich1]}
@@ -136,9 +142,6 @@ key[Down]=${terminfo[kcud1]}
 key[Left]=${terminfo[kcub1]}
 key[Right]=${terminfo[kcuf1]}
 
-key[Shift-Backspace]=''  # TODO
-key[Shift-PageUp]=''  # TODO
-key[Shift-PageDown]=''  # TODO
 key[Shift-Home]=${terminfo[kHOM]}
 key[Shift-End]=${terminfo[kEND]}
 key[Shift-Insert]=${terminfo[kIC]}
@@ -148,9 +151,6 @@ key[Shift-Down]=${terminfo[kDN]}  # Originally "scroll-forward key" (kind) was u
 key[Shift-Left]=${terminfo[kLFT]}
 key[Shift-Right]=${terminfo[kRIT]}
 
-key[Alt-Backspace]=''  # TODO
-key[Alt-PageUp]=''  # TODO
-key[Alt-PageDown]=''  # TODO
 key[Alt-Home]=${terminfo[kHOM3]}
 key[Alt-End]=${terminfo[kEND3]}
 key[Alt-Insert]=${terminfo[kIC3]}
@@ -160,9 +160,6 @@ key[Alt-Down]=${terminfo[kDN3]}
 key[Alt-Left]=${terminfo[kLFT3]}
 key[Alt-Right]=${terminfo[kRIT3]}
 
-key[Shift-Alt-Backspace]=''  # TODO
-key[Shift-Alt-PageUp]=''  # TODO
-key[Shift-Alt-PageDown]=''  # TODO
 key[Shift-Alt-Home]=${terminfo[kHOM4]}
 key[Shift-Alt-End]=${terminfo[kEND4]}
 key[Shift-Alt-Insert]=${terminfo[kIC4]}
@@ -172,9 +169,6 @@ key[Shift-Alt-Down]=${terminfo[kDN4]}
 key[Shift-Alt-Left]=${terminfo[kLFT4]}
 key[Shift-Alt-Right]=${terminfo[kRIT4]}
 
-key[Ctrl-Backspace]=''  # TODO
-key[Ctrl-PageUp]=''  # TODO
-key[Ctrl-PageDown]=''  # TODO
 key[Ctrl-Home]=${terminfo[kHOM5]}
 key[Ctrl-End]=${terminfo[kEND5]}
 key[Ctrl-Insert]=${terminfo[kIC5]}
@@ -184,9 +178,6 @@ key[Ctrl-Down]=${terminfo[kDN5]}
 key[Ctrl-Left]=${terminfo[kLFT5]}
 key[Ctrl-Right]=${terminfo[kRIT5]}
 
-key[Shift-Ctrl-Backspace]=''  # TODO
-key[Shift-Ctrl-PageUp]=''  # TODO
-key[Shift-Ctrl-PageDown]=''  # TODO
 key[Shift-Ctrl-Home]=${terminfo[kHOM6]}
 key[Shift-Ctrl-End]=${terminfo[kEND6]}
 key[Shift-Ctrl-Insert]=${terminfo[kIC6]}
@@ -196,9 +187,6 @@ key[Shift-Ctrl-Down]=${terminfo[kDN6]}
 key[Shift-Ctrl-Left]=${terminfo[kLFT6]}
 key[Shift-Ctrl-Right]=${terminfo[kRIT6]}
 
-key[Alt-Ctrl-Backspace]=''  # TODO
-key[Alt-Ctrl-PageUp]=''  # TODO
-key[Alt-Ctrl-PageDown]=''  # TODO
 key[Alt-Ctrl-Home]=${terminfo[kHOM7]}
 key[Alt-Ctrl-End]=${terminfo[kEND7]}
 key[Alt-Ctrl-Insert]=${terminfo[kIC7]}
@@ -208,9 +196,6 @@ key[Alt-Ctrl-Down]=${terminfo[kDN7]}
 key[Alt-Ctrl-Left]=${terminfo[kLFT7]}
 key[Alt-Ctrl-Right]=${terminfo[kRIT7]}
 
-key[Shift-Alt-Ctrl-Backspace]=''  # TODO
-key[Shift-Alt-Ctrl-PageUp]=''  # TODO
-key[Shift-Alt-Ctrl-PageDown]=''  # TODO
 key[Shift-Alt-Ctrl-Home]=''  # TODO
 key[Shift-Alt-Ctrl-End]=''  # TODO
 key[Shift-Alt-Ctrl-Insert]=''  # TODO
@@ -220,6 +205,12 @@ key[Shift-Alt-Ctrl-Down]=''  # TODO
 key[Shift-Alt-Ctrl-Left]=''  # TODO
 key[Shift-Alt-Ctrl-Right]=''  # TODO
 
+# Other keys:
+# The traditional effect of the Alt-Key is to send Esc then Key.
+key[Backspace]='^?'
+key[Alt-Backspace]='\e^?'
+key[PageUp]=${terminfo[kpp]}
+key[PageDown]=${terminfo[knp]}
 key[Tab]='\t'
 key[Shift-Tab]=${terminfo[kcbt]}
 
