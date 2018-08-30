@@ -57,33 +57,189 @@ setopt no_beep # The shell shouldn't beep on ZLE errors (most beeps).
 setopt zle # Use ZLE. This is default, but I like to be explicit.
 
 
-# History
-#--------------------
-HISTSIZE=2000
-SAVEHIST=${HISTSIZE}
-HISTFILE=${ZDOTDIR}/.history
-export HISTSIZE SAVEHIST HISTFILE
-
-
 # Keyboard
 #--------------------
-autoload -Uz zkbd
-[[ ! -f ${ZDOTDIR}/zkbd/${TERM} ]] && zkbd
-source ${ZDOTDIR}/zkbd/${TERM}
+# As much as possible, we use the terminfo database to lookup key code. This is
+# the most portable. For key codes not in the terminfo databse, we use the codes
+# from xterm as defaults. This should cover 99% of the cases.
+#
+# The original terminfo database only contained key codes for unmodified and
+# shifted keys. The ncurses library includes extensions for Alt and Ctrl
+# modifiers too.
+#
+# Documentation for the original terminfo capabilities can be browsed in the
+# manual: `man terminfo`. The keycode capabilities start with 'k'.
+#
+# The ncurses source code documents their terminfo database. In particular, see
+# the section "XTERM Extensions" for the Alt and Ctrl extensions.
+# https://invisible-island.net/ncurses/terminfo.src-sections.html
+#
+# I found the following comment in ncurses terminfo.src which explains the
+# mapping from modifiers to the xterm extensions. For iTerm2, even when you
+# load the "xTerm Defaults" keymap, not all of these match xterm (e.g. Alt uses
+# 9 instead of 3), so you'll have to do some manual work to set these up:
+#
+#       Code     Modifiers
+#     ---------------------------------
+#        2       Shift
+#        3       Alt
+#        4       Shift + Alt
+#        5       Control
+#        6       Shift + Control
+#        7       Alt + Control
+#        8       Shift + Alt + Control
+#     ---------------------------------
+#
+# My Macbook doesn't have all of the usual PC keys, but iTerm2 lets me map
+# certain key combinations to escape codes. Here are some that make the terminal
+# feel like any other macOS app:
+#
+#     ⌘↑  =  PageUp    =  Esc + [5~
+#     ⌘↓  =  PageDown  =  Esc + [6~
+#     ⌘←  =  Home      =  Esc + OH  (xterm application mode)
+#     ⌘→  =  End       =  Esc + OF  (xterm application mode)
 
-bindkey -e
-[[ -n ${key[Home]}       ]] && bindkey ${key[Home]}       beginning-of-line
-[[ -n ${key[End]}        ]] && bindkey ${key[End]}        end-of-line
-[[ -n ${key[Insert]}     ]] && bindkey ${key[Insert]}     overwrite-mode
-[[ -n ${key[Delete]}     ]] && bindkey ${key[Delete]}     delete-char
-[[ -n ${key[Up]}         ]] && bindkey ${key[Up]}         up-line-or-search
-[[ -n ${key[Down]}       ]] && bindkey ${key[Down]}       down-line-or-search
-[[ -n ${key[Left]}       ]] && bindkey ${key[Left]}       backward-char
-[[ -n ${key[Right]}      ]] && bindkey ${key[Right]}      forward-char
-[[ -n ${key[Ctrl-Left]}  ]] && bindkey ${key[Ctrl-Left]}  backward-word
-[[ -n ${key[Ctrl-Right]} ]] && bindkey ${key[Ctrl-Right]} forward-word
-[[ -n ${key[Alt-Left]}   ]] && bindkey ${key[Alt-Left]}   backward-word
-[[ -n ${key[Alt-Right]}  ]] && bindkey ${key[Alt-Right]}  forward-word
+# The terminfo module exposes a hashmap, `$terminfo[CAP]`, which maps terminfo
+# capabilities to their values. It also exposes a command `echoti` which echos
+# terminfo values and handles those capabilities which take arguments.
+# http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fterminfo-Module
+zmodload zsh/terminfo
+
+# Make sure that the terminal is in application mode when zle is active.
+# Values from $terminfo are only valid in application mode.
+# Note that application mode is not the default, and thus it is important to
+# specifically look up application mode key codes.
+if [[ ${terminfo[smkx]} && ${terminfo[rmkx]} ]]
+then
+	function zle-line-init {
+		echoti smkx
+	}
+	function zle-line-finish {
+		echoti rmkx
+	}
+	zle -N zle-line-init
+	zle -N zle-line-finish
+fi
+
+# Create a hashmap from key names to their codes.
+typeset -gA key
+
+key[Backspace]=${terminfo[kbs]}
+key[PageUp]=${terminfo[kpp]}
+key[PageDown]=${terminfo[knp]}
+key[Home]=${terminfo[khome]}
+key[End]=${terminfo[kend]}
+key[Insert]=${terminfo[kich1]}
+key[Delete]=${terminfo[kdch1]}
+key[Up]=${terminfo[kcuu1]}
+key[Down]=${terminfo[kcud1]}
+key[Left]=${terminfo[kcub1]}
+key[Right]=${terminfo[kcuf1]}
+
+key[Shift-Backspace]=''  # TODO
+key[Shift-PageUp]=''  # TODO
+key[Shift-PageDown]=''  # TODO
+key[Shift-Home]=${terminfo[kHOM]}
+key[Shift-End]=${terminfo[kEND]}
+key[Shift-Insert]=${terminfo[kIC]}
+key[Shift-Delete]=${terminfo[kDC]}
+key[Shift-Up]=${terminfo[kUP]}    # Originally "scroll-backward key" (kri) was used.
+key[Shift-Down]=${terminfo[kDN]}  # Originally "scroll-forward key" (kind) was used.
+key[Shift-Left]=${terminfo[kLFT]}
+key[Shift-Right]=${terminfo[kRIT]}
+
+key[Alt-Backspace]=''  # TODO
+key[Alt-PageUp]=''  # TODO
+key[Alt-PageDown]=''  # TODO
+key[Alt-Home]=${terminfo[kHOM3]}
+key[Alt-End]=${terminfo[kEND3]}
+key[Alt-Insert]=${terminfo[kIC3]}
+key[Alt-Delete]=${terminfo[kDC3]}
+key[Alt-Up]=${terminfo[kUP3]}
+key[Alt-Down]=${terminfo[kDN3]}
+key[Alt-Left]=${terminfo[kLFT3]}
+key[Alt-Right]=${terminfo[kRIT3]}
+
+key[Shift-Alt-Backspace]=''  # TODO
+key[Shift-Alt-PageUp]=''  # TODO
+key[Shift-Alt-PageDown]=''  # TODO
+key[Shift-Alt-Home]=${terminfo[kHOM4]}
+key[Shift-Alt-End]=${terminfo[kEND4]}
+key[Shift-Alt-Insert]=${terminfo[kIC4]}
+key[Shift-Alt-Delete]=${terminfo[kDC4]}
+key[Shift-Alt-Up]=${terminfo[kUP4]}
+key[Shift-Alt-Down]=${terminfo[kDN4]}
+key[Shift-Alt-Left]=${terminfo[kLFT4]}
+key[Shift-Alt-Right]=${terminfo[kRIT4]}
+
+key[Ctrl-Backspace]=''  # TODO
+key[Ctrl-PageUp]=''  # TODO
+key[Ctrl-PageDown]=''  # TODO
+key[Ctrl-Home]=${terminfo[kHOM5]}
+key[Ctrl-End]=${terminfo[kEND5]}
+key[Ctrl-Insert]=${terminfo[kIC5]}
+key[Ctrl-Delete]=${terminfo[kDC5]}
+key[Ctrl-Up]=${terminfo[kUP5]}
+key[Ctrl-Down]=${terminfo[kDN5]}
+key[Ctrl-Left]=${terminfo[kLFT5]}
+key[Ctrl-Right]=${terminfo[kRIT5]}
+
+key[Shift-Ctrl-Backspace]=''  # TODO
+key[Shift-Ctrl-PageUp]=''  # TODO
+key[Shift-Ctrl-PageDown]=''  # TODO
+key[Shift-Ctrl-Home]=${terminfo[kHOM6]}
+key[Shift-Ctrl-End]=${terminfo[kEND6]}
+key[Shift-Ctrl-Insert]=${terminfo[kIC6]}
+key[Shift-Ctrl-Delete]=${terminfo[kDC6]}
+key[Shift-Ctrl-Up]=${terminfo[kUP6]}
+key[Shift-Ctrl-Down]=${terminfo[kDN6]}
+key[Shift-Ctrl-Left]=${terminfo[kLFT6]}
+key[Shift-Ctrl-Right]=${terminfo[kRIT6]}
+
+key[Alt-Ctrl-Backspace]=''  # TODO
+key[Alt-Ctrl-PageUp]=''  # TODO
+key[Alt-Ctrl-PageDown]=''  # TODO
+key[Alt-Ctrl-Home]=${terminfo[kHOM7]}
+key[Alt-Ctrl-End]=${terminfo[kEND7]}
+key[Alt-Ctrl-Insert]=${terminfo[kIC7]}
+key[Alt-Ctrl-Delete]=${terminfo[kDC7]}
+key[Alt-Ctrl-Up]=${terminfo[kUP7]}
+key[Alt-Ctrl-Down]=${terminfo[kDN7]}
+key[Alt-Ctrl-Left]=${terminfo[kLFT7]}
+key[Alt-Ctrl-Right]=${terminfo[kRIT7]}
+
+key[Shift-Alt-Ctrl-Backspace]=''  # TODO
+key[Shift-Alt-Ctrl-PageUp]=''  # TODO
+key[Shift-Alt-Ctrl-PageDown]=''  # TODO
+key[Shift-Alt-Ctrl-Home]=''  # TODO
+key[Shift-Alt-Ctrl-End]=''  # TODO
+key[Shift-Alt-Ctrl-Insert]=''  # TODO
+key[Shift-Alt-Ctrl-Delete]=''  # TODO
+key[Shift-Alt-Ctrl-Up]=''  # TODO
+key[Shift-Alt-Ctrl-Down]=''  # TODO
+key[Shift-Alt-Ctrl-Left]=''  # TODO
+key[Shift-Alt-Ctrl-Right]=''  # TODO
+
+key[Tab]='\t'
+key[Shift-Tab]=${terminfo[kcbt]}
+
+# Key bindings:
+# Now that our keycodes are defined, we actually bind them to ZLE widgets.
+bindkey -e  # Default to emacs key bindings for many widgets.
+[[ ${key[Home]}       ]] && bindkey ${key[Home]}       beginning-of-line
+[[ ${key[End]}        ]] && bindkey ${key[End]}        end-of-line
+[[ ${key[Insert]}     ]] && bindkey ${key[Insert]}     overwrite-mode
+[[ ${key[Delete]}     ]] && bindkey ${key[Delete]}     delete-char
+[[ ${key[Up]}         ]] && bindkey ${key[Up]}         up-line-or-search
+[[ ${key[Down]}       ]] && bindkey ${key[Down]}       down-line-or-search
+[[ ${key[Left]}       ]] && bindkey ${key[Left]}       backward-char
+[[ ${key[Right]}      ]] && bindkey ${key[Right]}      forward-char
+[[ ${key[Ctrl-Left]}  ]] && bindkey ${key[Ctrl-Left]}  backward-word
+[[ ${key[Ctrl-Right]} ]] && bindkey ${key[Ctrl-Right]} forward-word
+[[ ${key[Alt-Left]}   ]] && bindkey ${key[Alt-Left]}   backward-word
+[[ ${key[Alt-Right]}  ]] && bindkey ${key[Alt-Right]}  forward-word
+[[ ${key[Tab]}        ]] && bindkey ${key[Tab]}        menu-expand-or-complete
+[[ ${key[Shift-Tab]}  ]] && bindkey ${key[Shift-Tab]}  reverse-menu-complete
 
 
 # Prompt
@@ -91,6 +247,14 @@ bindkey -e
 autoload -Uz promptinit
 promptinit
 prompt cbarrick
+
+
+# History
+#--------------------
+HISTSIZE=2000
+SAVEHIST=${HISTSIZE}
+HISTFILE=${ZDOTDIR}/.history
+export HISTSIZE SAVEHIST HISTFILE
 
 
 # Completion
@@ -101,20 +265,13 @@ compinit -u
 zstyle ':completion:*' use-cache true # Cache completion to `${ZDOTDIR}/.zcompcache`.
 zstyle ':completion:*' menu 'select' # Make the menu interactive with arrow keys.
 
-# TODO: Setup 'Tab' key combos in zkbd.
-bindkey '^I' menu-expand-or-complete
-bindkey '^[[Z' reverse-menu-complete
 
-
-# Command checking
+# Core utils
 #--------------------
 function exists {
 	type $1 &> /dev/null
 }
 
-
-# Core utils
-#--------------------
 alias sed="sed -r"
 alias mkdir="mkdir -p"
 alias grep="grep --extended-regexp --color"
@@ -202,7 +359,7 @@ function set-term-title {
 
 	# When using tmux -CC integration with iTerm2,
 	# tabs and windows must be named through tmux.
-	if [[ -n ${TMUX} ]]
+	if [[ ${TMUX} ]]
 	then
 		tmux rename-window ${1}
 	fi
