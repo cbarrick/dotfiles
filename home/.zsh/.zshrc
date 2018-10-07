@@ -271,8 +271,12 @@ alias l="ls --format=long"
 alias la="l --almost-all"
 alias df="df -h --total"
 alias du="du -h --total"
+alias dd="dd status=progress bs=8M"
 alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
+
+# Allow alias expansion with sudo
+alias sudo="sudo "
 
 # Use hub instead of git when avaliable
 exists hub && alias git=hub
