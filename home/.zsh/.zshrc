@@ -407,7 +407,8 @@ cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
 
 # Python
 #--------------------
-source ~/.conda/etc/profile.d/conda.sh
+# The conda setup script should already be sourced.
+# Do that in `~/.zsh/env/${HOST}.zsh`.
 exists conda && conda activate
 
 export IPYTHONDIR="${HOME}/.ipython"
