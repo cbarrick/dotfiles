@@ -1,6 +1,7 @@
 "*":
   Zen:
     fullscreen: false
+    softWrap: true
   "atom-ide-ui":
     "atom-ide-code-format":
       formatOnSave: true
@@ -14,13 +15,19 @@
     suggestionListFollows: "Word"
   core:
     closeDeletedFileTabs: true
+    disabledPackages: [
+      "atom-ide-ui"
+    ]
     openEmptyEditorOnStart: false
     projectHome: "/Users/csb/dev"
+    restorePreviousWindowsOnStart: "no"
     telemetryConsent: "limited"
     titleBar: "custom"
+    useTreeSitterParsers: true
   editor:
+    atomicSoftTabs: false
     fontFamily: "Fira Mono"
-    preferredLineLength: 100
+    fontSize: 13
     scrollPastEnd: true
     showCursorOnSelection: false
     showIndentGuide: true
@@ -118,6 +125,9 @@
   editor:
     softWrap: true
     softWrapAtPreferredLineLength: true
+".rust.source":
+  editor:
+    preferredLineLength: 99
 ".tex.text":
   editor:
     softWrap: true

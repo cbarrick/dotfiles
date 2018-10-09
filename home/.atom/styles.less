@@ -4,16 +4,16 @@
 atom-workspace {
 
 	// Make text easier on the eyes.
-	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
 
-	// Turn off ligatures in strings and regexp
+	// Turn off ligatures in strings and regexp.
 	atom-text-editor.editor .syntax--string.syntax--quoted,
 	atom-text-editor.editor .syntax--string.syntax--regexp {
 		-webkit-font-feature-settings: "liga" off, "calt" off;
 	}
 
-	// Disable vertical scrolling in markdown-preview code blocks
+	// Disable vertical scrolling in markdown-preview code blocks.
 	.markdown-preview {
 		position: relative;
 		z-index: 2;
@@ -24,18 +24,13 @@ atom-workspace {
 		}
 	}
 
-	// Show invisibles only in selection
+	// Show invisibles only in selection.
 	.invisible-character {
 		color: @syntax-background-color;
 		&.indent-guide {
 			box-shadow: inset 1px 0 0 0 @syntax-indent-guide-color;
 		}
 	}
-
-	// // Pulse the cursor
-	// .cursor {
-	// 	transition: opacity 0.4s;
-	// }
 
 	// The minimap-autohide and minimap-autohider packages
 	// add an ugly background to the minimap. Remove it.
@@ -48,26 +43,4 @@ atom-workspace {
 		display: none;
 	}
 
-	// .title-bar {
-	// 	position: absolute;
-	// 	right: 0;
-	// 	left: 0;
-	// 	opacity: 0;
-	// 	z-index: 0;
-	// 	// display: none;
-	// }
-	// .tab-bar {
-	// 	position: relative;
-	// 	left: 88px;
-	// 	right: 88px;
-	// 	height: 38px;
-	// 	width: 100%;
-	// 	.tab {
-	// 		position: relative;
-	// 		height: 2.5em;
-	// 		top: 8px;
-	// 		bottom: 0;
-	// 		z-index: 2;
-	// 	}
-	// }
 }
