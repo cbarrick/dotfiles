@@ -272,6 +272,10 @@ alias la="l --almost-all"
 alias df="df -h --total"
 alias du="du -h --total"
 alias dd="dd status=progress bs=8M"
+
+# System tools that should always use sudo
+alias apt="sudo apt"
+alias aptitude="sudo aptitude"
 alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
 
