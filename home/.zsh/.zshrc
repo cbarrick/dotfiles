@@ -398,13 +398,6 @@ then
 fi
 
 
-# Go
-#--------------------
-export GOPATH=${HOME}/.go
-path=(${GOPATH}/bin ${path})
-cdpath=(${GOPATH}/src ${GOPATH}/src/github.com/cbarrick ${cdpath})
-
-
 # Python
 #--------------------
 # The conda setup script should already be sourced.
