@@ -5,5 +5,5 @@ then
 	source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 
 	# Conda
-	source ~/.conda/etc/profile.d/conda.sh
+	source /usr/local/miniconda3/etc/profile.d/conda.sh
 fi
