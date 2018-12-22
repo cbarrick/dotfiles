@@ -1,4 +1,4 @@
 #!/bin/zsh
 
 # Startup mesage
-echo "${USER} @ ${HOST}"
+echo "\r${USER} @ ${HOST}"
