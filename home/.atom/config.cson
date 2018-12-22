@@ -16,9 +16,12 @@
   core:
     closeDeletedFileTabs: true
     disabledPackages: [
+      "whitespace"
+      "github"
       "atom-ide-ui"
     ]
     openEmptyEditorOnStart: false
+    packagesWithKeymapsDisabled: []
     projectHome: "/Users/csb/dev"
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "limited"
@@ -26,7 +29,6 @@
     useTreeSitterParsers: true
   editor:
     fontFamily: "Fira Mono"
-    fontSize: 13
     scrollPastEnd: true
     showCursorOnSelection: false
     showIndentGuide: true
@@ -81,9 +83,13 @@
     scrollAnimation: true
   "minimap-autohider":
     VisiblePercentage: 100
+  pandoc:
+    args: "-s +smart --self-contained --ascii"
   "pdf-view":
     fitToWidthOnOpen: true
     reverseSyncBehaviour: "Double click"
+  "rst-preview-pandoc":
+    pandocOpts: "-frst -thtml --webtex"
   "spell-check":
     grammars: [
       "source.asciidoc"
@@ -102,14 +108,20 @@
     syntaxThemeTwo: "one-light-syntax"
   "tree-view":
     hideVcsIgnoredFiles: true
-    showOnRightSide: false
+    showOnRightSide: true
   welcome:
     showOnStartup: false
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
+".basic.html.text":
+  editor:
+    tabLength: 2
 ".console.python.text":
   editor:
     tabType: "soft"
+".css.source":
+  editor:
+    tabLength: 2
 ".plain.text":
   editor:
     softWrap: true
@@ -127,6 +139,9 @@
 ".rust.source":
   editor:
     preferredLineLength: 99
+".source.yaml":
+  editor:
+    tabLength: 2
 ".tex.text":
   editor:
     softWrap: true

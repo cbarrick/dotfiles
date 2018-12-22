@@ -8,8 +8,8 @@ atom-workspace {
 	text-rendering: optimizeLegibility;
 
 	// Turn off ligatures in strings and regexp.
-	atom-text-editor.editor .syntax--string.syntax--quoted,
-	atom-text-editor.editor .syntax--string.syntax--regexp {
+	.syntax--string.syntax--quoted,
+	.syntax--string.syntax--regexp {
 		-webkit-font-feature-settings: "liga" off, "calt" off;
 	}
 
@@ -43,4 +43,9 @@ atom-workspace {
 		display: none;
 	}
 
+	// Don't highlight struct/class members and constants.
+	// This is consistent with regular stack variables.
+	.syntax--member, .syntax--constant {
+		color: inherit;
+	}
 }
