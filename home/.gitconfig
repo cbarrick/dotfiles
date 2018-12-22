@@ -18,7 +18,8 @@
 	autoSquash = true
 
 [alias]
-	l = "!git --no-pager log -20 --oneline"
 	b = "!git --no-pager branch --verbose --verbose"
 	r = "!git --no-pager remote"
 	s = "!git --no-pager status --short --branch --untracked-files=normal"
+	l = "!git --no-pager log -20 --oneline"
+	ll = "!git log --oneline"
