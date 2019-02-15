@@ -1,4 +1,6 @@
 #!/bin/zsh
 
-# Startup mesage
-echo "\r${USER} @ ${HOST}"
+if [[ -o interactive ]]
+then
+	echo "\r${USER} @ ${HOST}"
+fi
