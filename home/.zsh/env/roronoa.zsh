@@ -6,6 +6,7 @@ then
 fi
 
 if [[ -o interactive ]]
+then
 	# Conda
 	source /usr/local/miniconda3/etc/profile.d/conda.sh
 fi
