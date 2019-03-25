@@ -265,7 +265,7 @@ function exists {
 
 alias sed="sed -r"
 alias mkdir="mkdir -p"
-alias grep="grep --extended-regexp --color"
+alias grep="grep --extended-regexp"
 alias ls="ls --human-readable --classify --group-directories-first --color=auto"
 alias l="ls --format=long"
 alias la="l --almost-all"
