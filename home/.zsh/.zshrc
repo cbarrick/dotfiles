@@ -6,7 +6,7 @@
 # zshoptions(1)  /  http://zsh.sourceforge.net/Doc/Release/Options.html
 
 # Changing Directories
-setopt auto_cd # If command is a directory path, cd to it.
+# setopt auto_cd # If command is a directory path, cd to it.
 setopt auto_pushd # cd is really pushd.
 setopt chase_links # Resolve symbolic links to their true location.
 setopt pushd_ignore_dups # Don't put duplicates on the directory stack.
