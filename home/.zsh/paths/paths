@@ -1,6 +1,5 @@
 ./bin
 ${HOME}/.local/bin
 ${HOME}/.cargo/bin
-${HOME}/.linuxbrew/bin
 /usr/local/bin
 /usr/local/sbin
