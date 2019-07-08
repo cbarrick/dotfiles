@@ -17,15 +17,6 @@ ZDOTDIR=${HOME}/.zsh
 export ZDOTDIR
 
 
-# Host-specific envirnonment
-#--------------------
-
-if [[ -e ${ZDOTDIR}/env/$(hostname).zsh ]]
-then
-	source ${ZDOTDIR}/env/$(hostname).zsh
-fi
-
-
 # Global profile
 #--------------------
 # The global profile may make changes to the PATH,
@@ -85,3 +76,14 @@ cdpath=(
 )
 
 export path manpath fpath cdpath
+
+
+# Host-specific envirnonment
+#--------------------
+# The host-specific environment files may further manipulate the path.
+# That take priority over the paths set here, and thus should come after.
+
+if [[ -e ${ZDOTDIR}/env/$(hostname).zsh ]]
+then
+	source ${ZDOTDIR}/env/$(hostname).zsh
+fi
