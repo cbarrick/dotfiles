@@ -1,0 +1,20 @@
+## vim:ft=zsh
+## Written by Frank Terbeck <ft@bewatermyfriend.org>
+## Distributed under the same BSD-ish license as zsh itself.
+
+setopt localoptions extendedglob NO_shwordsplit
+local base=${1%%/##} tmp
+
+## The output of `pwd -P` in the version of Zsh shipping in Homebrew does not
+## match the output of `/bin/pwd -P` on macOS Catalina. This function is broken
+## because of it. I've included this hotfix in my dotfiles to get around that
+## until Homebrew officially supports Catalina.
+## -csb 2019-07-04
+#tmp="$(pwd -P)"
+tmp="$(pwd -L)"
+[[ $tmp == ${base}/* ]] || {
+    printf '.'
+    return 1
+}
+printf '%s' ${tmp#$base/}
+return 0

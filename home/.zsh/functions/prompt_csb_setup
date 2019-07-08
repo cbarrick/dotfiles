@@ -1,0 +1,155 @@
+#!/bin/zsh --no-rcs
+# csb's awesome prompt theme
+
+function prompt_csb_help {
+	cat<<'EOF'
+Usage: prompt csb
+EOF
+}
+
+# Estimate the length to which a string with prompt escapes would expand.
+function prompt_csb_len {
+	# We manually expand the input with `print -rP`. The actual values of the
+	# expansion may be wrong since we're not actually in the context of the
+	# prompt. Usually this just means the colors are wrong. From that point,
+	# we strip escape sequences then take the length.
+	local expanded=$(print -rP $1)
+	local stripped=${(S)expanded//$'\e'\[*([0-9;])m/}
+	print -n ${#stripped}
+}
+
+function prompt_csb_bg_widget {
+	# Print the number of background jobs if there are any.
+	alt_color=$3
+	if [[ -n $(jobs) ]]
+	then
+		print -n "${alt_color}%j"
+	fi
+}
+
+function prompt_csb_vcs_widget {
+	# Retrieve the colors as arguments.
+	info_color=$2
+	alt_color=$3
+
+	# Get output from `vcs_info`.
+	vcs_info prompt_csb
+	local repo=$vcs_info_msg_0_
+	local branch=$vcs_info_msg_1_
+	local action=$vcs_info_msg_2_
+	local path=$vcs_info_msg_3_
+
+	# If we're in a repo, print out the message.
+	if [[ -n $repo ]]
+	then
+		print -n "${info_color}${repo}"
+		print -n "%f:"
+		print -n "${info_color}${branch}"
+		if [[ -n $action ]]
+		then
+			print -n " ${alt_color}(${action})"
+		fi
+		print -n " %f${path}"
+	fi
+}
+
+function prompt_csb_hostpath_widget {
+	# Print username, hostm and path.
+	# This is almost an `scp` compatible path, but with extra spaces.
+	alt_color=$3
+	print -n "%f%n @ %m : %~"
+}
+
+function prompt_csb_precmd {
+	# Retrieve the colors from zstyle.
+	local main_color info_color alt_color err_color
+	zstyle -g main_color ':prompt_csb' main_color
+	zstyle -g info_color ':prompt_csb' info_color
+	zstyle -g alt_color ':prompt_csb' alt_color
+	zstyle -g err_color ':prompt_csb' err_color
+
+	# Wrap the colors in prompt expansion syntax.
+	# The `main_color` becomes `err_color` when the exit status is non-zero.
+	info_color="%F{$info_color}"
+	alt_color="%F{$alt_color}"
+	err_color="%F{$err_color}"
+	main_color="%(?.%F{$main_color}.$err_color)"
+	local colors=($main_color $info_color $alt_color $err_color)
+
+	# Build the widget segment for the top line.
+	#
+	# The widgets are names of functions stored in zstyle. We call each
+	# function, passing in the colors, and concatenate their outputs.
+	#
+	# We only insert a widget if:
+	# 1. it is non-empty, and
+	# 2. it does not cause the the top line to exceed the number of columns.
+	local widget_array=() widgets=""
+	zstyle -g widget_array ':prompt_csb' widgets
+	for widget_fn in $widget_array
+	do
+		local w=$($widget_fn $colors)
+		local len=$(( $(prompt_csb_len $widgets) + $(prompt_csb_len $w) + 6 ))
+		if [[ -n "$w" ]] && (( $len < $COLUMNS ))
+		then
+			w="${w}${main_color}"  # Reset the color.
+			widgets="──[ ${w} ]${widgets}"
+		fi
+	done
+
+	# Pad the widgets to the full width of the terminal.
+	# This requires us to reason about the difference in length between the
+	# expanded and unexpanded forms.
+	local unexpanded_len=${#widgets}
+	local expanded_len=$(prompt_csb_len $widgets)
+	local diff=$(($unexpanded_len - $expanded_len))
+	local len=$(($COLUMNS - 1 + $diff))
+	local widgets=${(l:$len::─:)widgets}
+
+	# Set the prompt.
+	local lf=$'\n'
+	local prompt_char="%f%(!.#.$)"  # This is `$` as user and `#` as root.
+	local top_line="${main_color}╭${widgets}${lf}"
+	local bot_line="${main_color}╰ ${prompt_char}%f "
+	export PROMPT="${top_line}${bot_line}"
+
+	# Print a blank line before each prompt.
+	printf "\n"
+}
+
+function prompt_csb_setup {
+	autoload -Uz add-zsh-hook
+	autoload -Uz vcs_info
+
+	# The prompt is actually set in the precmd hook.
+	# The zsh prompt library automatically cleans up this hook.
+	add-zsh-hook precmd prompt_csb_precmd
+
+	# Prompt options to enable while this theme is active,
+	# e.g. `prompt_opts=(percent)` is like `setopt prompt_percent`, but the
+	# option is reverted to its original value when the theme is disabled.
+	# http://zsh.sourceforge.net/Doc/Release/Options.html#Prompting
+	prompt_opts=(cr percent)
+
+	# Set the default colors in zstyle.
+	zstyle -t ':prompt_csb' main_color || zstyle ':prompt_csb' main_color 237
+	zstyle -t ':prompt_csb' info_color || zstyle ':prompt_csb' info_color green
+	zstyle -t ':prompt_csb' alt_color  || zstyle ':prompt_csb' alt_color  blue
+	zstyle -t ':prompt_csb' err_color  || zstyle ':prompt_csb' err_color  red
+
+	# Set the default widgets.
+	if zstyle -T ':prompt_csb' widgets
+	then
+		zstyle ':prompt_csb' widgets \
+			prompt_csb_hostpath_widget \
+			prompt_csb_vcs_widget \
+			prompt_csb_bg_widget
+	fi
+
+	# Set the vcs_info formats.
+	zstyle ':vcs_info:*:prompt_csb:*' max-exports 4
+	zstyle ':vcs_info:*:prompt_csb:*' formats "%r" "%b" "%a" "%S"
+	zstyle ':vcs_info:*:prompt_csb:*' actionformats "%r" "%b" "%a" "%S"
+}
+
+prompt_csb_setup "$@"

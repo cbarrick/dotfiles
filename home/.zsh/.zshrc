@@ -237,7 +237,17 @@ bindkey -e  # Default to emacs key bindings for many widgets.
 #--------------------
 autoload -Uz promptinit
 promptinit
-prompt cbarrick
+prompt csb
+
+zstyle ':prompt_csb' main_color 237  # dark gray
+zstyle ':prompt_csb' info_color green
+zstyle ':prompt_csb' alt_color blue
+zstyle ':prompt_csb' err_color red
+
+zstyle ':prompt_csb' widgets \
+	prompt_csb_hostpath_widget \
+	prompt_csb_vcs_widget \
+	prompt_csb_bg_widget
 
 
 # History
