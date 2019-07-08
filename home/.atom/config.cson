@@ -17,8 +17,8 @@
     closeDeletedFileTabs: true
     disabledPackages: [
       "whitespace"
-      "github"
       "atom-ide-ui"
+      "github"
     ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: []
@@ -38,6 +38,9 @@
     tabLength: 4
   "exception-reporting":
     userId: "a8f790ed-8f9f-d36f-d131-fc4bbc0fb421"
+  "fuzzy-finder":
+    scoringSystem: "fast"
+    useRipGrep: true
   "highlight-line":
     enableBackgroundColor: false
   "highlight-selected":
