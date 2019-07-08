@@ -7,3 +7,4 @@ github.cson
 packages/
 recovery/
 storage/
+.atom-socket-secret-*
