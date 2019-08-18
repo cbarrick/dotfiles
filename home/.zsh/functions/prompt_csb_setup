@@ -37,19 +37,16 @@ function prompt_csb_vcs_widget {
 	local repo=$vcs_info_msg_0_
 	local branch=$vcs_info_msg_1_
 	local action=$vcs_info_msg_2_
-	local path=$vcs_info_msg_3_
 
 	# If we're in a repo, print out the message.
 	if [[ -n $repo ]]
 	then
-		print -n "${info_color}${repo}"
-		print -n "%f:"
 		print -n "${info_color}${branch}"
 		if [[ -n $action ]]
 		then
 			print -n " ${alt_color}(${action})"
 		fi
-		print -n " %f${path}"
+		print -n "%f"
 	fi
 }
 
@@ -160,9 +157,9 @@ function prompt_csb_setup {
 	fi
 
 	# Set the vcs_info formats.
-	zstyle ':vcs_info:*:prompt_csb:*' max-exports 4
-	zstyle ':vcs_info:*:prompt_csb:*' formats "%r" "%b" "%a" "%S"
-	zstyle ':vcs_info:*:prompt_csb:*' actionformats "%r" "%b" "%a" "%S"
+	zstyle ':vcs_info:*:prompt_csb:*' max-exports 3
+	zstyle ':vcs_info:*:prompt_csb:*' formats "%r" "%b" "%a"
+	zstyle ':vcs_info:*:prompt_csb:*' actionformats "%r" "%b" "%a"
 }
 
 prompt_csb_setup "$@"
