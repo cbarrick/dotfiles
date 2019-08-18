@@ -6,6 +6,8 @@
     "atom-ide-code-format":
       formatOnSave: true
       formatOnType: false
+  "autocomplete-paths":
+    ignoreSubmodules: true
   "autocomplete-plus":
     confirmCompletion: "tab always, enter when suggestion explicitly selected"
     consumeSuffix: false
@@ -38,6 +40,8 @@
     tabLength: 4
   "exception-reporting":
     userId: "a8f790ed-8f9f-d36f-d131-fc4bbc0fb421"
+  "find-and-replace":
+    useRipgrep: true
   "fuzzy-finder":
     scoringSystem: "fast"
     useRipGrep: true
@@ -139,6 +143,7 @@
   editor:
     softWrap: true
     softWrapAtPreferredLineLength: true
+    tabType: "soft"
 ".rust.source":
   editor:
     preferredLineLength: 99
