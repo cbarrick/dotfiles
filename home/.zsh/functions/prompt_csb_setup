@@ -60,13 +60,26 @@ function prompt_csb_hostpath_widget {
 	print -n "%f%n @ %m : %~"
 }
 
+function prompt_csb_zstyle_context {
+	# Get the current zstyle context.
+	if [[ -n "$SSH_CONNECTION" ]]
+	then
+		print -n ":prompt_csb:ssh:${HOST}"
+	else
+		print -n ":prompt_csb:local:${HOST}"
+	fi
+}
+
 function prompt_csb_precmd {
+	# Determine the zstyle context.
+	local context="$(prompt_csb_zstyle_context)"
+
 	# Retrieve the colors from zstyle.
 	local main_color info_color alt_color err_color
-	zstyle -g main_color ':prompt_csb' main_color
-	zstyle -g info_color ':prompt_csb' info_color
-	zstyle -g alt_color ':prompt_csb' alt_color
-	zstyle -g err_color ':prompt_csb' err_color
+	zstyle -s "$context" main_color main_color
+	zstyle -s "$context" info_color info_color
+	zstyle -s "$context" alt_color alt_color
+	zstyle -s "$context" err_color err_color
 
 	# Wrap the colors in prompt expansion syntax.
 	# The `main_color` becomes `err_color` when the exit status is non-zero.
@@ -85,7 +98,7 @@ function prompt_csb_precmd {
 	# 1. it is non-empty, and
 	# 2. it does not cause the the top line to exceed the number of columns.
 	local widget_array=() widgets=""
-	zstyle -g widget_array ':prompt_csb' widgets
+	zstyle -a "$context" widgets widget_array
 	for widget_fn in $widget_array
 	do
 		local w=$($widget_fn $colors)
@@ -132,15 +145,15 @@ function prompt_csb_setup {
 	prompt_opts=(cr percent)
 
 	# Set the default colors in zstyle.
-	zstyle -t ':prompt_csb' main_color || zstyle ':prompt_csb' main_color 237
-	zstyle -t ':prompt_csb' info_color || zstyle ':prompt_csb' info_color green
-	zstyle -t ':prompt_csb' alt_color  || zstyle ':prompt_csb' alt_color  blue
-	zstyle -t ':prompt_csb' err_color  || zstyle ':prompt_csb' err_color  red
+	zstyle -T ':prompt_csb:*' main_color && zstyle ':prompt_csb:*' main_color 243
+	zstyle -T ':prompt_csb:*' info_color && zstyle ':prompt_csb:*' info_color green
+	zstyle -T ':prompt_csb:*' alt_color  && zstyle ':prompt_csb:*' alt_color  blue
+	zstyle -T ':prompt_csb:*' err_color  && zstyle ':prompt_csb:*' err_color  red
 
 	# Set the default widgets.
-	if zstyle -T ':prompt_csb' widgets
+	if zstyle -T ':prompt_csb:*' widgets
 	then
-		zstyle ':prompt_csb' widgets \
+		zstyle ':prompt_csb:*' widgets \
 			prompt_csb_hostpath_widget \
 			prompt_csb_vcs_widget \
 			prompt_csb_bg_widget
