@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# Welcome message
+#--------------------
+
 if [[ -o interactive ]]
 then
 	echo "\r${USER} @ ${HOST}"

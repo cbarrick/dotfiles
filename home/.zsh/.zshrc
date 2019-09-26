@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # Shell Options
 #--------------------
 # zshoptions(1)  /  http://zsh.sourceforge.net/Doc/Release/Options.html
