@@ -432,3 +432,12 @@ fi
 export IPYTHONDIR="${HOME}/.ipython"
 alias ipy="ipython --no-confirm-exit --no-term-title --classic"
 alias ipylab="ipy --pylab"
+
+
+# Host-specific config
+#--------------------
+
+if [[ -e ${ZDOTDIR}/.zshrc.d/${HOST} ]]
+then
+	source ${ZDOTDIR}/.zshrc.d/${HOST}
+fi

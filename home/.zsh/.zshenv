@@ -78,12 +78,10 @@ cdpath=(
 export path manpath fpath cdpath
 
 
-# Host-specific envirnonment
+# Host-specific config
 #--------------------
-# The host-specific environment files may further manipulate the path.
-# That take priority over the paths set here, and thus should come after.
 
-if [[ -e ${ZDOTDIR}/env/$(hostname).zsh ]]
+if [[ -e ${ZDOTDIR}/.zshenv.d/${HOST} ]]
 then
-	source ${ZDOTDIR}/env/$(hostname).zsh
+	source ${ZDOTDIR}/.zshenv.d/${HOST}
 fi
