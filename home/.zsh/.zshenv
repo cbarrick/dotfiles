@@ -17,17 +17,6 @@ ZDOTDIR=${HOME}/.zsh
 export ZDOTDIR
 
 
-# Global profile
-#--------------------
-# The global profile may make changes to the PATH,
-# so we source it before setting our own PATHs.
-
-if [[ -o login ]]
-then
-	emulate sh -c 'source /etc/profile'
-fi
-
-
 # Path
 #--------------------
 # Sets path in a way similar to path_helper(8) on OS X.
