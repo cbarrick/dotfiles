@@ -1,4 +1,4 @@
-#!/bin/zsh --no-rcs
+#!/usr/bin/env zsh --no-rcs
 # csb's awesome prompt theme
 
 function prompt_csb_help {
