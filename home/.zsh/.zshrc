@@ -433,10 +433,14 @@ alias ipy="ipython --no-confirm-exit --no-term-title --classic"
 alias ipylab="ipy --pylab"
 
 
-# Host-specific config
+# Modular config files
 #--------------------
+# Note `*(on)` means to sort the glob by name.
 
-if [[ -e ${ZDOTDIR}/.zshrc.d/${HOST} ]]
+if [[ -e "${ZDOTDIR}/.zshrc.d" ]]
 then
-	source ${ZDOTDIR}/.zshrc.d/${HOST}
+	for file in "${ZDOTDIR}/.zshrc.d/"*(on)
+	do
+		source $file
+	done
 fi

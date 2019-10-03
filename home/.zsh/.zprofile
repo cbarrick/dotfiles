@@ -11,10 +11,14 @@ then
 fi
 
 
-# Host-specific config
+# Modular config files
 #--------------------
+# Note `*(on)` means to sort the glob by name.
 
-if [[ -e ${ZDOTDIR}/.zprofile.d/${HOST} ]]
+if [[ -e "${ZDOTDIR}/.zprofile.d" ]]
 then
-	source ${ZDOTDIR}/.zprofile.d/${HOST}
+	for file in "${ZDOTDIR}/.zprofile.d/"*(on)
+	do
+		source $file
+	done
 fi

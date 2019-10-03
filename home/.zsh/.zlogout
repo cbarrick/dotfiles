@@ -1,11 +1,13 @@
 #!/usr/bin/env zsh
 
-# Host-specific config
+# Modular config files
 #--------------------
-# For .zlogout, this should come *before* the general config.
+# Note `*(On)` means to sort the glob by name IN REVERSE.
 
-if [[ -e ${ZDOTDIR}/.zlogout.d/${HOST} ]]
+if [[ -e "${ZDOTDIR}/.zlogout.d" ]]
 then
-	source ${ZDOTDIR}/.zlogout.d/${HOST}
+	for file in "${ZDOTDIR}/.zlogout.d/"*(On)
+	do
+		source $file
+	done
 fi
-

@@ -67,10 +67,14 @@ cdpath=(
 export path manpath fpath cdpath
 
 
-# Host-specific config
+# Modular config files
 #--------------------
+# Note `*(on)` means to sort the glob by name.
 
-if [[ -e ${ZDOTDIR}/.zshenv.d/${HOST} ]]
+if [[ -e "${ZDOTDIR}/.zshenv.d" ]]
 then
-	source ${ZDOTDIR}/.zshenv.d/${HOST}
+	for file in "${ZDOTDIR}/.zshenv.d/"*(on)
+	do
+		source $file
+	done
 fi
