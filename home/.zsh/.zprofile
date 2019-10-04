@@ -5,10 +5,8 @@
 # The global profile may make changes to the PATH,
 # so we source it before setting our own PATHs.
 
-if [[ -o login ]]
-then
-	emulate sh -c '. /etc/profile'
-fi
+emulate sh -c '. /etc/profile'
+emulate sh -c '. ~/.profile'
 
 
 # Path
@@ -70,6 +68,14 @@ cdpath=(
 )
 
 export path manpath fpath cdpath
+
+
+# Locale
+#--------------------
+LANG=en_US.UTF-8
+LANGUAGE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+export LANG LANGUAGE LC_ALL
 
 
 # Modular config files
