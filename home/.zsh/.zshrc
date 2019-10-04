@@ -371,16 +371,22 @@ function cwurl {
 
 # Sets the title to whatever is passed as $1
 function set-term-title {
+	# Escape the argument for printf formatting.
+	local title=$1
+	title=${title//\\/\\\\}
+	title=${title//\"/\\\"}
+	title=${title//\%/\%\%}
+
 	# OSC 0, 1, and 2 are the portable escape codes for setting window titles.
-	printf "\e]0;${1}\a"  # Both tab and window
-	printf "\e]1;${1}\a"  # Tab title
-	printf "\e]2;${1}\a"  # Window title
+	printf "\e]0;$title\a"  # Both tab and window
+	printf "\e]1;$title\a"  # Tab title
+	printf "\e]2;$title\a"  # Window title
 
 	# When using tmux -CC integration with iTerm2,
 	# tabs and windows must be named through tmux.
 	if [[ ${TMUX} ]]
 	then
-		tmux rename-window ${1}
+		tmux rename-window $title
 	fi
 }
 
