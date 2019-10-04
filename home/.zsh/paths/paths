@@ -1,4 +1,3 @@
-./bin
 ${HOME}/.local/bin
 ${HOME}/.cargo/bin
 /usr/local/bin
