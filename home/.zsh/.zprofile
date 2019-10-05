@@ -68,6 +68,7 @@ cdpath=(
 )
 
 export path manpath fpath cdpath
+export PATH MANPATH FPATH CDPATH
 
 
 # Locale
