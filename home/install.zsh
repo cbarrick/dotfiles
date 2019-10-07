@@ -1,24 +1,24 @@
 #!/usr/bin/env zsh
 
-# List of dotfiles or dotdirs that must be ignored.
-# This is a failsafe to ensure these directories don't ever get entangled with
-# the dotfiles repo and accidentally pushed to a public URL.
-BLACKLIST=('.ssh')
-
-# Link all dotfiles into the home directory.
-for dotfile in ${0:A:h}/.*
+# Link in files.
+base=${0:A:h}  # The directory containing this script.
+for src in "$base"/.*(.N) "$base"/*/**/*(.D)
 do
-	if (( ${BLACKLIST[(Ie)${dotfile:t}]} ))
+    # Link the file. Skip if the link is already established.
+    dest=${src/$base/~}
+    dest_dir=${dest:h}
+    mkdir -p "$dest_dir"
+	if [[ "$(readlink -f $dest)" != "$(readlink -f $src)" ]]
 	then
-		echo WARNING: detected blacklisted dotfile or dotdir, skipping: ${dotfile:t}
-		continue
-	else
-		ln -si ${dotfile:A} ${HOME}
+    	ln -si "$src" "$dest"
 	fi
 done
 
 # Link `.zshenv` into the home directory.
-ln -si ~/.zsh/.zshenv ~/.zshenv
+if [[ "$(readlink -f ~/.zshenv)" != "$(readlink -f ~/.zsh/.zshenv)" ]]
+then
+	ln -si ~/.zsh/.zshenv ~/.zshenv
+fi
 
 # Tell iTerm2 about its profile.
 if [[ `uname` == 'Darwin' ]]
