@@ -26,12 +26,14 @@ emulate sh -c '. ~/.profile'
 #
 # Any additional path manipulation which requires scripting (e.g. checking the
 # hostname) should be placed in `$ZDOTDIR/.zprofile.d`.
-#
-# Note that the lowercase parameters (e.g. `path`) are arrays. Zsh converts
-# these to `:`-separated strings automatically for the corresponding uppercase
-# parameters (e.g. `PATH`).
 
-typeset -U path manpath fpath cdpath
+# `-T` creates a "tied" array. `-U` causes the array to discard duplicates.
+# In a tied array, the contents of the array are reflected into a `:`-separated
+# string. The first arg names the string; the second arg names the array.
+typeset -UT PATH path
+typeset -UT MANPATH manpath
+typeset -UT FPATH fpath
+typeset -UT CDPATH cdpath
 
 local prefix="${ZDOTDIR}/paths"
 
@@ -49,6 +51,7 @@ manpath=(
 	${(ef)"$(cat /etc/manpaths.d/*(.N)      2> /dev/null < /dev/null)"}
 	${(ef)"$(cat /etc/manpaths              2> /dev/null < /dev/null)"}
 	${manpath}
+	''  # Empty string means to use the default search path.
 )
 
 fpath=(
@@ -73,6 +76,7 @@ export PATH MANPATH FPATH CDPATH
 
 # Locale
 #--------------------
+
 LANG=en_US.UTF-8
 LANGUAGE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
@@ -81,11 +85,10 @@ export LANG LANGUAGE LC_ALL
 
 # Modular config files
 #--------------------
-# Note `*(on)` means to sort the glob by name.
 
 if [[ -e "${ZDOTDIR}/.zprofile.d" ]]
 then
-	for file in "${ZDOTDIR}/.zprofile.d/"*(on)
+	for file in "${ZDOTDIR}/.zprofile.d/"*
 	do
 		source $file
 	done
