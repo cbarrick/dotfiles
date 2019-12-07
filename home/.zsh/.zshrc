@@ -63,6 +63,11 @@ setopt zle # Use ZLE. This is default, but I like to be explicit.
 # the most portable. For key codes not in the terminfo databse, we use the codes
 # from xterm as defaults. This should cover 99% of the cases.
 #
+# For this to work, it's critical that your terminal sets the TERM environment
+# variable appropriately. This is usually `xterm-256color` by default, but it
+# is often possible to find a more specific terminal type to enable advanced
+# features.
+#
 # The original terminfo database only contained key codes for unmodified and
 # shifted keys. The ncurses library includes extensions for Alt and Ctrl
 # modifiers too.
@@ -75,9 +80,7 @@ setopt zle # Use ZLE. This is default, but I like to be explicit.
 # https://invisible-island.net/ncurses/terminfo.src-sections.html
 #
 # I found the following comment in ncurses terminfo.src which explains the
-# mapping from modifiers to the xterm extensions. For iTerm2, even when you
-# load the "xTerm Defaults" keymap, not all of these match xterm (e.g. Alt uses
-# 9 instead of 3), so you'll have to do some manual work to set these up:
+# mapping from modifiers to the xterm extensions.
 #
 #       Code     Modifiers
 #     ---------------------------------
@@ -90,9 +93,18 @@ setopt zle # Use ZLE. This is default, but I like to be explicit.
 #        8       Shift + Alt + Control
 #     ---------------------------------
 #
-# My Macbook doesn't have all of the usual PC keys, but iTerm2 lets me map
-# certain key combinations to escape codes. Here are some that make the terminal
-# feel like any other macOS app:
+# As far as I can tell, the code column refers to both the capability name and
+# the corresponding escape code, e.g. Alt+Left is kLFT3 and sends \e[1;3D, while
+# Shift+Alt+Left is kLFT4 and sends \e[1;4D. (The capability names for Shift
+# alone doesn't follow this pattern though).
+#
+# For iTerm2, even when you load the "xterm Defaults" keymap, the Alt key sends
+# 9 instead of 3, so you'll have to manually change the key codes to match if
+# you set TERM to `xterm-256color` (the default).
+#
+# Macbook don't have all of the usual PC keys, but iTerm2 lets you map certain
+# key combinations to escape codes. Here are some that make the terminal feel
+# like any other macOS app when TERM is `xterm-256color`:
 #
 #     ⌘ + ↑        =  PageUp    =  Esc + [5~
 #     ⌘ + ↓        =  PageDown  =  Esc + [6~
@@ -104,7 +116,7 @@ setopt zle # Use ZLE. This is default, but I like to be explicit.
 # There's long been a debate about the behavior of the backspace key. The vt100
 # emulated by xterm sends an ASCII BS (^H) while the vt220 emulated by the Linux
 # virtual terminal sends an ASCII DEL (^?). Most modern terminals emulate xterm,
-# *except* they send DEL for backspace. This lets applications use Ctrl-h and
+# *except* they send DEL for backspace. This allows applications use Ctrl-h and
 # backspace as separate keys. We explicitly set backspace to ^? even though
 # terminfo wants us to use ^H.
 
@@ -115,9 +127,7 @@ setopt zle # Use ZLE. This is default, but I like to be explicit.
 zmodload zsh/terminfo
 
 # Make sure that the terminal is in application mode when zle is active.
-# Values from $terminfo are only valid in application mode.
-# Note that application mode is not the default, and thus it is important to
-# specifically look up application mode key codes.
+# Values from terminfo are only valid in application mode.
 if [[ ${terminfo[smkx]} && ${terminfo[rmkx]} ]]
 then
 	function zle-line-init {
@@ -133,104 +143,104 @@ fi
 # Create a hashmap from key names to their codes.
 typeset -gA key
 
-key[Home]=${terminfo[khome]}
-key[End]=${terminfo[kend]}
-key[Insert]=${terminfo[kich1]}
-key[Delete]=${terminfo[kdch1]}
-key[Up]=${terminfo[kcuu1]}
-key[Down]=${terminfo[kcud1]}
-key[Left]=${terminfo[kcub1]}
-key[Right]=${terminfo[kcuf1]}
+key['Home']=${terminfo[khome]}
+key['End']=${terminfo[kend]}
+key['Insert']=${terminfo[kich1]}
+key['Delete']=${terminfo[kdch1]}
+key['Up']=${terminfo[kcuu1]}
+key['Down']=${terminfo[kcud1]}
+key['Left']=${terminfo[kcub1]}
+key['Right']=${terminfo[kcuf1]}
 
-key[Shift-Home]=${terminfo[kHOM]}
-key[Shift-End]=${terminfo[kEND]}
-key[Shift-Insert]=${terminfo[kIC]}
-key[Shift-Delete]=${terminfo[kDC]}
-key[Shift-Up]=${terminfo[kUP]}    # Originally "scroll-backward key" (kri) was used.
-key[Shift-Down]=${terminfo[kDN]}  # Originally "scroll-forward key" (kind) was used.
-key[Shift-Left]=${terminfo[kLFT]}
-key[Shift-Right]=${terminfo[kRIT]}
+key['Shift-Home']=${terminfo[kHOM]}
+key['Shift-End']=${terminfo[kEND]}
+key['Shift-Insert']=${terminfo[kIC]}
+key['Shift-Delete']=${terminfo[kDC]}
+key['Shift-Up']=${terminfo[kUP]}
+key['Shift-Down']=${terminfo[kDN]}
+key['Shift-Left']=${terminfo[kLFT]}
+key['Shift-Right']=${terminfo[kRIT]}
 
-key[Alt-Home]=${terminfo[kHOM3]}
-key[Alt-End]=${terminfo[kEND3]}
-key[Alt-Insert]=${terminfo[kIC3]}
-key[Alt-Delete]=${terminfo[kDC3]}
-key[Alt-Up]=${terminfo[kUP3]}
-key[Alt-Down]=${terminfo[kDN3]}
-key[Alt-Left]=${terminfo[kLFT3]}
-key[Alt-Right]=${terminfo[kRIT3]}
+key['Alt-Home']=${terminfo[kHOM3]}
+key['Alt-End']=${terminfo[kEND3]}
+key['Alt-Insert']=${terminfo[kIC3]}
+key['Alt-Delete']=${terminfo[kDC3]}
+key['Alt-Up']=${terminfo[kUP3]}
+key['Alt-Down']=${terminfo[kDN3]}
+key['Alt-Left']=${terminfo[kLFT3]}
+key['Alt-Right']=${terminfo[kRIT3]}
 
-key[Shift-Alt-Home]=${terminfo[kHOM4]}
-key[Shift-Alt-End]=${terminfo[kEND4]}
-key[Shift-Alt-Insert]=${terminfo[kIC4]}
-key[Shift-Alt-Delete]=${terminfo[kDC4]}
-key[Shift-Alt-Up]=${terminfo[kUP4]}
-key[Shift-Alt-Down]=${terminfo[kDN4]}
-key[Shift-Alt-Left]=${terminfo[kLFT4]}
-key[Shift-Alt-Right]=${terminfo[kRIT4]}
+key['Shift-Alt-Home']=${terminfo[kHOM4]}
+key['Shift-Alt-End']=${terminfo[kEND4]}
+key['Shift-Alt-Insert']=${terminfo[kIC4]}
+key['Shift-Alt-Delete']=${terminfo[kDC4]}
+key['Shift-Alt-Up']=${terminfo[kUP4]}
+key['Shift-Alt-Down']=${terminfo[kDN4]}
+key['Shift-Alt-Left']=${terminfo[kLFT4]}
+key['Shift-Alt-Right']=${terminfo[kRIT4]}
 
-key[Ctrl-Home]=${terminfo[kHOM5]}
-key[Ctrl-End]=${terminfo[kEND5]}
-key[Ctrl-Insert]=${terminfo[kIC5]}
-key[Ctrl-Delete]=${terminfo[kDC5]}
-key[Ctrl-Up]=${terminfo[kUP5]}
-key[Ctrl-Down]=${terminfo[kDN5]}
-key[Ctrl-Left]=${terminfo[kLFT5]}
-key[Ctrl-Right]=${terminfo[kRIT5]}
+key['Ctrl-Home']=${terminfo[kHOM5]}
+key['Ctrl-End']=${terminfo[kEND5]}
+key['Ctrl-Insert']=${terminfo[kIC5]}
+key['Ctrl-Delete']=${terminfo[kDC5]}
+key['Ctrl-Up']=${terminfo[kUP5]}
+key['Ctrl-Down']=${terminfo[kDN5]}
+key['Ctrl-Left']=${terminfo[kLFT5]}
+key['Ctrl-Right']=${terminfo[kRIT5]}
 
-key[Shift-Ctrl-Home]=${terminfo[kHOM6]}
-key[Shift-Ctrl-End]=${terminfo[kEND6]}
-key[Shift-Ctrl-Insert]=${terminfo[kIC6]}
-key[Shift-Ctrl-Delete]=${terminfo[kDC6]}
-key[Shift-Ctrl-Up]=${terminfo[kUP6]}
-key[Shift-Ctrl-Down]=${terminfo[kDN6]}
-key[Shift-Ctrl-Left]=${terminfo[kLFT6]}
-key[Shift-Ctrl-Right]=${terminfo[kRIT6]}
+key['Shift-Ctrl-Home']=${terminfo[kHOM6]}
+key['Shift-Ctrl-End']=${terminfo[kEND6]}
+key['Shift-Ctrl-Insert']=${terminfo[kIC6]}
+key['Shift-Ctrl-Delete']=${terminfo[kDC6]}
+key['Shift-Ctrl-Up']=${terminfo[kUP6]}
+key['Shift-Ctrl-Down']=${terminfo[kDN6]}
+key['Shift-Ctrl-Left']=${terminfo[kLFT6]}
+key['Shift-Ctrl-Right']=${terminfo[kRIT6]}
 
-key[Alt-Ctrl-Home]=${terminfo[kHOM7]}
-key[Alt-Ctrl-End]=${terminfo[kEND7]}
-key[Alt-Ctrl-Insert]=${terminfo[kIC7]}
-key[Alt-Ctrl-Delete]=${terminfo[kDC7]}
-key[Alt-Ctrl-Up]=${terminfo[kUP7]}
-key[Alt-Ctrl-Down]=${terminfo[kDN7]}
-key[Alt-Ctrl-Left]=${terminfo[kLFT7]}
-key[Alt-Ctrl-Right]=${terminfo[kRIT7]}
+key['Alt-Ctrl-Home']=${terminfo[kHOM7]}
+key['Alt-Ctrl-End']=${terminfo[kEND7]}
+key['Alt-Ctrl-Insert']=${terminfo[kIC7]}
+key['Alt-Ctrl-Delete']=${terminfo[kDC7]}
+key['Alt-Ctrl-Up']=${terminfo[kUP7]}
+key['Alt-Ctrl-Down']=${terminfo[kDN7]}
+key['Alt-Ctrl-Left']=${terminfo[kLFT7]}
+key['Alt-Ctrl-Right']=${terminfo[kRIT7]}
 
-key[Shift-Alt-Ctrl-Home]=''  # TODO
-key[Shift-Alt-Ctrl-End]=''  # TODO
-key[Shift-Alt-Ctrl-Insert]=''  # TODO
-key[Shift-Alt-Ctrl-Delete]=''  # TODO
-key[Shift-Alt-Ctrl-Up]=''  # TODO
-key[Shift-Alt-Ctrl-Down]=''  # TODO
-key[Shift-Alt-Ctrl-Left]=''  # TODO
-key[Shift-Alt-Ctrl-Right]=''  # TODO
+key['Shift-Alt-Ctrl-Home']=${terminfo[kHOM8]}
+key['Shift-Alt-Ctrl-End']=${terminfo[kEND8]}
+key['Shift-Alt-Ctrl-Insert']=${terminfo[kIC8]}
+key['Shift-Alt-Ctrl-Delete']=${terminfo[kDC8]}
+key['Shift-Alt-Ctrl-Up']=${terminfo[kUP8]}
+key['Shift-Alt-Ctrl-Down']=${terminfo[kDN8]}
+key['Shift-Alt-Ctrl-Left']=${terminfo[kLFT8]}
+key['Shift-Alt-Ctrl-Right']=${terminfo[kRIT8]}
 
 # Other keys:
 # The traditional effect of the Alt-Key is to send Esc then Key.
-key[Backspace]='^?'
-key[Alt-Backspace]='\e^?'
-key[PageUp]=${terminfo[kpp]}
-key[PageDown]=${terminfo[knp]}
-key[Tab]='\t'
-key[Shift-Tab]=${terminfo[kcbt]}
+key['Backspace']='^?'
+key['Alt-Backspace']='\e^?'
+key['PageUp']=${terminfo[kpp]}
+key['PageDown']=${terminfo[knp]}
+key['Tab']='\t'
+key['Shift-Tab']=${terminfo[kcbt]}
 
 # Key bindings:
 # Now that our keycodes are defined, we actually bind them to ZLE widgets.
 bindkey -e  # Default to emacs key bindings for many widgets.
-[[ ${key[Home]}       ]] && bindkey ${key[Home]}       beginning-of-line
-[[ ${key[End]}        ]] && bindkey ${key[End]}        end-of-line
-[[ ${key[Insert]}     ]] && bindkey ${key[Insert]}     overwrite-mode
-[[ ${key[Delete]}     ]] && bindkey ${key[Delete]}     delete-char
-[[ ${key[Up]}         ]] && bindkey ${key[Up]}         up-line-or-search
-[[ ${key[Down]}       ]] && bindkey ${key[Down]}       down-line-or-search
-[[ ${key[Left]}       ]] && bindkey ${key[Left]}       backward-char
-[[ ${key[Right]}      ]] && bindkey ${key[Right]}      forward-char
-[[ ${key[Ctrl-Left]}  ]] && bindkey ${key[Ctrl-Left]}  backward-word
-[[ ${key[Ctrl-Right]} ]] && bindkey ${key[Ctrl-Right]} forward-word
-[[ ${key[Alt-Left]}   ]] && bindkey ${key[Alt-Left]}   backward-word
-[[ ${key[Alt-Right]}  ]] && bindkey ${key[Alt-Right]}  forward-word
-[[ ${key[Tab]}        ]] && bindkey ${key[Tab]}        menu-expand-or-complete
-[[ ${key[Shift-Tab]}  ]] && bindkey ${key[Shift-Tab]}  reverse-menu-complete
+[[ ${key['Home']}       ]] && bindkey ${key['Home']}       beginning-of-line
+[[ ${key['End']}        ]] && bindkey ${key['End']}        end-of-line
+[[ ${key['Insert']}     ]] && bindkey ${key['Insert']}     overwrite-mode
+[[ ${key['Delete']}     ]] && bindkey ${key['Delete']}     delete-char
+[[ ${key['Up']}         ]] && bindkey ${key['Up']}         up-line-or-search
+[[ ${key['Down']}       ]] && bindkey ${key['Down']}       down-line-or-search
+[[ ${key['Left']}       ]] && bindkey ${key['Left']}       backward-char
+[[ ${key['Right']}      ]] && bindkey ${key['Right']}      forward-char
+[[ ${key['Ctrl-Left']}  ]] && bindkey ${key['Ctrl-Left']}  backward-word
+[[ ${key['Ctrl-Right']} ]] && bindkey ${key['Ctrl-Right']} forward-word
+[[ ${key['Alt-Left']}   ]] && bindkey ${key['Alt-Left']}   backward-word
+[[ ${key['Alt-Right']}  ]] && bindkey ${key['Alt-Right']}  forward-word
+[[ ${key['Tab']}        ]] && bindkey ${key['Tab']}        menu-expand-or-complete
+[[ ${key['Shift-Tab']}  ]] && bindkey ${key['Shift-Tab']}  reverse-menu-complete
 
 
 # Prompt
@@ -249,6 +259,7 @@ zstyle ':prompt_csb:*' widgets \
 	prompt_csb_hostpath_widget \
 	prompt_csb_vcs_widget \
 	prompt_csb_bg_widget
+
 
 # History
 #--------------------
@@ -414,9 +425,9 @@ fi
 
 # Python
 #--------------------
-# The conda setup script should already be sourced.
-# Do that in `~/.zsh/env/${HOST}.zsh`.
-exists conda && conda activate
+# Note: DON'T auto activate conda. Conda environments can include all kinds of
+# software the interferes with system software (e.g. ncurses). It's too much of
+# a pain to always question if the binary you're using is the binary you expect.
 
 export IPYTHONDIR="${HOME}/.ipython"
 alias ipy="ipython --no-confirm-exit --no-term-title --classic"
