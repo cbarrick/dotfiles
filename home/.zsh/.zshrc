@@ -344,30 +344,39 @@ export WORDCHARS
 # Window Title
 #--------------------
 
-# Get the cwd as a "file:" URL, including the hostname.
-# This is needed for advanced features of iTerm2 and Terminal.app.
-# cwurl = Current Working URL
-function cwurl {
-	# Percent-encode the cwd
-	# LANG=C to process text byte-by-byte.
-	local pct_encoded_cwd=''
-	{
-		local i ch hexch LANG=C
-		for ((i = 1; i <= ${#PWD}; ++i))
-		do
-			ch="${PWD}[i]"
-			if [[ "${ch}" =~ [/._~A-Za-z0-9-] ]]
-			then
-				pct_encoded_cwd+="${ch}"
-			else
-				hexch=$(printf "%02X" "'${ch}")
-				pct_encoded_cwd+="%%${hexch}"
-			fi
-		done
-	}
+# Percent encode
+function pct_encode {
+	# Collect all arguments into a single string.
+	local input="$(echo $@)"
 
-	echo "file://${HOST}${pct_encoded_cwd}"
+	# Process the input byte-by-byte.
+	local LC_ALL=C
+
+	# Percent encode the input.
+	local output=''
+	local i ch hexch
+	for i in {1..${#input}}
+	do
+		ch="${input[i]}"
+		if [[ "${ch}" =~ [/._~A-Za-z0-9-] ]]
+		then
+			output+="${ch}"
+		else
+			hexch=$(printf "%02X" "'${ch}")
+			output+="%${hexch}"
+		fi
+	done
+	echo "${output}"
 }
+
+# Get the pwd as a `file://` URL, including the hostname.
+function pwurl {
+	echo "file://${HOST}$(pct_encode ${PWD})"
+}
+
+# Present working directory as a `file://` URL.
+# This is updated by the chpwd hook.
+export PWURL=$(pwurl)
 
 # Sets the title to whatever is passed as $1
 function set-term-title {
@@ -382,42 +391,41 @@ function set-term-title {
 	printf "\e]1;$title\a"  # Tab title
 	printf "\e]2;$title\a"  # Window title
 
-	# When using tmux -CC integration with iTerm2,
-	# tabs and windows must be named through tmux.
+	# OSC 6 and 7 are used on macOS to advertise host and pwd.
+	# These codes may foobar other terminals on Linux, like gnome-terminal.
+	if [[ ${TERM_PROGRAM} == 'Apple_Terminal' || ${TERM_PROGRAM} == 'iTerm.app' ]]
+	then
+		print -n "\e]6;${PWURL}\a"  # Current document as a URL (Terminal.app)
+		print -n "\e]7;${PWURL}\a"  # PWD as a URL (Terminal.app and iTerm2)
+	fi
+
+	# Also set window name in tmux.
 	if [[ ${TMUX} ]]
 	then
 		tmux rename-window $title
 	fi
 }
 
-# Notify Terminals on macOS of PWD.
-function set-apple-title {
-	# OSC 6 and 7 are used on macOS to advertise user, host, and pwd.
-	# These codes may foobar other terminals on Linux, like gnome-terminal.
-	printf "\e]6;\a"          # Current document as a URL (Terminal.app)
-	printf "\e]7;$(cwurl)\a"  # CWD as a URL (Terminal.app and iTerm2)
-}
-
 # At the prompt, we set the title to "$HOST : $PWD".
-# We call `print -P` to use prompt expansion instead of variable expansion.
 function precmd-title {
 	set-term-title "$(print -P %m : %~)"
-	if [[ ${TERM_PROGRAM} == 'Apple_Terminal' || ${TERM_PROGRAM} == 'iTerm.app' ]]
-	then
-		set-apple-title
-	fi
 }
 
 # When running a command, set the title to "$HOST : $COMMAND"
-# The command is passed as $1 to the preexec hook.
 function preexec-title {
-	set-term-title "$(print -P %M : $1)"
+	set-term-title "$(print -P %m : $1)"
+}
+
+# Update PWURL whenever we change PWD
+function chpwd-chpwurl {
+	export PWURL=$(pwurl)
 }
 
 # Setup the hooks
 autoload add-zsh-hook
 add-zsh-hook precmd precmd-title
 add-zsh-hook preexec preexec-title
+add-zsh-hook chpwd chpwd-chpwurl
 
 
 # iTerm2
