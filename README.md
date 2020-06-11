@@ -35,31 +35,7 @@ Certain features of the Zsh config, like the `PATH` setup, are only set for logi
 
 ### Configure the prompt
 
-The prompt is configured with `zstyle` in `.zshrc`. Below is a list of the available configuration options and their defaults:
-
-```sh
-zstyle ':prompt_csb:local:*' main_color 243
-zstyle ':prompt_csb:ssh:*' main_color blue
-zstyle ':prompt_csb:*' info_color green
-zstyle ':prompt_csb:*' alt_color blue
-zstyle ':prompt_csb:*' err_color red
-
-zstyle ':prompt_csb:*' widgets \
-	prompt_csb_hostpath_widget \
-	prompt_csb_vcs_widget \
-	prompt_csb_bg_widget
-```
-
-The `zstyle` command takes three(-ish) arguments: a _context pattern_, a _style name_, and one or more _values_. The context pattern determines when the given value applies to the style. The context always starts with `:prompt_csb` followed by either `:local` when working on your localhost or `:ssh` when connected to a remote machine. Passing multiple values sets them all as an array value for the style.
-
-There are four colors that can be configured.
-
-- `main_color` is the primary color of the prompt. The default 243 is a shade of dark gray.
-- `info_color` is used to draw things like your git branch.
-- `alt_color` is used to draw secondary information, e.g. a notification that you're dealing with merge conflicts.
-- `err_color` overrides the main color if the previous command exited with a non-zero status.
-
-The default prompt looks similar to this (uncolored):
+The prompt looks like this:
 
 ```
 ╭────────────────────────────────────[ master ]──[ csb @ roronoa : ~/dotfiles ]
@@ -73,6 +49,33 @@ The builtin widgets are:
 - `prompt_csb_hostpath_widget` prints your username, hostname, and current working directory.
 - `prompt_csb_vcs_widget` prints your current VCS branch and additional info when relevant. It is hidden when you are outside of a version controlled directory.
 - `prompt_csb_bg_widget` prints the number of background jobs. It is hidden when you have no background jobs.
+
+The prompt is configured with `zstyle` in `.zshrc`. Below is a list of the available configuration options and their defaults:
+
+```sh
+# Prompt widgets
+zstyle ':prompt_csb:*' widgets \
+    prompt_csb_hostpath_widget \
+    prompt_csb_vcs_widget \
+    prompt_csb_bg_widget
+
+# Prompt colors
+zstyle ':prompt_csb:local:*' main_color 243
+zstyle ':prompt_csb:ssh:*' main_color blue
+zstyle ':prompt_csb:*' info_color green
+zstyle ':prompt_csb:*' alt_color blue
+zstyle ':prompt_csb:*' err_color red
+```
+
+The `zstyle` command takes three(-ish) arguments: a _context pattern_, a _style name_, and one or more _values_. The context pattern determines when the given value applies to the style. The context always starts with `:prompt_csb` followed by either `:local` when working on your localhost or `:ssh` when connected to a remote machine. Passing multiple values sets them all as an array value for the style.
+
+There are four colors that can be configured.
+
+- `main_color` is the primary color of the prompt. The default 243 is a shade of dark gray.
+- `info_color` is used to draw things like your git branch.
+- `alt_color` is used to draw secondary information, e.g. a notification that you're dealing with merge conflicts.
+- `err_color` overrides the main color if the previous command exited with a non-zero status.
+
 
 ### Extending the `PATH`
 
@@ -90,7 +93,7 @@ A similar process applies for `MANPATH`, `FPATH`, and `CDPATH` as well.
 You can add a new directory to the path by creating a new path file:
 
 ```sh
-$ echo '/some/path/to/foo/bin' > ~/.zsh/.zpaths/paths.d/foo
+$ echo '/some/path/to/foo/bin' > ~/.zsh/paths/paths.d/foo
 $ exec zsh -l  # Reload your shell
 ```
 
