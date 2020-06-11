@@ -12,10 +12,11 @@ This is my home, built on [Zsh], [Git], and [Atom].
 
 ## Installation
 
-There are two layers of dotfiles:
+Configs are separated into a few groups:
 
-- **Basic** dotfiles live in `home/*`. These dot files are linked directly into your home directory.
-- **Extra** config files live in `extra/*`. These files don't necessarily belong in your home directory (e.g. global config files) or on every system (e.g. OS-specific dotfiles).
+- **Main** dotfiles live in `home/*`. These dot files are linked directly into your home directory.
+
+- **Misc** config files live in `misc/*`. These files don't necessarily belong in your home directory (e.g. global config files) or on every system (e.g. OS-specific).
 
 Each directory contains an install script, e.g. `home/install.zsh`, that will link or copy their respective dotfiles into the proper locations. These scripts may also perform additional installation actions, like telling iTerm2 where to find its files.
 
@@ -81,8 +82,8 @@ The `PATH` is determined by the lines of so-called path files. These lines may i
 
 1. `/etc/paths`
 2. `/etc/paths.d/*` (in lexicographic order)
-3. `~/.zsh/.zpaths/paths`
-4. `~/.zsh/.zpaths/paths.d/*` (in lexicographic order)
+3. `~/.zsh/paths/paths`
+4. `~/.zsh/paths/paths.d/*` (in lexicographic order)
 
 A similar process applies for `MANPATH`, `FPATH`, and `CDPATH` as well.
 
