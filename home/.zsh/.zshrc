@@ -447,6 +447,48 @@ alias ipy="ipython --no-confirm-exit --no-term-title --classic"
 alias ipylab="ipy --pylab"
 
 
+# Rust
+#--------------------
+
+# Compile and print optimized assembly from rust source code.
+function rust-asm { (
+	# This function runs in a subshell and exits on error.
+	set -e
+
+	# Ensure that the current crate and its deps are built.
+	cargo build --release
+
+	# Compile to /tmp/assembly.s
+	# - Search for the current crate and deps built by cargo.
+	# - Enable optimization level 3 (same as cargo release build).
+	# - Don't clutter the output with debug info.
+	# - Use Intel syntax for x86 assembly.
+	rustc \
+		--crate-type=lib \
+		--emit=asm \
+		-L target/release \
+		-L target/release/deps \
+		-C opt-level=3 \
+		-C debuginfo=0 \
+		-C llvm-args=-x86-asm-syntax=intel \
+		-o /tmp/assembly.s \
+		$RUSTFLAGS \
+		$@
+
+	# Read the assembly to stdout.
+	# - Use c++filt to demangle symbols.
+	# - Do some extra demangling with sed.
+	# - Remove lines that start with a dot.
+	cat /tmp/assembly.s \
+	| c++filt \
+	| sed 's/::[a-z0-9]+:$/:/' \
+	| sed '/\s*\./d'
+
+	# Cleanup.
+	rm /tmp/assembly.s
+) }
+
+
 # Modular config files
 #--------------------
 # Note `*(on)` means to sort the glob by name.
