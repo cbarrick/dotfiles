@@ -25,7 +25,7 @@ setopt menu_complete # Expand first match and use the interactive menu.
 # Expansion and Globbing
 setopt glob # Enable globbing (i.e. the use of the '*' operator).
 setopt extended_glob # Use additional glob operators ('#', '~', and '^').
-# setopt glob_dots # Do not require a leading '.' to be matched explicitly.
+setopt no_glob_dots # Require a leading '.' to be matched explicitly.
 setopt mark_dirs # Mark directories resulting from globs with trailing slashes.
 setopt nomatch # If a glob fails, the command isn't executed.
 
