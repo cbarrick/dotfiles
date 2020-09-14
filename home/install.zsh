@@ -26,3 +26,8 @@ then
     defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.iterm2"
     defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 fi
+
+# Set strict file permissions for SSH configs.
+chmod 700 ~/.ssh
+chmod 700 ~/.ssh/**/*(/)
+chmod 600 ~/.ssh/**/*(^/)
