@@ -49,11 +49,11 @@ setopt check_jobs # Warn about suspended jobs on exit.
 setopt check_running_jobs # Warn about background jobs on exit.
 
 # Scripts and Functions
-setopt local_loops # Do not allow `break` etc. to propogate outside function scope.
+setopt local_loops # Do not allow `break` etc. outside of loops.
 
 # ZLE
-setopt no_beep # The shell shouldn't beep on ZLE errors (most beeps).
-setopt zle # Use ZLE. This is default, but I like to be explicit.
+setopt zle # Use ZLE.
+setopt no_beep # Do not beep on ZLE errors (most beeps).
 
 
 # Keyboard
