@@ -452,26 +452,40 @@ alias ipylab="ipy --pylab"
 
 # Compile and print optimized assembly from rust source code.
 function rust-asm { (
-	# This function runs in a subshell and exits on error.
+	# This function runs in a subshell and exits on any error.
 	set -e
 
-	# Ensure that the current crate and its deps are built.
-	cargo build --release
+	# If we're in a crate root, ensure that it and its deps are built.
+	[[ -e Cargo.toml ]] && cargo build --release
+
+	# If we're in a crate root, list all the crates we can link against.
+	# These are transformed into `--extern` arguments for `rustc`.
+	if [[ -e Cargo.toml ]]
+	then
+		local extern_crates=$(
+			ls target/release/deps \
+			| grep '\.rlib$' \
+			| sed 's#(lib(.+)-[0-9a-f]+\.rlib)#--extern=\2=./target/release/deps/\1#' \
+		)
+	else
+		local extern_crates=''
+	fi
 
 	# Compile to /tmp/assembly.s
-	# - Search for the current crate and deps built by cargo.
+	# - Use the 2018 edition by default.
 	# - Enable optimization level 3 (same as cargo release build).
 	# - Don't clutter the output with debug info.
 	# - Use Intel syntax for x86 assembly.
+	# - Link against all extern crates that are available.
 	rustc \
+		--edition=2018 \
 		--crate-type=lib \
 		--emit=asm \
-		-L target/release \
-		-L target/release/deps \
 		-C opt-level=3 \
 		-C debuginfo=0 \
 		-C llvm-args=-x86-asm-syntax=intel \
 		-o /tmp/assembly.s \
+		${(f)extern_crates} \
 		$RUSTFLAGS \
 		$@
 
