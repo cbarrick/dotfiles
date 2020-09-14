@@ -309,6 +309,7 @@ exists hub && alias git=hub
 exists nano && EDITOR="nano"
 exists vim  && EDITOR="vim"
 exists atom && EDITOR="atom -w"
+exists code && EDITOR="code -nw"
 export EDITOR VISUAL="$EDITOR"
 
 PAGER="less"
