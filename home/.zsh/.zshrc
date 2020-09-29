@@ -248,11 +248,12 @@ autoload -Uz promptinit
 promptinit
 prompt csb
 
-zstyle ':prompt_csb:local:*' main_color 243
+zstyle ':prompt_csb:*' main_color 243
 zstyle ':prompt_csb:ssh:*' main_color blue
 zstyle ':prompt_csb:*' info_color green
 zstyle ':prompt_csb:*' alt_color blue
 zstyle ':prompt_csb:*' err_color red
+zstyle ':prompt_csb:*' max_cols 200
 
 zstyle ':prompt_csb:*' widgets \
 	prompt_csb_hostpath_widget \
