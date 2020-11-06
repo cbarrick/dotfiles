@@ -1,10 +1,15 @@
 #!/usr/bin/env zsh
 
+echo ">>> Installing home <<<"
+
+# The directory containing this script.
+local base=${0:A:h}
+
 # Link in files.
-base=${0:A:h}  # The directory containing this script.
 for src in "$base"/.*(.N) "$base"/*/**/*(.D)
 do
     # Link the file. Skip if the link is already established.
+    echo " $(realpath "$src" --relative-to="$base")"
     dest=${src/$base/~}
     dest_dir=${dest:h}
     mkdir -p "$dest_dir"

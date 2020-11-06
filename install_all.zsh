@@ -6,8 +6,6 @@ do
     if [[ -x "$dir/install.zsh" ]]
     then
         dir_name=${dir:t}
-        echo -n "Installing $dir_name..."
-        "$dir/install.zsh"
-        echo "done"
+        "$dir/install.zsh" $@
     fi
 done
