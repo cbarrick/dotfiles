@@ -17,6 +17,9 @@
 [rebase]
 	autoSquash = true
 
+[pull]
+	rebase = true
+
 [alias]
 	b = "!git --no-pager branch --verbose --verbose"
 	r = "!git --no-pager remote"
