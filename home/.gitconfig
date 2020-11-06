@@ -26,4 +26,4 @@
 	s = "!git --no-pager status --short --branch --untracked-files=normal"
 	l = "!git --no-pager log -20 --oneline"
 	ll = "!git log --oneline"
-    co = "!git checkout"
+	co = "!git checkout"
