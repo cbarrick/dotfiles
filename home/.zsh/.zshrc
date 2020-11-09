@@ -284,6 +284,7 @@ function exists {
 	type $1 &> /dev/null
 }
 
+# Make the coreutils a bit nicer for interactive use.
 alias sed="sed -r"
 alias mkdir="mkdir -p"
 alias grep="grep --extended-regexp"
@@ -315,6 +316,7 @@ exists atom && EDITOR="atom -w"
 exists code && EDITOR="code -nw"
 export EDITOR VISUAL="$EDITOR"
 
+# Pager settings.
 PAGER="less"
 LESS="-MSR"
 export PAGER LESS
