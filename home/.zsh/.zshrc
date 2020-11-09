@@ -299,6 +299,8 @@ alias apt="sudo apt"
 alias aptitude="sudo aptitude"
 alias pacman="sudo pacman"
 alias systemctl="sudo systemctl"
+alias shutdown="sudo shutdown"
+alias reboot="sudo reboot"
 
 # Allow alias expansion with sudo
 alias sudo="sudo "
