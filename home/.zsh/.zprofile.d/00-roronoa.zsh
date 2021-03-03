@@ -1,4 +1,4 @@
-if [[ "$HOST" == "roronoa" ]]
+if [[ "$(hostname -s)" == "roronoa" ]]
 then
 	# Allow GNU core utilities to replace the defaults.
 	path=(
