@@ -26,10 +26,7 @@ do
 done
 
 # Link `.zshenv` into the home directory.
-if [[ "$(readlink -f ~/.zshenv)" != "$(readlink -f ~/.zsh/.zshenv)" ]]
-then
-    ln -si ~/.zsh/.zshenv ~/.zshenv
-fi
+link ~/.zsh/.zshenv ~/.zshenv
 
 # Tell iTerm2 about its profile.
 if [[ `uname` == 'Darwin' ]]
