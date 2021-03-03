@@ -1,0 +1,143 @@
+// Visual Studio Code - settings.json
+//
+// Note: settings.json supports comments and trailing commas!
+
+{
+    // Text Editor
+    "editor.copyWithSyntaxHighlighting": false,
+    "editor.cursorSurroundingLines": 5,
+    "editor.cursorSurroundingLinesStyle": "all",
+    "editor.find.addExtraSpaceOnTop": false,
+    "editor.find.autoFindInSelection": "multiline",
+    "editor.fontFamily": "'Fira Mono', 'Fira Code', monospace",
+    "editor.fontSize": 14,
+    "editor.highlightActiveIndentGuide": false,
+    "editor.matchBrackets": "near",
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.showSlider": "always",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.occurrencesHighlight": false,
+    "editor.rulers": [80],
+    "editor.scrollbar.verticalScrollbarSize": 0,
+    "editor.suggest.statusBar.visible": true,
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.simpleDialog.enable": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+
+    // Workbench / UI
+    "breadcrumbs.enabled": false,
+    "breadcrumbs.icons": false,
+    "workbench.colorTheme": "Atom One Dark",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.untitled.labelFormat": "name",
+    "workbench.enableExperiments": false,
+    "workbench.fontAliasing": "auto",
+    "workbench.preferredDarkColorTheme": "Atom One Dark",
+    "workbench.preferredLightColorTheme": "Atom One Light",
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "workbench.sideBar.location": "right",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.tree.renderIndentGuides": "none",
+
+    // Custom Theming
+    "workbench.colorCustomizations": {
+        "scrollbar.shadow": "#ffffff00", // Disable drop shadows
+        "widget.shadow": "#ffffff00", // Disable drop shadows
+        "editorRuler.foreground": "#44444444",
+    },
+    "editor.tokenColorCustomizations": {
+        "[Atom One Dark]": {
+            "textMateRules": [
+                {
+                    // Disable highlighting for `variable.other`
+                    "scope": "variable.other",
+                    "settings": { "foreground": "#ABB2BF" }
+                }
+            ]
+        },
+        "[Atom One Light]": {
+            "textMateRules": [
+                {
+                    // Disable highlighting for `variable.other`
+                    "scope": "variable.other",
+                    "settings": { "foreground": "#383A42" }
+                }
+            ]
+        },
+    },
+
+    // Features
+    "extensions.showRecommendationsOnlyOnDemand": true,
+    "npm.fetchOnlinePackageInfo": false,
+    "json.schemaDownload.enable": false,
+    "cSpell.userWords": [
+        "autohide",
+        "barrick",
+        "bitor",
+        "cbarrick",
+        "ctlz",
+        "deque",
+        "fixativity",
+        "inplace",
+        "intrinsics",
+        "numpy",
+        "paren",
+        "proto",
+        "protobuf",
+        "repr",
+        "scipy",
+        "semver",
+        "sfixed",
+        "simd",
+        "sint",
+        "syscall",
+        "syscalls",
+        "unbuffered",
+        "vectorize",
+    ],
+
+    // Extensions - Python
+    "python.pythonPath": "/usr/local/miniconda3/bin/python",
+
+    // Extensions - Remote
+    "remote.SSH.allowLocalServerDownload": false,
+    "remote.SSH.configFile": "~/.ssh/config.d/home.ssh",
+    "remote.SSH.lockfilesInTmp": true,
+
+    // Extensions - Rust
+    "rust.unstable_features": true,
+
+    // Rust
+    "[rust]": {
+        "editor.rulers": [100],
+        "editor.defaultFormatter": "matklad.rust-analyzer",
+        "editor.formatOnSave": true,
+    },
+
+    // Uncategorized
+    // (Changing settings in the UI will place items here)
+    "uncategorized": "dummy setting to force new entries below",
+    "python.showStartPage": false,
+    "python.disableInstallationCheck": true,
+    "python.diagnostics.sourceMapsEnabled": true,
+    "cSpell.showStatus": false,
+    "cSpell.allowCompoundWords": true,
+    "explorer.confirmDragAndDrop": false,
+    "window.zoomLevel": 0,
+    "files.associations": {
+        "*.pl": "prolog"
+    },
+    "rust-analyzer.cargo.allFeatures": true,
+    "rust-analyzer.inlayHints.enable": false,
+    "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+    "rust-analyzer.assist.importPrefix": "by_self",
+    "rust-analyzer.debug.openDebugPane": true,
+    "rust-analyzer.rustfmt.extraArgs": [
+        "--unstable-features"
+    ],
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": true,
+    "workbench.activityBar.visible": false,
+}

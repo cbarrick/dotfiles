@@ -5,6 +5,15 @@ echo ">>> Installing home <<<"
 # The directory containing this script.
 local base=${0:A:h}
 
+# Create a symbolic link.
+# Prompt if the link does not exist.
+function link {
+    if [[ "$(readlink -f "$2")" != "$(readlink -f "$1")" ]]
+    then
+        ln -sTi "$1" "$2"
+    fi
+}
+
 # Link in files.
 for src in "$base"/.*(.N) "$base"/*/**/*(.D)
 do
@@ -13,10 +22,7 @@ do
     dest=${src/$base/~}
     dest_dir=${dest:h}
     mkdir -p "$dest_dir"
-    if [[ "$(readlink -f $dest)" != "$(readlink -f $src)" ]]
-    then
-        ln -si "$src" "$dest"
-    fi
+    link "$src" "$dest"
 done
 
 # Link `.zshenv` into the home directory.
@@ -30,6 +36,16 @@ if [[ `uname` == 'Darwin' ]]
 then
     defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.iterm2"
     defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+fi
+
+# Link vscode settings.
+if [[ `uname` == 'Darwin' ]]
+then
+    mkdir -p "$HOME/Library/Application Support/Code"
+    link "$HOME/.vscode/User" "$HOME/Library/Application Support/Code/User"
+else
+    mkdir -p "$HOME/.config/Code"
+    link "$HOME/.vscode/User" "$HOME/.config/Code/User"
 fi
 
 # Set strict file permissions for SSH configs.
