@@ -1,0 +1,126 @@
+edition = "2018"
+unstable_features = true
+license_template_path = "header.rs"
+
+# Core:
+# - Use Unix line endings.
+# - Use spaces for indentation.
+# - Convert tabs to 4 spaces.
+newline_style = "Unix"
+hard_tabs = false
+tab_spaces = 4
+
+# Auto alignment
+# - Disable auto-align.
+struct_field_align_threshold = 0
+enum_discrim_align_threshold = 0
+
+# Long lines:
+# - Maximum line width is 100 characters.
+# - Use block-style indentation when wrapping.
+# - Prefer small form of expressions up to the line length.
+# - Function arguments use tall formatting when too long.
+# - Put binrary ops at the front of the line when wrapping.
+# - Wrap long strings.
+# - Force attributes to be on a separate line.
+# - Use trailing commas in vertical layouts.
+max_width = 100
+indent_style = "Block"
+use_small_heuristics = "Max"  # pre rustfmt v2.0.0
+fn_args_layout = "Tall"       # pre rustfmt v2.0.0
+# width_heuristics = "Max"    # post rustfmt v2.0.0
+# fn_params_layout = "Tall"   # post rustfmt v2.0.0
+binop_separator = "Front"
+format_strings = true
+inline_attribute_width = 0
+trailing_comma = "Vertical"
+
+# Comments:
+# - Comments are 80 characters max.
+# - Allow rustfmt to auto-wrap comments.
+# - Format code in comments.
+# - Normalize block comments into line comments when possible.
+# - Normalize doc attributes into comments when possible.
+comment_width = 80
+wrap_comments = true
+format_code_in_doc_comments = true
+normalize_comments = true
+normalize_doc_attributes = true
+
+# Whitespace:
+# - Allow items to be separated by at most two blank lines.
+# - Put space after colons, but not before.
+# - Do not include spaces around range operators.
+# - Use spaces arround `=` in attributes.
+blank_lines_lower_bound = 0
+blank_lines_upper_bound = 2
+space_after_colon = true
+space_before_colon = false
+spaces_around_ranges = false
+# space_around_attr_eq = true  # post rustfmt v2.0.0
+
+# Braces, Brackets, and Parens:
+# - Prefer braces on the same line as declarations, excet with `where` clauses.
+# - Combine control expressions with function calls.
+# - Put single-expression functions on a single line.
+# - Remove extraneous parens, one layer is allowed for clarity.
+# - Allow closures and match expressions to be combined without extra braces.
+brace_style = "SameLineWhere"
+control_brace_style = "AlwaysSameLine"
+empty_item_single_line = true
+combine_control_expr = true
+fn_single_line = false
+remove_nested_parens = true
+force_multiline_blocks = false
+
+# Reordering:
+# - Allow rustfmt to reorder things.
+reorder_impl_items = true
+reorder_imports = true
+reorder_modules = true
+merge_derives = true
+
+# Imports:
+# - Use deeply nested import grouping.
+# - Allow single line import blocks but wrap if they get too long.
+# - Allow automatic merging and reordering.
+imports_granularity = "Crate"
+imports_indent = "Block"
+imports_layout = "Mixed"
+
+# Structs:
+# - Use field initialization shorthand.
+# - Put small struct literals on a single line.
+use_field_init_shorthand = true
+struct_lit_single_line = true
+
+# Macros:
+# - Format them.
+format_macro_matchers = true
+format_macro_bodies = true
+
+# Match blocks & pattern matching:
+# - Do not use a trailing comma after block arms.
+# - Do not allow a leading pipe symbol in match arms.
+# - Use block form if the arm is too long.
+# - Do not force condensed wildcard patterns.
+match_block_trailing_comma = false
+match_arm_leading_pipes = "Never"
+match_arm_blocks = true
+condense_wildcard_suffixes = false
+
+# Types:
+# - Put spaces around operators in type clauses.
+# - Always use multiple lines for where clauses.
+type_punctuation_density = "Wide"
+where_single_line = false
+
+# Misc:
+# - Allow implicit "C" ABI on extern blocks.
+# - Rewrite uses of the legacy `try!` macro into the `?` operator.
+# - Overflow the last argument in a function call separately.
+# - Use put a trailing semicolon after `break`, `continue`, and `return`.
+force_explicit_abi = false
+use_try_shorthand = true
+overflow_delimited_expr = true
+trailing_semicolon = true
