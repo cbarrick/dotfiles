@@ -1,29 +1,29 @@
 [user]
-	email = cbarrick1@gmail.com
-	name = Chris Barrick
+email = cbarrick1@gmail.com
+name = Chris Barrick
 
 [core]
-	excludesfile = ~/.gitignore
-	notesRef = refs/notes/csb
-
-[push]
-	default = current
-
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+excludesfile = ~/.gitignore
 
 [rebase]
-	autoSquash = true
+autoSquash = true
+
+[push]
+default = current
 
 [pull]
-	rebase = true
+rebase = true
+
+[filter "lfs"]
+clean = git-lfs clean %f
+smudge = git-lfs smudge %f
+required = true
 
 [alias]
-	b = "!git --no-pager branch --verbose --verbose"
-	r = "!git --no-pager remote"
-	s = "!git --no-pager status --short --branch --untracked-files=normal"
-	l = "!git --no-pager log -20 --oneline"
-	ll = "!git log --oneline"
-	co = "!git checkout"
+b = "!git --no-pager branch --verbose --verbose"
+t = "!git --no-pager tag"
+r = "!git --no-pager remote"
+s = "!git --no-pager status --short --branch --untracked-files=normal"
+l = "!git --no-pager log -20 --oneline"
+ll = "!git log --oneline"
+co = "!git checkout"
