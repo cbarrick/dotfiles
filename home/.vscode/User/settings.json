@@ -29,7 +29,6 @@
     // Workbench / UI
     "breadcrumbs.enabled": false,
     "breadcrumbs.icons": false,
-    "workbench.colorTheme": "Atom One Dark",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.untitled.labelFormat": "name",
     "workbench.enableExperiments": false,
@@ -140,4 +139,5 @@
     "editor.formatOnSave": false,
     "editor.formatOnPaste": true,
     "workbench.activityBar.visible": false,
+    "workbench.colorTheme": "Atom One Dark",
 }
