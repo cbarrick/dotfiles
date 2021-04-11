@@ -72,20 +72,32 @@
     "npm.fetchOnlinePackageInfo": false,
     "json.schemaDownload.enable": false,
     "cSpell.userWords": [
+        "RNGs",
+        "Ryzen",
+        "Weyl",
+        "aarch",
         "autohide",
         "barrick",
         "bitor",
+        "btree",
+        "capi",
         "cbarrick",
         "ctlz",
         "deque",
         "fixativity",
+        "impls",
         "inplace",
         "intrinsics",
+        "libc",
         "numpy",
+        "oneof",
+        "oneofs",
         "paren",
         "proto",
         "protobuf",
+        "protos",
         "repr",
+        "rustfmt",
         "scipy",
         "semver",
         "sfixed",
@@ -94,7 +106,7 @@
         "syscall",
         "syscalls",
         "unbuffered",
-        "vectorize",
+        "vectorize"
     ],
 
     // Extensions - Python
@@ -124,7 +136,6 @@
     "cSpell.showStatus": false,
     "cSpell.allowCompoundWords": true,
     "explorer.confirmDragAndDrop": false,
-    "window.zoomLevel": 0,
     "files.associations": {
         "*.pl": "prolog"
     },
@@ -136,8 +147,11 @@
     "rust-analyzer.rustfmt.extraArgs": [
         "--unstable-features"
     ],
+    "rust-analyzer.diagnostics.disabled": [
+        "unresolved-import"
+    ],
     "editor.formatOnSave": false,
     "editor.formatOnPaste": true,
-    "workbench.activityBar.visible": false,
     "workbench.colorTheme": "Atom One Dark",
+    "workbench.activityBar.visible": false,
 }
