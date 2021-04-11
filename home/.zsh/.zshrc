@@ -505,6 +505,21 @@ function rust-asm { (
 ) }
 
 
+# Quick Calculator
+#--------------------
+# Use it like this:
+#
+#     $ calc 3 ^ 3
+#     27
+#
+
+function calc {
+	echo $@ | bc -l
+}
+
+alias 'calc'='noglob calc'
+
+
 # Modular config files
 #--------------------
 # Note `*(on)` means to sort the glob by name.
