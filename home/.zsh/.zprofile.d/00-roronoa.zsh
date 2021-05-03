@@ -6,4 +6,7 @@ then
 		'/usr/local/opt/gnu-sed/libexec/gnubin'
 		$path
 	)
+
+	# Use homebrew's ruby.
+    path=('/usr/local/opt/ruby/bin' $path)
 fi
