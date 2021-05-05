@@ -316,10 +316,13 @@ exists atom && EDITOR="atom -w"
 exists code && EDITOR="code -nw"
 export EDITOR VISUAL="$EDITOR"
 
-# Pager settings.
+# Pager settings
 PAGER="less"
 LESS="-MSR"
 export PAGER LESS
+
+# Use paru instead of pacman
+alias pacman="sudo paru"
 
 
 # Rationalize Dots
