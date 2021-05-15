@@ -327,12 +327,12 @@ exists paru && alias pacman="paru"
 
 # Rationalize Dots
 #--------------------
-# Automatically expands '...' to '../..'
+# Automatically expands '....' to '../..'
 
 function rationalize-dot {
-	if [[ ${LBUFFER} = *.. ]]
+	if [[ ${LBUFFER} = *... ]]
 	then
-		LBUFFER=${LBUFFER[1,-1]}
+		LBUFFER=${LBUFFER[1,-2]}
 		LBUFFER+=/..
 	else
 		LBUFFER+=.
