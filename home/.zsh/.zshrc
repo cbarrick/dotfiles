@@ -244,6 +244,12 @@ bindkey -e  # Default to emacs key bindings for many widgets.
 
 # Prompt
 #--------------------
+
+# Load prompt functions.
+autoload prompt_csb_setup
+autoload prompt_csb_virtualenv_widget
+
+# Load the promptinit system and set csb as the prompt theme.
 autoload -Uz promptinit
 promptinit
 prompt csb
@@ -257,8 +263,9 @@ zstyle ':prompt_csb:*' max_cols 200
 
 zstyle ':prompt_csb:*' widgets \
 	prompt_csb_hostpath_widget \
+	prompt_csb_bg_widget \
 	prompt_csb_vcs_widget \
-	prompt_csb_bg_widget
+	prompt_csb_virtualenv_widget
 
 
 # History

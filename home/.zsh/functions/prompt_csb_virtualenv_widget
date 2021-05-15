@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh --no-rcs
+# Prompt widget for virtualenv.
+
+# Convert $VIRTUAL_ENV into a path (:A)
+# Then print the file name, a.k.a the "tail" (:t)
+# This prints nothing if $VIRTUAL_ENV is not defined.
+echo ${VIRTUAL_ENV:A:t}
