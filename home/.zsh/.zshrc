@@ -324,6 +324,9 @@ export PAGER LESS
 # Use paru instead of pacman
 exists paru && alias pacman="paru"
 
+# Python 2 is dead. Long live Python 3!
+exists python3 && alias python=python3
+
 
 # Rationalize Dots
 #--------------------
