@@ -322,7 +322,7 @@ LESS="-MSR"
 export PAGER LESS
 
 # Use paru instead of pacman
-alias pacman="sudo paru"
+exists paru && alias pacman="sudo paru"
 
 
 # Rationalize Dots
