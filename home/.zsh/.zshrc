@@ -452,7 +452,7 @@ fi
 # a pain to always question if the binary you're using is the binary you expect.
 
 export IPYTHONDIR="${HOME}/.ipython"
-alias ipy="ipython --no-confirm-exit --no-term-title --classic"
+alias ipy="ipython --profile=csb"
 alias ipylab="ipy --pylab"
 
 
