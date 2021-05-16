@@ -131,6 +131,7 @@
         "proto",
         "protobuf",
         "protos",
+        "pyproject",
         "repr",
         "rustfmt",
         "sata",
