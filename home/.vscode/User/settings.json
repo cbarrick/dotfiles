@@ -71,16 +71,10 @@
     "npm.fetchOnlinePackageInfo": false,
     "json.schemaDownload.enable": false,
 
-    // Extensions - Python
-    "python.pythonPath": "/usr/local/miniconda3/bin/python",
-
     // Extensions - Remote
     "remote.SSH.allowLocalServerDownload": false,
     "remote.SSH.configFile": "~/.ssh/config.d/home.ssh",
     "remote.SSH.lockfilesInTmp": true,
-
-    // Extensions - Rust
-    "rust.unstable_features": true,
 
     // Rust
     "[rust]": {
@@ -89,6 +83,7 @@
         "editor.formatOnSave": true,
     },
 
+    // Markdown
     "[markdown]": {
         "editor.wordWrap": "wordWrapColumn",
         "editor.quickSuggestions": false
@@ -96,13 +91,8 @@
 
     // User dictionary
     "cSpell.userWords": [
-        "ACPI",
-        "PMBR",
-        "RNGs",
-        "RPMs",
-        "Ryzen",
-        "Weyl",
         "aarch",
+        "ACPI",
         "autohide",
         "barrick",
         "bitor",
@@ -112,28 +102,44 @@
         "cbarrick",
         "cmdline",
         "ctlz",
+        "ctype",
         "deque",
+        "deserialization",
+        "dtype",
+        "dtypes",
+        "dups",
         "efibootmgr",
+        "ESPs",
         "evolv",
+        "extendee",
         "fixativity",
         "impls",
         "initrd",
         "inplace",
+        "intptr",
         "intrinsics",
         "ipython",
+        "jstype",
+        "klass",
         "libc",
         "mobo",
         "numpy",
+        "objc",
         "oneof",
         "oneofs",
         "paren",
         "phanteks",
+        "PMBR",
         "proto",
         "protobuf",
         "protos",
         "pyproject",
         "repr",
+        "RNGs",
+        "RPMs",
+        "rsplit",
         "rustfmt",
+        "Ryzen",
         "sata",
         "scipy",
         "semver",
@@ -142,8 +148,10 @@
         "sint",
         "syscall",
         "syscalls",
+        "uintptr",
         "unbuffered",
-        "vectorize"
+        "vectorize",
+        "Weyl"
     ],
 
     // Uncategorized
@@ -171,8 +179,18 @@
     ],
     "editor.formatOnSave": false,
     "editor.formatOnPaste": true,
-    "workbench.colorTheme": "Atom One Dark",
-    "workbench.activityBar.visible": false,
-    "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.untitled.hint": "hidden",
+    "workbench.colorTheme": "Atom One Dark",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "search.useGlobalIgnoreFiles": true,
+    "workbench.editor.decorations.badges": false,
+    "python.formatting.provider": "yapf",
+    "rust-analyzer.lens.implementations": false,
+    "prolog.executablePath": "swipl",
+    "workbench.activityBar.visible": false,
+    "go.toolsManagement.autoUpdate": true,
 }
