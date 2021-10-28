@@ -5,8 +5,8 @@
 # The global profile may make changes to the PATH,
 # so we source it before setting our own PATHs.
 
-[[ -f '. /etc/profile' ]] && emulate sh -c '. /etc/profile'
-[[ -f '. ~/.profile'   ]] && emulate sh -c '. ~/.profile'
+[[ -f '/etc/profile' ]] && emulate sh -c '. /etc/profile'
+[[ -f '~/.profile'   ]] && emulate sh -c '. ~/.profile'
 
 
 # Path
