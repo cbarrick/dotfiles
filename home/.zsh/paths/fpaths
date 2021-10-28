@@ -1,2 +1,3 @@
 ${ZDOTDIR}/functions
 /usr/local/share/zsh-completions
+/usr/local/share/zsh/functions

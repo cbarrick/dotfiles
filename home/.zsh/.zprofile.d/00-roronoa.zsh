@@ -1,12 +1,13 @@
 if [[ "$(hostname -s)" == "roronoa" ]]
 then
-	# Allow GNU core utilities to replace the defaults.
 	path=(
+		"${HOME}/.local/bin"
+		"${HOME}/.cargo/bin"
 		'/usr/local/opt/coreutils/libexec/gnubin'
 		'/usr/local/opt/gnu-sed/libexec/gnubin'
+		'/usr/local/opt/ruby/bin'
+		"/usr/local/bin"
+		"/usr/local/sbin"
 		$path
 	)
-
-	# Use homebrew's ruby.
-    path=('/usr/local/opt/ruby/bin' $path)
 fi

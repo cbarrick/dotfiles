@@ -1,21 +1,45 @@
 if [[ "$(hostname -s)" == "samus" ]]
 then
-	# Setup homebrew
-	export HOMEBREW_PREFIX="/opt/homebrew";
-	export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-	export HOMEBREW_REPOSITORY="/opt/homebrew";
-	export HOMEBREW_SHELLENV_PREFIX="/opt/homebrew";
-	export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
-	export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
-	export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
-	
-	# Allow GNU core utilities to replace the defaults.
+	export HOMEBREW_PREFIX="/opt/homebrew"
+	export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+	export HOMEBREW_REPOSITORY="/opt/homebrew"
+	export HOMEBREW_SHELLENV_PREFIX="/opt/homebrew"
+
 	path=(
-		'/opt/homebrew/opt/coreutils/libexec/gnubin'
-		'/opt/homebrew/opt/gnu-sed/libexec/gnubin'
-		$path
+		"${HOME}/.local/bin"
+		"${HOME}/.cargo/bin"
+		"${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
+		"${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
+		"${HOMEBREW_PREFIX}/opt/ruby/bin"
+		"${HOMEBREW_PREFIX}/bin"
+		"${HOMEBREW_PREFIX}/sbin"
+		${path}
 	)
 
-	# Use homebrew's ruby.
-	path=('/opt/homebrew/opt/ruby/bin' $path)
+	fpath=(
+		"${ZDOTDIR}/functions"
+		"${HOMEBREW_PREFIX}/share/zsh-completions"
+		"${HOMEBREW_PREFIX}/share/zsh/site-functions"
+		"${HOMEBREW_PREFIX}/share/zsh/functions"
+		${fpath}
+	)
+
+	manpath=(
+		"${HOME}/.local/share/man"
+		"${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman"
+		"${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnuman"
+		"${HOMEBREW_PREFIX}/opt/ruby/share/man"
+		"${HOMEBREW_PREFIX}/share/man"
+		${manpath}
+		""  # Empty string means to use the default search path.
+	)
+
+	infopath=(
+		"${HOME}/.local/share/info"
+		"${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuinfo"
+		"${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnuinfo"
+		"${HOMEBREW_PREFIX}/share/info"
+		${infopath}
+		""  # Empty string means to use the default search path.
+	)
 fi
