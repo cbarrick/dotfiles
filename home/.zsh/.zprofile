@@ -22,7 +22,7 @@
 # 3. $ZDOTDIR/paths/paths
 # 4. $ZDOTDIR/paths/paths.d*
 #
-# This logic is extended for `MANPATH`, `FPATH`, and `CDPATH` as well.
+# This logic is extended for other types of path variables as well.
 #
 # Any additional path manipulation which requires scripting (e.g. checking the
 # hostname) should be placed in `$ZDOTDIR/.zprofile.d`.
@@ -31,9 +31,10 @@
 # In a tied array, the contents of the array are reflected into a `:`-separated
 # string. The first arg names the string; the second arg names the array.
 typeset -UT PATH path
-typeset -UT MANPATH manpath
 typeset -UT FPATH fpath
 typeset -UT CDPATH cdpath
+typeset -UT MANPATH manpath
+typeset -UT INFOPATH infopath
 
 local prefix="${ZDOTDIR}/paths"
 
@@ -43,15 +44,6 @@ path=(
 	${(ef)"$(cat /etc/paths.d/*(.N)      2> /dev/null < /dev/null)"}
 	${(ef)"$(cat /etc/paths              2> /dev/null < /dev/null)"}
 	${path}
-)
-
-manpath=(
-	${(ef)"$(cat ${prefix}/manpaths.d/*(.N) 2> /dev/null < /dev/null)"}
-	${(ef)"$(cat ${prefix}/manpaths         2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/manpaths.d/*(.N)      2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/manpaths              2> /dev/null < /dev/null)"}
-	${manpath}
-	''  # Empty string means to use the default search path.
 )
 
 fpath=(
@@ -70,8 +62,26 @@ cdpath=(
 	${cdpath}
 )
 
-export path manpath fpath cdpath
-export PATH MANPATH FPATH CDPATH
+manpath=(
+	${(ef)"$(cat ${prefix}/manpaths.d/*(.N) 2> /dev/null < /dev/null)"}
+	${(ef)"$(cat ${prefix}/manpaths         2> /dev/null < /dev/null)"}
+	${(ef)"$(cat /etc/manpaths.d/*(.N)      2> /dev/null < /dev/null)"}
+	${(ef)"$(cat /etc/manpaths              2> /dev/null < /dev/null)"}
+	${manpath}
+	''  # Empty string means to use the default search path.
+)
+
+infopath=(
+	${(ef)"$(cat ${prefix}/infopaths.d/*(.N) 2> /dev/null < /dev/null)"}
+	${(ef)"$(cat ${prefix}/infopaths         2> /dev/null < /dev/null)"}
+	${(ef)"$(cat /etc/infopaths.d/*(.N)      2> /dev/null < /dev/null)"}
+	${(ef)"$(cat /etc/infopaths              2> /dev/null < /dev/null)"}
+	${infopath}
+	''  # Empty string means to use the default search path.
+)
+
+export path fpath cdpath manpath infopath
+export PATH FPATH CDPATH MANPATH INFOPATH
 
 
 # Locale
