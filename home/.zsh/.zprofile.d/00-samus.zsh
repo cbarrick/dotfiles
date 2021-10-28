@@ -1,4 +1,4 @@
-if [[ "$(hostname -s)" == "samus" ]]
+if [[ "${HOST%%.*}" == "samus" ]]
 then
 	export HOMEBREW_PREFIX="/opt/homebrew"
 	export HOMEBREW_CELLAR="/opt/homebrew/Cellar"

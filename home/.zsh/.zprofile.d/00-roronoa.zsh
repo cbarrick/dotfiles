@@ -1,4 +1,4 @@
-if [[ "$(hostname -s)" == "roronoa" ]]
+if [[ "${HOST%%.*}" == "roronoa" ]]
 then
 	path=(
 		"${HOME}/.local/bin"
