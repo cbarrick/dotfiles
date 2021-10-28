@@ -93,6 +93,13 @@ LC_ALL=en_US.UTF-8
 export LANG LANGUAGE LC_ALL
 
 
+# Personal dictionary
+#--------------------
+
+DICTIONARY="${HOME}/.dictionary.txt"
+export DICTIONARY
+
+
 # Modular config files
 #--------------------
 
