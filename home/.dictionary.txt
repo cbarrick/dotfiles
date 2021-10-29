@@ -60,3 +60,4 @@ uintptr
 unbuffered
 vectorize
 Weyl
+zstyle
