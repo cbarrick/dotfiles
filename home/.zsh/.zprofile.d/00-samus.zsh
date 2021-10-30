@@ -5,6 +5,8 @@ then
 	export HOMEBREW_REPOSITORY="/opt/homebrew"
 	export HOMEBREW_SHELLENV_PREFIX="/opt/homebrew"
 
+	source "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
 	path=(
 		"${HOME}/.local/bin"
 		"${HOME}/.cargo/bin"
