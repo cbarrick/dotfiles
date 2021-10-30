@@ -9,6 +9,22 @@
 [[ -f '~/.profile'   ]] && emulate sh -c '. ~/.profile'
 
 
+# Functions
+#--------------------
+# Most custom functions belong in zshrc instead.
+
+# Better than cat for reading lines into variables.
+# - Does not spawn a process.
+# - Never writes to stderr.
+# - Never reads from stdin.
+function fastcat {
+	for p in $@
+	do
+		[[ -f $p ]] && < $p
+	done
+}
+
+
 # Path
 #--------------------
 # Sets `PATH` in a way similar to `path_helper(8)` on macOS.
@@ -39,43 +55,43 @@ typeset -UT INFOPATH infopath
 local prefix="${ZDOTDIR}/paths"
 
 path=(
-	${(ef)"$(cat ${prefix}/paths.d/*(.N) 2> /dev/null < /dev/null)"}
-	${(ef)"$(cat ${prefix}/paths         2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/paths.d/*(.N)      2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/paths              2> /dev/null < /dev/null)"}
+	${(ef)"$(fastcat ${prefix}/paths.d/*(.N))"}
+	${(ef)"$(fastcat ${prefix}/paths)"}
+	${(ef)"$(fastcat /etc/paths.d/*(.N))"}
+	${(ef)"$(fastcat /etc/paths)"}
 	${path}
 )
 
 fpath=(
-	${(ef)"$(cat ${prefix}/fpaths.d/*(.N) 2> /dev/null < /dev/null)"}
-	${(ef)"$(cat ${prefix}/fpaths         2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/fpaths.d/*(.N)      2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/fpaths              2> /dev/null < /dev/null)"}
+	${(ef)"$(fastcat ${prefix}/fpaths.d/*(.N))"}
+	${(ef)"$(fastcat ${prefix}/fpaths)"}
+	${(ef)"$(fastcat /etc/fpaths.d/*(.N))"}
+	${(ef)"$(fastcat /etc/fpaths)"}
 	${fpath}
 )
 
 cdpath=(
-	${(ef)"$(cat ${prefix}/cdpaths.d/*(.N) 2> /dev/null < /dev/null)"}
-	${(ef)"$(cat ${prefix}/cdpaths         2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/cdpaths.d/*(.N)      2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/cdpaths              2> /dev/null < /dev/null)"}
+	${(ef)"$(fastcat ${prefix}/cdpaths.d/*(.N))"}
+	${(ef)"$(fastcat ${prefix}/cdpaths)"}
+	${(ef)"$(fastcat /etc/cdpaths.d/*(.N))"}
+	${(ef)"$(fastcat /etc/cdpaths)"}
 	${cdpath}
 )
 
 manpath=(
-	${(ef)"$(cat ${prefix}/manpaths.d/*(.N) 2> /dev/null < /dev/null)"}
-	${(ef)"$(cat ${prefix}/manpaths         2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/manpaths.d/*(.N)      2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/manpaths              2> /dev/null < /dev/null)"}
+	${(ef)"$(fastcat ${prefix}/manpaths.d/*(.N))"}
+	${(ef)"$(fastcat ${prefix}/manpaths)"}
+	${(ef)"$(fastcat /etc/manpaths.d/*(.N))"}
+	${(ef)"$(fastcat /etc/manpaths)"}
 	${manpath}
 	''  # Empty string means to use the default search path.
 )
 
 infopath=(
-	${(ef)"$(cat ${prefix}/infopaths.d/*(.N) 2> /dev/null < /dev/null)"}
-	${(ef)"$(cat ${prefix}/infopaths         2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/infopaths.d/*(.N)      2> /dev/null < /dev/null)"}
-	${(ef)"$(cat /etc/infopaths              2> /dev/null < /dev/null)"}
+	${(ef)"$(fastcat ${prefix}/infopaths.d/*(.N))"}
+	${(ef)"$(fastcat ${prefix}/infopaths)"}
+	${(ef)"$(fastcat /etc/infopaths.d/*(.N))"}
+	${(ef)"$(fastcat /etc/infopaths)"}
 	${infopath}
 	''  # Empty string means to use the default search path.
 )
