@@ -16,9 +16,13 @@ export ZDOTDIR
 # Setup the XDG base directory environment variables.
 
 # The macOS File System Programming Guide is slightly different from the XDG
-# specs, but not totally incompatible. I used the values from the `xdg` Go
+# specs, but it's not totally incompatible. I used the values from the `xdg` Go
 # library [1] for sensible defaults. These are compatible with the dotfiles I
 # have checked into my dotfile repo.
+#
+# The macOS values can't really be customized. Some software (like pypoetry)
+# does not check the `XDG_*` variables on macOS. So for the sake of portability
+# among my personal scripts, these must match what that software expects.
 #
 # [1]: https://github.com/adrg/xdg/blob/master/README.md
 

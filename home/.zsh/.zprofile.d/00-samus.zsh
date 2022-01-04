@@ -1,11 +1,11 @@
 if [[ "${HOST%%.*}" == "samus" ]]
 then
+	export POETRY_HOME="${HOME}/.poetry"
+
 	export HOMEBREW_PREFIX="/opt/homebrew"
 	export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
 	export HOMEBREW_REPOSITORY="/opt/homebrew"
 	export HOMEBREW_SHELLENV_PREFIX="/opt/homebrew"
-
-	source "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 	path=(
 		"${HOME}/.local/bin"
@@ -44,4 +44,7 @@ then
 		${infopath}
 		""  # Empty string means to use the default search path.
 	)
+
+	source "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+	source "${HOME}/.poetry/env"
 fi

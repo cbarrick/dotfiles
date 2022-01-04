@@ -9,7 +9,7 @@ local base=${0:A:h}
 # This maps dotfile directory name to XDG directory name.
 local -A xdg_configs=(
     ['.vscode']='Code'
-    ['.pypoetry']='pypoetry'
+    ['.poetry/config']='pypoetry'
 )
 
 # Create a symbolic link.
