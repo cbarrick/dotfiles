@@ -5,6 +5,9 @@ name = Chris Barrick
 [core]
 excludesfile = ~/.gitignore
 
+[init]
+defaultBranch = main
+
 [rebase]
 autoSquash = true
 
