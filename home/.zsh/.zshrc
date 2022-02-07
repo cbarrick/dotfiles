@@ -455,7 +455,7 @@ fi
 # Python
 #--------------------
 # Note: DON'T auto activate conda. Conda environments can include all kinds of
-# software the interferes with system software (e.g. ncurses). It's too much of
+# software that interferes with system software (e.g. ncurses). It's too much of
 # a pain to always question if the binary you're using is the binary you expect.
 
 export IPYTHONDIR="${HOME}/.ipython"
