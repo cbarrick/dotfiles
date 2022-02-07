@@ -331,9 +331,6 @@ export PAGER LESS
 # Use paru instead of pacman
 exists paru && alias pacman="paru"
 
-# Python 2 is dead. Long live Python 3!
-exists python3 && alias python=python3
-
 
 # Rationalize Dots
 #--------------------
@@ -464,6 +461,10 @@ fi
 export IPYTHONDIR="${HOME}/.ipython"
 alias ipy="ipython --profile=csb"
 alias ipylab="ipy --pylab"
+
+alias python=python3
+alias pip="python -m pip"
+alias venv="python -m venv"
 
 
 # Rust
