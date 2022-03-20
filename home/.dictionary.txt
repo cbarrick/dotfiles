@@ -33,6 +33,7 @@ extendee
 fixativity
 functors
 Funimation
+fxhash
 impls
 initrd
 inplace
@@ -77,6 +78,8 @@ sint
 structs
 syscall
 syscalls
+Timeoid
+todos
 uintptr
 unbuffered
 vals
