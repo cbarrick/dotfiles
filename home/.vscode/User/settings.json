@@ -28,7 +28,7 @@
     "editor.occurrencesHighlight": false,
     "editor.rulers": [80],
     "editor.scrollbar.verticalScrollbarSize": 0,
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
     "editor.suggestSelection": "first",
 
@@ -38,7 +38,7 @@
     "workbench.editor.untitled.labelFormat": "name",
     "workbench.editor.untitled.hint": "hidden",
     "workbench.enableExperiments": false,
-    "workbench.fontAliasing": "auto",
+    "workbench.fontAliasing": "antialiased", // Disable sub-pixel AA
     "workbench.colorTheme": "Atom One Dark",
     "workbench.preferredDarkColorTheme": "Atom One Dark",
     "workbench.preferredLightColorTheme": "Atom One Light",
@@ -47,7 +47,6 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.tree.renderIndentGuides": "none",
     "workbench.editor.decorations.badges": false,
-    "workbench.activityBar.visible": false,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
@@ -93,8 +92,15 @@
 
     // Languages - Markdown
     "[markdown]": {
-        "editor.wordWrap": "wordWrapColumn",
         "editor.quickSuggestions": false
+    },
+
+    // Languages - JSON
+    "[json]": {
+        "editor.formatOnSave": false,
+    },
+    "[jsonc]": {
+        "editor.formatOnSave": false,
     },
 
     // Extensions - npm
@@ -123,7 +129,7 @@
     // Extensions - Rust Analyzer
     "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.inlayHints.enable": false,
-    "rust-analyzer.assist.importPrefix": "self",
+    "rust-analyzer.assist.importPrefix": "crate",
     "rust-analyzer.debug.openDebugPane": true,
     "rust-analyzer.lens.implementations": false,
     "rust-analyzer.rustfmt.extraArgs": [
@@ -141,9 +147,11 @@
     "go.toolsManagement.autoUpdate": true,
 
     // Extensions - Prolog
-    "prolog.executablePath": "swipl",
+    "prolog.executablePath": "/opt/homebrew/bin/swipl",
 
     // Uncategorized
-    // (Changing settings in the UI will place new items here)
+    // Changing settings in the UI will place new items here.
+    // Frequently changed settings will be left in this section.
     "uncategorized": "dummy setting to force new entries below",
+    "workbench.activityBar.visible": false,
 }
