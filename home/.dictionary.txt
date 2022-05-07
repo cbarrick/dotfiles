@@ -16,6 +16,7 @@ capi
 cbarrick
 cmdline
 consts
+corge
 cpus
 ctlz
 ctype
@@ -57,6 +58,7 @@ proto
 protobuf
 protos
 pyproject
+quuz
 recompositions
 reimplement
 reimplements
