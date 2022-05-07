@@ -255,7 +255,7 @@ promptinit
 prompt csb
 
 zstyle ':prompt_csb:*' main_color 243
-zstyle ':prompt_csb:ssh:*' main_color blue
+zstyle ':prompt_csb:tmux:*' main_color blue
 zstyle ':prompt_csb:*' info_color green
 zstyle ':prompt_csb:*' alt_color blue
 zstyle ':prompt_csb:*' err_color red

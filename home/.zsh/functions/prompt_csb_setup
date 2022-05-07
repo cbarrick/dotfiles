@@ -59,7 +59,10 @@ function prompt_csb_hostpath_widget {
 
 # Get the current context for zstyle.
 function prompt_csb_zstyle_context {
-	if [[ -n "$SSH_CONNECTION" ]]
+	if [[ -n "$TMUX" ]]
+	then
+		print -n ":prompt_csb:tmux:${HOST}"
+	elif [[ -n "$SSH_CONNECTION" ]]
 	then
 		print -n ":prompt_csb:ssh:${HOST}"
 	else
