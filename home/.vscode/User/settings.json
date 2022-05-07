@@ -154,4 +154,5 @@
     // Frequently changed settings will be left in this section.
     "uncategorized": "dummy setting to force new entries below",
     "workbench.activityBar.visible": false,
+    "editor.bracketPairColorization.enabled": false,
 }
