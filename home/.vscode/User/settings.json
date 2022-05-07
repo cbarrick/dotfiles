@@ -121,7 +121,7 @@
     "cSpell.customDictionaries": {
         "personal": {
             "name": "personal",
-            "path": "~/.dictionary.txt",
+            "path": "~/.words",
             "addWords": true,
         }
     },
