@@ -7,9 +7,13 @@ then
 	export HOMEBREW_REPOSITORY="/opt/homebrew"
 	export HOMEBREW_SHELLENV_PREFIX="/opt/homebrew"
 
+	export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/llvm/lib -Wl,-rpath,${HOMEBREW_PREFIX}/opt/llvm/lib"
+	export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/llvm/include"
+
 	path=(
 		"${HOME}/.local/bin"
 		"${HOME}/.cargo/bin"
+		"${HOMEBREW_PREFIX}/opt/llvm/bin"
 		"${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
 		"${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
 		"${HOMEBREW_PREFIX}/opt/ruby/bin"
@@ -28,6 +32,7 @@ then
 
 	manpath=(
 		"${HOME}/.local/share/man"
+		"${HOMEBREW_PREFIX}/opt/llvm/share/man"
 		"${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman"
 		"${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnuman"
 		"${HOMEBREW_PREFIX}/opt/ruby/share/man"
