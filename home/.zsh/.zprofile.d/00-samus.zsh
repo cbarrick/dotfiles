@@ -7,6 +7,10 @@ then
 	export HOMEBREW_REPOSITORY="/opt/homebrew"
 	export HOMEBREW_SHELLENV_PREFIX="/opt/homebrew"
 
+	export CC="${HOMEBREW_PREFIX}/opt/llvm/bin/clang"
+	export CPP="${HOMEBREW_PREFIX}/opt/llvm/bin/clang-cpp"
+	export CXX="${HOMEBREW_PREFIX}/opt/llvm/bin/clang++"
+	export LD="${HOMEBREW_PREFIX}/opt/llvm/bin/lld"
 	export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/llvm/lib -Wl,-rpath,${HOMEBREW_PREFIX}/opt/llvm/lib"
 	export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/llvm/include"
 
