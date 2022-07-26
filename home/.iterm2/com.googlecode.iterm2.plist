@@ -823,7 +823,7 @@ tmux.Detach</string>
 	<key>HideScrollbar</key>
 	<false/>
 	<key>HideTab</key>
-	<true/>
+	<false/>
 	<key>HideTabCloseButton</key>
 	<true/>
 	<key>HideTabNumber</key>
@@ -1204,6 +1204,8 @@ tmux.Detach</string>
 			<integer>0</integer>
 			<key>Initial Text</key>
 			<string></string>
+			<key>Initial Use Transparency</key>
+			<true/>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -1616,7 +1618,7 @@ tmux.Detach</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCode-Light 15</string>
+			<string>FiraCode-Light 16</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<true/>
 			<key>Open Toolbelt</key>
@@ -1668,6 +1670,8 @@ tmux.Detach</string>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Mark Indicators</key>
+			<false/>
+			<key>Show Status Bar</key>
 			<false/>
 			<key>Silence Bell</key>
 			<true/>
@@ -1735,6 +1739,8 @@ tmux.Detach</string>
 			<false/>
 			<key>Ansi 0 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
 				<real>0.0</real>
 				<key>Color Space</key>
@@ -1749,7 +1755,7 @@ tmux.Detach</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.12205490920739642</real>
+				<real>0.12205491214990616</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
@@ -1759,61 +1765,73 @@ tmux.Detach</string>
 			</dict>
 			<key>Ansi 10 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.34901960784313724</real>
+				<real>0.3490196168422699</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.77647058823529413</real>
+				<real>0.7764706015586853</real>
 				<key>Red Component</key>
-				<real>0.63137254901960782</real>
+				<real>0.63137257099151611</real>
 			</dict>
 			<key>Ansi 11 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.19215686274509805</real>
+				<real>0.19215686619281769</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.63921568627450975</real>
+				<real>0.63921570777893066</real>
 				<key>Red Component</key>
-				<real>0.99215686274509807</real>
+				<real>0.99215686321258545</real>
 			</dict>
 			<key>Ansi 12 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.82352941176470584</real>
+				<real>0.82352942228317261</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.70196078431372544</real>
+				<real>0.70196080207824707</real>
 				<key>Red Component</key>
-				<real>0.43529411764705883</real>
+				<real>0.43529412150382996</real>
 			</dict>
 			<key>Ansi 13 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.76470588235294112</real>
+				<real>0.76470589637756348</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.50588235294117645</real>
+				<real>0.5058823823928833</real>
 				<key>Red Component</key>
-				<real>0.82745098039215681</real>
+				<real>0.82745099067687988</real>
 			</dict>
 			<key>Ansi 14 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.71764705882352942</real>
+				<real>0.71764707565307617</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.7803921568627451</real>
+				<real>0.78039216995239258</real>
 				<key>Red Component</key>
-				<real>0.46274509803921571</real>
+				<real>0.46274510025978088</real>
 			</dict>
 			<key>Ansi 15 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
 				<real>1</real>
 				<key>Color Space</key>
@@ -1834,7 +1852,7 @@ tmux.Detach</string>
 				<key>Green Component</key>
 				<real>0.7764706015586853</real>
 				<key>Red Component</key>
-				<real>0.51289803041531667</real>
+				<real>0.5128980278968811</real>
 			</dict>
 			<key>Ansi 3 Color</key>
 			<dict>
@@ -1845,7 +1863,7 @@ tmux.Detach</string>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.55444062448986464</real>
+				<real>0.55444061756134033</real>
 				<key>Red Component</key>
 				<real>0.99215686321258545</real>
 			</dict>
@@ -1858,7 +1876,7 @@ tmux.Detach</string>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.56565659267660851</real>
+				<real>0.56565660238265991</real>
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
@@ -1867,7 +1885,7 @@ tmux.Detach</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.66599713883748857</real>
+				<real>0.66599714756011963</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
@@ -1880,7 +1898,7 @@ tmux.Detach</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.62624064467153484</real>
+				<real>0.62624067068099976</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
@@ -1890,36 +1908,42 @@ tmux.Detach</string>
 			</dict>
 			<key>Ansi 7 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Red Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 			</dict>
 			<key>Ansi 8 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.69019607843137254</real>
+				<real>0.69019609689712524</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.69019607843137254</real>
+				<real>0.69019609689712524</real>
 				<key>Red Component</key>
-				<real>0.69019607843137254</real>
+				<real>0.69019609689712524</real>
 			</dict>
 			<key>Ansi 9 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.12549019607843137</real>
+				<real>0.12549020349979401</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.0039215686274509803</real>
+				<real>0.0039215688593685627</real>
 				<key>Red Component</key>
-				<real>0.98431372549019602</real>
+				<real>0.9843137264251709</real>
 			</dict>
 			<key>Application Keypad Allowed</key>
 			<true/>
@@ -1927,6 +1951,8 @@ tmux.Detach</string>
 			<true/>
 			<key>Background Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
 				<real>0.0</real>
 				<key>Color Space</key>
@@ -1961,14 +1987,16 @@ tmux.Detach</string>
 			<real>30</real>
 			<key>Bold Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Red Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 			</dict>
 			<key>Character Encoding</key>
 			<integer>4</integer>
@@ -1982,14 +2010,16 @@ tmux.Detach</string>
 			<real>0.0</real>
 			<key>Cursor Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Red Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 			</dict>
 			<key>Cursor Guide Color</key>
 			<dict>
@@ -2006,6 +2036,8 @@ tmux.Detach</string>
 			</dict>
 			<key>Cursor Text Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
 				<real>0.0</real>
 				<key>Color Space</key>
@@ -2031,14 +2063,16 @@ tmux.Detach</string>
 			<true/>
 			<key>Foreground Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Red Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 			</dict>
 			<key>Guid</key>
 			<string>EE9F4911-E38B-4341-83C3-5413C0D899B7</string>
@@ -2050,6 +2084,8 @@ tmux.Detach</string>
 			<integer>0</integer>
 			<key>Initial Text</key>
 			<string></string>
+			<key>Initial Use Transparency</key>
+			<true/>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -2462,7 +2498,7 @@ tmux.Detach</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCode-Light 15</string>
+			<string>FiraCode-Light 16</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<true/>
 			<key>Open Toolbelt</key>
@@ -2483,25 +2519,29 @@ tmux.Detach</string>
 			<false/>
 			<key>Selected Text Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Red Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.31372549019607843</real>
+				<real>0.31372550129890442</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.31372549019607843</real>
+				<real>0.31372550129890442</real>
 				<key>Red Component</key>
-				<real>0.31372549019607843</real>
+				<real>0.31372550129890442</real>
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
@@ -2510,6 +2550,8 @@ tmux.Detach</string>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Mark Indicators</key>
+			<false/>
+			<key>Show Status Bar</key>
 			<false/>
 			<key>Silence Bell</key>
 			<true/>
@@ -2577,6 +2619,8 @@ tmux.Detach</string>
 			<false/>
 			<key>Ansi 0 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
 				<real>0.0</real>
 				<key>Color Space</key>
@@ -2591,7 +2635,7 @@ tmux.Detach</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.12205490920739642</real>
+				<real>0.12205491214990616</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
@@ -2601,61 +2645,73 @@ tmux.Detach</string>
 			</dict>
 			<key>Ansi 10 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.34901960784313724</real>
+				<real>0.3490196168422699</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.77647058823529413</real>
+				<real>0.7764706015586853</real>
 				<key>Red Component</key>
-				<real>0.63137254901960782</real>
+				<real>0.63137257099151611</real>
 			</dict>
 			<key>Ansi 11 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.19215686274509805</real>
+				<real>0.19215686619281769</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.63921568627450975</real>
+				<real>0.63921570777893066</real>
 				<key>Red Component</key>
-				<real>0.99215686274509807</real>
+				<real>0.99215686321258545</real>
 			</dict>
 			<key>Ansi 12 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.82352941176470584</real>
+				<real>0.82352942228317261</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.70196078431372544</real>
+				<real>0.70196080207824707</real>
 				<key>Red Component</key>
-				<real>0.43529411764705883</real>
+				<real>0.43529412150382996</real>
 			</dict>
 			<key>Ansi 13 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.76470588235294112</real>
+				<real>0.76470589637756348</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.50588235294117645</real>
+				<real>0.5058823823928833</real>
 				<key>Red Component</key>
-				<real>0.82745098039215681</real>
+				<real>0.82745099067687988</real>
 			</dict>
 			<key>Ansi 14 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.71764705882352942</real>
+				<real>0.71764707565307617</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.7803921568627451</real>
+				<real>0.78039216995239258</real>
 				<key>Red Component</key>
-				<real>0.46274509803921571</real>
+				<real>0.46274510025978088</real>
 			</dict>
 			<key>Ansi 15 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
 				<real>1</real>
 				<key>Color Space</key>
@@ -2676,7 +2732,7 @@ tmux.Detach</string>
 				<key>Green Component</key>
 				<real>0.7764706015586853</real>
 				<key>Red Component</key>
-				<real>0.51289803041531667</real>
+				<real>0.5128980278968811</real>
 			</dict>
 			<key>Ansi 3 Color</key>
 			<dict>
@@ -2687,7 +2743,7 @@ tmux.Detach</string>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.55444062448986464</real>
+				<real>0.55444061756134033</real>
 				<key>Red Component</key>
 				<real>0.99215686321258545</real>
 			</dict>
@@ -2700,7 +2756,7 @@ tmux.Detach</string>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.56565659267660851</real>
+				<real>0.56565660238265991</real>
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
@@ -2709,7 +2765,7 @@ tmux.Detach</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.66599713883748857</real>
+				<real>0.66599714756011963</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
@@ -2722,7 +2778,7 @@ tmux.Detach</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.62624064467153484</real>
+				<real>0.62624067068099976</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
@@ -2732,36 +2788,42 @@ tmux.Detach</string>
 			</dict>
 			<key>Ansi 7 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Red Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 			</dict>
 			<key>Ansi 8 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.69019607843137254</real>
+				<real>0.69019609689712524</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.69019607843137254</real>
+				<real>0.69019609689712524</real>
 				<key>Red Component</key>
-				<real>0.69019607843137254</real>
+				<real>0.69019609689712524</real>
 			</dict>
 			<key>Ansi 9 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.12549019607843137</real>
+				<real>0.12549020349979401</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.0039215686274509803</real>
+				<real>0.0039215688593685627</real>
 				<key>Red Component</key>
-				<real>0.98431372549019602</real>
+				<real>0.9843137264251709</real>
 			</dict>
 			<key>Application Keypad Allowed</key>
 			<true/>
@@ -2769,6 +2831,8 @@ tmux.Detach</string>
 			<true/>
 			<key>Background Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
 				<real>0.0</real>
 				<key>Color Space</key>
@@ -2803,14 +2867,16 @@ tmux.Detach</string>
 			<real>30</real>
 			<key>Bold Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Red Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 			</dict>
 			<key>Character Encoding</key>
 			<integer>4</integer>
@@ -2819,19 +2885,21 @@ tmux.Detach</string>
 			<key>Columns</key>
 			<integer>100</integer>
 			<key>Command</key>
-			<string>ssh csb@kirby -t tmux -CC new -A -s default</string>
+			<string>ssh csb@kirby -t tmux -u -CC new -A -s default</string>
 			<key>Cursor Boost</key>
 			<real>0.0</real>
 			<key>Cursor Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Red Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 			</dict>
 			<key>Cursor Guide Color</key>
 			<dict>
@@ -2848,6 +2916,8 @@ tmux.Detach</string>
 			</dict>
 			<key>Cursor Text Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
 				<real>0.0</real>
 				<key>Color Space</key>
@@ -2873,14 +2943,16 @@ tmux.Detach</string>
 			<true/>
 			<key>Foreground Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Red Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 			</dict>
 			<key>Guid</key>
 			<string>BAC9E9AE-2DE3-4080-BF4E-E398AAE4A258</string>
@@ -2892,6 +2964,8 @@ tmux.Detach</string>
 			<integer>0</integer>
 			<key>Initial Text</key>
 			<string></string>
+			<key>Initial Use Transparency</key>
+			<true/>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -3304,7 +3378,7 @@ tmux.Detach</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCode-Light 15</string>
+			<string>FiraCode-Light 16</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<true/>
 			<key>Open Toolbelt</key>
@@ -3325,25 +3399,29 @@ tmux.Detach</string>
 			<false/>
 			<key>Selected Text Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 				<key>Red Component</key>
-				<real>0.8784313725490196</real>
+				<real>0.87843137979507446</real>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.31372549019607843</real>
+				<real>0.31372550129890442</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.31372549019607843</real>
+				<real>0.31372550129890442</real>
 				<key>Red Component</key>
-				<real>0.31372549019607843</real>
+				<real>0.31372550129890442</real>
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
@@ -3352,6 +3430,8 @@ tmux.Detach</string>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Mark Indicators</key>
+			<false/>
+			<key>Show Status Bar</key>
 			<false/>
 			<key>Silence Bell</key>
 			<true/>
@@ -3399,8 +3479,12 @@ tmux.Detach</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
+	<key>OpenArrangementAtStartup</key>
+	<false/>
 	<key>OpenBookmark</key>
 	<false/>
+	<key>OpenNoWindowsAtStartup</key>
+	<true/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>2</integer>
 	<key>PMPrintingExpandedStateForPrint2</key>
@@ -3461,7 +3545,7 @@ tmux.Detach</string>
 	<key>TabStyle</key>
 	<integer>1</integer>
 	<key>TabStyleWithAutomaticOption</key>
-	<integer>1</integer>
+	<integer>5</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>TmuxDashboardLimit</key>
