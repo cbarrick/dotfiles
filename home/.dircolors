@@ -1,0 +1,65 @@
+# Configuration file for `dircolors`, a utility to help you set the
+# `LS_COLORS` environment variable used by GNU ls with the `--color` option.
+#
+# Use it like this:
+#
+#     eval $(dircolors ~/.dircolors)
+#
+# To reset to the default values:
+#
+#     eval $(dircolors)
+#
+# To print the defaults in a human-friendly format:
+#
+#     dircolors -p
+#
+# This file contains statements of the form `<TYPE> <COLOR>` where `<TYPE>`
+# indicates the kind of file to which the color applies, and `<COLOR>` is a
+# list of color values taken from the table below:
+#
+# |----------------|----------------|-------------------|
+# | Foregrounds    | Backgrounds    | Attributes        |
+# |----------------|----------------|-------------------|
+# |  30 - black    |  40 - black    |  00 - none        |
+# |  31 - red      |  41 - red      |  01 - bold        |
+# |  32 - green    |  42 - green    |  ---------------  |
+# |  33 - yellow   |  43 - yellow   |  ---------------  |
+# |  34 - blue     |  44 - blue     |  04 - underscore  |
+# |  35 - magenta  |  45 - magenta  |  05 - blink       |
+# |  36 - cyan     |  46 - cyan     |  ---------------  |
+# |  37 - white    |  47 - white    |  07 - reverse     |
+# |  ------------  |  ------------  |  08 - concealed   |
+# |----------------|----------------|-------------------|
+#
+# See dir_colors(5) for a more in-depth description of the file.
+# https://man.archlinux.org/man/dir_colors.5
+
+# Basics.
+NORMAL 00   # Normal, non-filename text. E.g. permissions, owner, size, etc.
+RESET 00    # Reset to "normal" color.
+FILE 00     # Regular file.
+DIR 01;34   # Directory.
+EXEC 01;32  # Executable.
+
+# Links.
+LINK 01;36        # Symbolic link.
+MULTIHARDLINK 00  # Regular file with more than one link.
+ORPHAN 40;31;01   # Symlink to nonexistent file, or non-stat'able file ...
+MISSING 00        # ... and the files they point to.
+
+# Special files.
+BLK 40;33;01  # Block device driver.
+CHR 40;33;01  # Character device driver.
+FIFO 40;33    # Pipe.
+SOCK 01;35    # Socket.
+DOOR 01;35    # Door.
+
+# Special permission bits.
+SETUID 37;41   # File that is setuid (u+s).
+SETGID 30;43   # File that is setgid (g+s).
+CAPABILITY 00  # File with capability (very expensive to lookup).
+STICKY 37;44   # Dir with the sticky bit set (+t).
+
+# Other-writable directories.
+OTHER_WRITABLE 00         # Dir that is other-writable (o+w) and not sticky.
+STICKY_OTHER_WRITABLE 00  # Dir that is sticky and other-writable (+t,o+w).

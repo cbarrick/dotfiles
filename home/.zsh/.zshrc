@@ -268,6 +268,14 @@ zstyle ':prompt_csb:*' widgets \
 	prompt_csb_virtualenv_widget
 
 
+# Colors
+#--------------------
+
+# Use the GNU `dircolors` command to set the `LS_COLORS` variable.
+# Applies to GNU ls only.
+eval $(dircolors ~/.dircolors)
+
+
 # History
 #--------------------
 HISTSIZE=2000
