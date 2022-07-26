@@ -86,13 +86,17 @@
     // Languages - Rust
     "[rust]": {
         "editor.rulers": [100],
-        "editor.defaultFormatter": "matklad.rust-analyzer",
+        "editor.defaultFormatter": "rust-lang.rust-analyzer",
         "editor.formatOnSave": true,
     },
 
     // Languages - Markdown
     "[markdown]": {
-        "editor.quickSuggestions": false
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
     },
 
     // Languages - JSON
@@ -129,14 +133,9 @@
     // Extensions - Rust Analyzer
     "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.inlayHints.enable": false,
-    "rust-analyzer.assist.importPrefix": "crate",
-    "rust-analyzer.debug.openDebugPane": true,
     "rust-analyzer.lens.implementations": false,
     "rust-analyzer.rustfmt.extraArgs": [
         "--unstable-features"
-    ],
-    "rust-analyzer.diagnostics.disabled": [
-        "unresolved-import"
     ],
 
     // Extensions - Python
@@ -155,4 +154,10 @@
     "uncategorized": "dummy setting to force new entries below",
     "workbench.activityBar.visible": false,
     "editor.bracketPairColorization.enabled": false,
+    "rust-analyzer.imports.prefix": "crate",
+    "rust-analyzer.inlayHints.parameterHints.enable": false,
+    "rust-analyzer.inlayHints.typeHints.enable": false,
+    "redhat.telemetry.enabled": true,
+    "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4 }",
 }
