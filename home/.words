@@ -44,6 +44,7 @@ ipython
 jstype
 klass
 libc
+mispredicted
 mobo
 numpy
 objc
@@ -80,6 +81,7 @@ sint
 structs
 syscall
 syscalls
+textbuf
 Timeoid
 todos
 uintptr
