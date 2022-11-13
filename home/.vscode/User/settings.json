@@ -152,7 +152,6 @@
     // Changing settings in the UI will place new items here.
     // Frequently changed settings will be left in this section.
     "uncategorized": "dummy setting to force new entries below",
-    "workbench.activityBar.visible": false,
     "editor.bracketPairColorization.enabled": false,
     "rust-analyzer.imports.prefix": "crate",
     "rust-analyzer.inlayHints.parameterHints.enable": false,
@@ -160,4 +159,9 @@
     "redhat.telemetry.enabled": true,
     "rust-analyzer.inlayHints.closingBraceHints.enable": false,
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4 }",
+    "workbench.activityBar.visible": false,
+    "cSpell.userWords": [
+        "sizeor"
+    ],
+    "editor.inlayHints.enabled": "offUnlessPressed",
 }
