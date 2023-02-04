@@ -62,11 +62,12 @@ fi
 
 # Modular config files
 #--------------------
-# Note `*(on)` means to sort the glob by name.
+# `(on)` means to sort the glob by name.
+# `(N)` enables NULL_GLOB, i.e. no error if the glob generates nothing.
 
 if [[ -e "${ZDOTDIR}/.zshenv.d" ]]
 then
-	for file in "${ZDOTDIR}/.zshenv.d/"*(on)
+	for file in "${ZDOTDIR}/.zshenv.d/"*(onN)
 	do
 		source $file
 	done

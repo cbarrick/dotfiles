@@ -548,11 +548,12 @@ alias 'calc'='noglob calc'
 
 # Modular config files
 #--------------------
-# Note `*(on)` means to sort the glob by name.
+# `(on)` means to sort the glob by name.
+# `(N)` enables NULL_GLOB, i.e. no error if the glob generates nothing.
 
 if [[ -e "${ZDOTDIR}/.zshrc.d" ]]
 then
-	for file in "${ZDOTDIR}/.zshrc.d/"*(on)
+	for file in "${ZDOTDIR}/.zshrc.d/"*(onN)
 	do
 		source $file
 	done

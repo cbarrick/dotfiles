@@ -118,10 +118,12 @@ export DICTIONARY
 
 # Modular config files
 #--------------------
+# `(on)` means to sort the glob by name.
+# `(N)` enables NULL_GLOB, i.e. no error if the glob generates nothing.
 
 if [[ -e "${ZDOTDIR}/.zprofile.d" ]]
 then
-	for file in "${ZDOTDIR}/.zprofile.d/"*
+	for file in "${ZDOTDIR}/.zprofile.d/"*(onN)
 	do
 		source $file
 	done
