@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+
+function install_dir {
+    local dir=$1
+    shift 1
+
+    # First, look for a script called `install`.
+    # Otherwise look for `install.zsh` (legacy name for the install script).
+    if [[ -x "$dir/install" ]]
+    then
+        dir_name=${dir:t}
+        "$dir/install" $@
+    elif [[ -x "$dir/install.zsh" ]]
+    then
+        dir_name=${dir:t}
+        "$dir/install.zsh" $@
+    fi
+}
+
+base=${0:A:h}  # The directory containing this script.
+for dir in "$base"/*(/)
+do
+    install_dir $dir $@
+done
