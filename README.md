@@ -30,7 +30,7 @@ $ ./install_all.zsh
 ```
 
 
-## Setup your terminal emulator
+## Setup the terminal emulator
 
 Certain features of the Zsh config are only set for login shells. On some
 terminals, you must manually flip a switch to launch your shell as a login
@@ -103,6 +103,24 @@ There are four colors that can be configured.
 
 - `err_color` overrides the main color if the previous command exited with a
   non-zero status.
+
+
+## Modular config files
+
+The Zsh config allows configuration options to be spread across multiple files:
+
+- `~/.zsh/.zshenv.d/*`
+- `~/.zsh/.zprofile.d/*`
+- `~/.zsh/.zshrc.d/*`
+- `~/.zsh/.zlogin.d/*`
+- `~/.zsh/.zlogout.d/*`
+
+Files in these directories are sourced in lexicographic order (`.zlogout.d/*`
+is sourced in *reverse* order).
+
+Typically, these directories are used to hold host-specific configurations, e.g.
+host-specific path updates and environment variables. Global configuration
+should by stored in the top-level config files.
 
 
 ## Configure the `PATH`
