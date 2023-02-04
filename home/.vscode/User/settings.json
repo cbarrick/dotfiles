@@ -159,9 +159,13 @@
     "redhat.telemetry.enabled": true,
     "rust-analyzer.inlayHints.closingBraceHints.enable": false,
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4 }",
-    "workbench.activityBar.visible": false,
     "cSpell.userWords": [
+        "Omnia",
         "sizeor"
     ],
     "editor.inlayHints.enabled": "offUnlessPressed",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "workbench.activityBar.visible": false,
 }
