@@ -135,7 +135,10 @@ function prompt_csb_precmd {
 	local prompt_char="%f%(!.#.$)"  # This is `$` as user and `#` as root.
 	local top_line="${main_color}╭${widgets}${lf}"
 	local bot_line="${main_color}╰ ${prompt_char}%f "
-	export PROMPT="${lf}${top_line}${bot_line}"
+	export PROMPT="${top_line}${bot_line}"
+
+	# Echo a new line before printing the prompt.
+	echo
 }
 
 # Called whenever the theme is activated.
