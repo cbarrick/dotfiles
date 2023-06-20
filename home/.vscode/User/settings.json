@@ -4,16 +4,15 @@
 
 {
     // File handling
+    "files.associations": { "*.pl": "prolog" },
     "files.eol": "\n",
     "files.insertFinalNewline": true,
     "files.simpleDialog.enable": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "files.associations": {
-        "*.pl": "prolog"
-    },
 
     // Text Editor
+    "editor.bracketPairColorization.enabled": false,
     "editor.copyWithSyntaxHighlighting": false,
     "editor.cursorSurroundingLines": 5,
     "editor.cursorSurroundingLinesStyle": "all",
@@ -21,6 +20,9 @@
     "editor.find.autoFindInSelection": "multiline",
     "editor.fontFamily": "'Fira Mono', 'Fira Code', monospace",
     "editor.fontSize": 14,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.inlayHints.enabled": "offUnlessPressed",
     "editor.matchBrackets": "near",
     "editor.minimap.renderCharacters": false,
     "editor.minimap.showSlider": "always",
@@ -28,28 +30,24 @@
     "editor.occurrencesHighlight": false,
     "editor.rulers": [80],
     "editor.scrollbar.verticalScrollbarSize": 0,
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
     "editor.suggestSelection": "first",
 
     // UI
     "breadcrumbs.enabled": false,
     "breadcrumbs.icons": false,
-    "workbench.editor.untitled.labelFormat": "name",
+    "workbench.colorTheme": "Atom One Dark",
+    "workbench.editor.decorations.badges": false,
     "workbench.editor.untitled.hint": "hidden",
+    "workbench.editor.untitled.labelFormat": "name",
+    "workbench.editorAssociations": { "*.ipynb": "jupyter-notebook" },
     "workbench.enableExperiments": false,
     "workbench.fontAliasing": "antialiased", // Disable sub-pixel AA
-    "workbench.colorTheme": "Atom One Dark",
     "workbench.preferredDarkColorTheme": "Atom One Dark",
     "workbench.preferredLightColorTheme": "Atom One Light",
     "workbench.settings.enableNaturalLanguageSearch": false,
     "workbench.sideBar.location": "right",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.tree.renderIndentGuides": "none",
-    "workbench.editor.decorations.badges": false,
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter.notebook.ipynb"
-    },
 
     // Theme Customization
     "workbench.colorCustomizations": {
@@ -83,6 +81,11 @@
     "extensions.ignoreRecommendations": true,
     "search.useGlobalIgnoreFiles": true,
 
+    // Languages - Python
+    "[python]": {
+        "editor.formatOnType": true
+    },
+
     // Languages - Rust
     "[rust]": {
         "editor.rulers": [100],
@@ -106,6 +109,9 @@
     "[jsonc]": {
         "editor.formatOnSave": false,
     },
+
+    // Extensions - C/C++
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4 }",
 
     // Extensions - npm
     "npm.fetchOnlinePackageInfo": false,
@@ -131,12 +137,11 @@
     },
 
     // Extensions - Rust Analyzer
-    "rust-analyzer.cargo.allFeatures": true,
-    "rust-analyzer.inlayHints.enable": false,
-    "rust-analyzer.lens.implementations": false,
-    "rust-analyzer.rustfmt.extraArgs": [
-        "--unstable-features"
-    ],
+    "rust-analyzer.assist.emitMustUse": true,
+    "rust-analyzer.cargo.features": "all",
+    "rust-analyzer.check.features": "all",
+    "rust-analyzer.imports.prefix": "crate",
+    "rust-analyzer.rustfmt.extraArgs": [ "--unstable-features" ],
 
     // Extensions - Python
     "python.diagnostics.sourceMapsEnabled": true,
@@ -148,24 +153,12 @@
     // Extensions - Prolog
     "prolog.executablePath": "/opt/homebrew/bin/swipl",
 
+    // Extensions - YAML
+    "redhat.telemetry.enabled": false,
+
     // Uncategorized
     // Changing settings in the UI will place new items here.
     // Frequently changed settings will be left in this section.
     "uncategorized": "dummy setting to force new entries below",
-    "editor.bracketPairColorization.enabled": false,
-    "rust-analyzer.imports.prefix": "crate",
-    "rust-analyzer.inlayHints.parameterHints.enable": false,
-    "rust-analyzer.inlayHints.typeHints.enable": false,
-    "redhat.telemetry.enabled": true,
-    "rust-analyzer.inlayHints.closingBraceHints.enable": false,
-    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4 }",
-    "cSpell.userWords": [
-        "Omnia",
-        "sizeor"
-    ],
-    "editor.inlayHints.enabled": "offUnlessPressed",
-    "[python]": {
-        "editor.formatOnType": true
-    },
     "workbench.activityBar.visible": false,
 }
