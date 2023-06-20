@@ -72,7 +72,7 @@ force_multiline_blocks = false
 
 # Reordering:
 # - Allow rustfmt to reorder things.
-reorder_impl_items = true
+reorder_impl_items = false # Does not allow blank linkes between items.
 reorder_imports = true
 reorder_modules = true
 merge_derives = true
