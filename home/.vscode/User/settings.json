@@ -31,13 +31,9 @@
     "editor.rulers": [80],
     "editor.scrollbar.verticalScrollbarSize": 0,
     "editor.suggestSelection": "first",
-
-    // UI
-    "breadcrumbs.enabled": false,
     "breadcrumbs.icons": false,
     "workbench.colorTheme": "Atom One Dark",
     "workbench.editor.decorations.badges": false,
-    "workbench.editor.untitled.hint": "hidden",
     "workbench.editor.untitled.labelFormat": "name",
     "workbench.editorAssociations": { "*.ipynb": "jupyter-notebook" },
     "workbench.enableExperiments": false,
@@ -160,5 +156,7 @@
     // Changing settings in the UI will place new items here.
     // Frequently changed settings will be left in this section.
     "uncategorized": "dummy setting to force new entries below",
-    "workbench.activityBar.visible": false,
+    "window.commandCenter": false,
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.activityBar.location": "hidden",
 }
