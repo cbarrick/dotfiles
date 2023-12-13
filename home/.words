@@ -9,9 +9,13 @@ Barrick
 bcode
 Bdecode
 bdecoder
+binaryproto
 bitor
 bootnum
+brekky
 btree
+bufwrite
+bufwriter
 canonicalization
 capi
 cbarrick
@@ -46,6 +50,7 @@ intptr
 intrinsics
 ipynb
 ipython
+jank
 jstype
 klass
 libc
@@ -54,6 +59,7 @@ mmap
 mobo
 mremap
 numpy
+NZST
 objc
 oneof
 oneofs
