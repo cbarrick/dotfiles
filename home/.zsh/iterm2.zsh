@@ -2,12 +2,12 @@
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
@@ -168,4 +168,16 @@ if [[ -o interactive ]]; then
   fi
 fi
 
-alias imgcat=/Users/csb/.zsh/.iterm2/imgcat;alias imgls=/Users/csb/.zsh/.iterm2/imgls;alias it2api=/Users/csb/.zsh/.iterm2/it2api;alias it2attention=/Users/csb/.zsh/.iterm2/it2attention;alias it2check=/Users/csb/.zsh/.iterm2/it2check;alias it2copy=/Users/csb/.zsh/.iterm2/it2copy;alias it2dl=/Users/csb/.zsh/.iterm2/it2dl;alias it2getvar=/Users/csb/.zsh/.iterm2/it2getvar;alias it2git=/Users/csb/.zsh/.iterm2/it2git;alias it2setcolor=/Users/csb/.zsh/.iterm2/it2setcolor;alias it2setkeylabel=/Users/csb/.zsh/.iterm2/it2setkeylabel;alias it2ul=/Users/csb/.zsh/.iterm2/it2ul;alias it2universion=/Users/csb/.zsh/.iterm2/it2universion
+alias imgcat="${HOME}/.iterm2/imgcat"
+alias imgls="${HOME}/.iterm2/imgls"
+alias it2api="${HOME}/.iterm2/it2api"
+alias it2attention="${HOME}/.iterm2/it2attention"
+alias it2check="${HOME}/.iterm2/it2check"
+alias it2copy="${HOME}/.iterm2/it2copy"
+alias it2dl="${HOME}/.iterm2/it2dl"
+alias it2getvar="${HOME}/.iterm2/it2getvar"
+alias it2git="${HOME}/.iterm2/it2git"
+alias it2setcolor="${HOME}/.iterm2/it2setcolor"
+alias it2setkeylabel="${HOME}/.iterm2/it2setkeylabel"
+alias it2ul="${HOME}/.iterm2/it2ul"
+alias it2universion="${HOME}/.iterm2/it2universion"
