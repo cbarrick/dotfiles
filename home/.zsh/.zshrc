@@ -417,7 +417,7 @@ function set-term-title {
 
 	# OSC 6 and 7 are used on macOS to advertise host and pwd.
 	# These codes may foobar other terminals on Linux, like gnome-terminal.
-	if [[ ${TERM_PROGRAM} == 'Apple_Terminal' || ${TERM_PROGRAM} == 'iTerm.app' ]]
+	if [[ ${TERM_PROGRAM} == 'Apple_Terminal' || ${LC_TERMINAL} == 'iTerm' ]]
 	then
 		print -n "\e]6;${PWURL}\a"  # Current document as a URL (Terminal.app)
 		print -n "\e]7;${PWURL}\a"  # PWD as a URL (Terminal.app and iTerm2)
