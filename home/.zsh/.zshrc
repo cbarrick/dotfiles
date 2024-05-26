@@ -309,6 +309,7 @@ alias la="l --almost-all"
 alias df="df -h --total"
 alias du="du -h --total"
 alias dd="dd status=progress bs=8M"
+alias c="clear"
 
 # System tools that should always use sudo
 alias apt="sudo apt"
