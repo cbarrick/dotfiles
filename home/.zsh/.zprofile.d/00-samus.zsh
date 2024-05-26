@@ -23,6 +23,7 @@ then
 		"${HOMEBREW_PREFIX}/opt/ruby/bin"
 		"${HOMEBREW_PREFIX}/bin"
 		"${HOMEBREW_PREFIX}/sbin"
+		"/Applications/iTerm.app/Contents/Resources/utilities"
 		${path}
 	)
 
