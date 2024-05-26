@@ -1,6 +1,7 @@
 aarch
 ACPI
 AFAICT
+ahash
 allocs
 arity
 autohide
@@ -21,6 +22,7 @@ capi
 cbarrick
 cmdline
 consts
+conv
 corge
 cpus
 ctlz
@@ -52,9 +54,11 @@ ipynb
 ipython
 jank
 jstype
+Kitem
 klass
 libc
 mispredicted
+Mitem
 mmap
 mobo
 mremap
@@ -108,9 +112,11 @@ unbuffered
 Uncategorized
 Unmap
 Unported
+Unsets
 vals
 vectorize
 Welford's
 Weyl
 writev
+yabiroch
 zstyle
