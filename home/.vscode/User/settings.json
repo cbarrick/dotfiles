@@ -27,7 +27,7 @@
     "editor.minimap.renderCharacters": false,
     "editor.minimap.showSlider": "always",
     "editor.multiCursorModifier": "ctrlCmd",
-    "editor.occurrencesHighlight": false,
+    "editor.occurrencesHighlight": "off",
     "editor.rulers": [80],
     "editor.scrollbar.verticalScrollbarSize": 0,
     "editor.suggestSelection": "first",
@@ -103,6 +103,11 @@
         "editor.formatOnSave": false,
     },
     "[jsonc]": {
+        "editor.formatOnSave": false,
+    },
+
+    // Languages - HTML
+    "[html]": {
         "editor.formatOnSave": false,
     },
 
