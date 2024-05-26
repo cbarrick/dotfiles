@@ -2000,7 +2000,7 @@ tmux.Detach</string>
 			<key>Blur</key>
 			<true/>
 			<key>Blur Radius</key>
-			<real>30</real>
+			<real>16</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -2563,6 +2563,8 @@ tmux.Detach</string>
 			<false/>
 			<key>Send Session Ended Alert</key>
 			<false/>
+			<key>Set Local Environment Vars</key>
+			<integer>1</integer>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Mark Indicators</key>
@@ -2882,7 +2884,7 @@ tmux.Detach</string>
 			<key>Blur</key>
 			<true/>
 			<key>Blur Radius</key>
-			<real>30</real>
+			<real>16</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -3445,6 +3447,8 @@ tmux.Detach</string>
 			<false/>
 			<key>Send Session Ended Alert</key>
 			<false/>
+			<key>Set Local Environment Vars</key>
+			<integer>1</integer>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Mark Indicators</key>
