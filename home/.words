@@ -27,6 +27,8 @@ corge
 cpus
 ctlz
 ctype
+dealloction
+dedupe
 deinitialized
 delim
 deque
@@ -52,6 +54,8 @@ intptr
 intrinsics
 ipynb
 ipython
+isqrt
+itertools
 jank
 jstype
 Kitem
@@ -115,6 +119,7 @@ Unported
 Unsets
 vals
 vectorize
+vlist
 Welford's
 Weyl
 writev
