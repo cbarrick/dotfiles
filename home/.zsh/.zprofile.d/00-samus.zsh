@@ -1,7 +1,5 @@
 if [[ "${HOST%%.*}" == "samus" ]]
 then
-	export POETRY_HOME="${HOME}/.poetry"
-
 	export HOMEBREW_PREFIX="/opt/homebrew"
 	export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
 	export HOMEBREW_REPOSITORY="/opt/homebrew"
@@ -57,5 +55,4 @@ then
 
 	source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/completion.zsh.inc"
 	source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.zsh.inc"
-	source "${HOME}/.poetry/env"
 fi
