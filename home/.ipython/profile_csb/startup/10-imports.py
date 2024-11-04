@@ -4,7 +4,7 @@ import sys
 from copy import copy, deepcopy
 from pathlib import Path
 
-from IPython.lib import deepreload as reload
+from IPython.lib.deepreload import reload
 
 try:
     import numpy as np
