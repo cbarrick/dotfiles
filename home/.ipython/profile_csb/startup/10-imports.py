@@ -4,7 +4,10 @@ import sys
 from copy import copy, deepcopy
 from pathlib import Path
 
-from IPython.lib.deepreload import reload
+# Deep reload is currently broken:
+# https://github.com/ipython/ipython/issues/14570
+# from IPython.lib.deepreload import reload
+from importlib import reload
 
 try:
     import numpy as np
