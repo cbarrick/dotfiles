@@ -29,3 +29,9 @@ try:
     import jax.numpy as jnp
 except ImportError:
     pass
+
+try:
+    import matplotlib
+    import matplotlib.pyplot as plt
+except ImportError:
+    pass
