@@ -61,6 +61,7 @@ jstype
 Kitem
 klass
 libc
+linkify
 mispredicted
 Mitem
 mmap
@@ -116,6 +117,7 @@ uintptr
 unbuffered
 Uncategorized
 Unmap
+unnormalized
 Unported
 Unsets
 vals
