@@ -477,6 +477,33 @@ alias pip="python -m pip"
 alias venv="python -m venv"
 
 
+# Virtual Environments
+#--------------------
+# In theory, many different programming language tools use virtual environments
+# as part of the standard dev setup. In practice, I mainly use Python's venv.
+# This code could be generalized to more tools in the future.
+
+function find_venv {
+	local search=(
+		"./.venv/bin/activate"  # python venv
+	)
+	for path in $search
+	do
+		if [[ -f "$path" ]]
+		then
+			echo "$path"
+			return 0
+		fi
+	done
+	return 1
+}
+
+function activate {
+	# Source the activate script in a new subshell.
+	zsh -c "source '$(find_venv)' && exec zsh -i"
+}
+
+
 # Rust
 #--------------------
 
