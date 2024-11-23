@@ -470,7 +470,6 @@ source ${ZDOTDIR}/iterm2.zsh
 
 export IPYTHONDIR="${HOME}/.ipython"
 alias ipy="ipython --profile=csb"
-alias ipylab="ipy --pylab"
 
 alias python=python3
 alias pip="python -m pip"
