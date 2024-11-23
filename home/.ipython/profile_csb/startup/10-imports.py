@@ -31,7 +31,7 @@ except ImportError:
     pass
 
 try:
-    import matplotlib
+    import matplotlib as mpl
     import matplotlib.pyplot as plt
 except ImportError:
     pass
