@@ -127,7 +127,6 @@
 
     // Extensions - Code Spell Checker
     "cSpell.language": "en-US",
-    "cSpell.showStatus": true,
     "cSpell.allowCompoundWords": true,
     "cSpell.customDictionaries": {
         "personal": {
@@ -163,5 +162,7 @@
     "uncategorized": "dummy setting to force new entries below",
     "window.commandCenter": false,
     "workbench.editor.empty.hint": "hidden",
-    "workbench.activityBar.location": "hidden",
+    "evenBetterToml.formatter.allowedBlankLines": 2,
+    "evenBetterToml.schema.enabled": false,
+    "evenBetterToml.formatter.alignComments": false,
 }
