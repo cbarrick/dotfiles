@@ -456,7 +456,7 @@ add-zsh-hook chpwd chpwd-chpwurl
 # iTerm2
 #--------------------
 # It's difficult to detect if we are using iTerm2 over an SSH session, because
-# $TERM_PROGRAM may not be propogated. We source the iterm2 integration script
+# $TERM_PROGRAM may not be propagated. We source the iterm2 integration script
 # regardless of what shell we are using, and hope nothing breaks.
 
 source ${ZDOTDIR}/iterm2.zsh

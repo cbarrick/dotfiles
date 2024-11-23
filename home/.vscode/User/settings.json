@@ -49,7 +49,8 @@
     "workbench.colorCustomizations": {
         "scrollbar.shadow": "#ffffff00", // Disable drop shadows
         "widget.shadow": "#ffffff00", // Disable drop shadows
-        "editorRuler.foreground": "#44444444",
+        "editorRuler.foreground": "#44444444", // Softer ruler
+        "minimap.infoHighlight": "#00000000", // Disable Info highlights in minimap
     },
     "editor.tokenColorCustomizations": {
         "[Atom One Dark]": {
@@ -128,6 +129,8 @@
     // Extensions - Code Spell Checker
     "cSpell.language": "en-US",
     "cSpell.allowCompoundWords": true,
+    "cSpell.diagnosticLevel": "Information",
+    "cSpell.diagnosticLevelFlaggedWords": "Warning",
     "cSpell.customDictionaries": {
         "personal": {
             "name": "personal",
@@ -135,6 +138,13 @@
             "addWords": true,
         }
     },
+    "cSpell.includeRegExpList": [ // Only check these patterns
+        "comments", // builtin pattern
+        "string",  // builtin pattern
+        "strings",  // builtin pattern
+        "CStyleComment",  // builtin pattern
+        "/#.*/", // shell-style comments
+    ],
 
     // Extensions - Rust Analyzer
     "rust-analyzer.assist.emitMustUse": true,
