@@ -18,6 +18,7 @@ then
 		"${HOMEBREW_PREFIX}/opt/llvm/bin"
 		"${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
 		"${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
+		"${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
 		"${HOMEBREW_PREFIX}/opt/ruby/bin"
 		"${HOMEBREW_PREFIX}/bin"
 		"${HOMEBREW_PREFIX}/sbin"
@@ -38,6 +39,7 @@ then
 		"${HOMEBREW_PREFIX}/opt/llvm/share/man"
 		"${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuman"
 		"${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnuman"
+		"${HOMEBREW_PREFIX}/opt/make/libexec/gnuman"
 		"${HOMEBREW_PREFIX}/opt/ruby/share/man"
 		"${HOMEBREW_PREFIX}/share/man"
 		${manpath}
@@ -48,6 +50,7 @@ then
 		"${HOME}/.local/share/info"
 		"${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnuinfo"
 		"${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnuinfo"
+		"${HOMEBREW_PREFIX}/opt/make/libexec/gnuinfo"
 		"${HOMEBREW_PREFIX}/share/info"
 		${infopath}
 		""  # Empty string means to use the default search path.
