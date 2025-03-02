@@ -85,6 +85,8 @@ proto
 protobuf
 protos
 Ptrs
+pycache
+pycaches
 pyproject
 quuz
 recompositions
@@ -122,6 +124,7 @@ Unported
 Unsets
 vals
 vectorize
+venv
 vlist
 Welford's
 Weyl
