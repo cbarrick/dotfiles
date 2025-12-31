@@ -174,4 +174,6 @@
     "workbench.editor.empty.hint": "hidden",
     "evenBetterToml.taplo.configFile.path": "taplo.toml",
     "evenBetterToml.formatter.alignComments": true,
+    "rust-analyzer.restartServerOnConfigChange": true,
+    "cSpell.enabled": false,
 }
