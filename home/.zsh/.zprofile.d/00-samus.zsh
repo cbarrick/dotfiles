@@ -12,6 +12,9 @@ then
 	export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/llvm/lib -Wl,-rpath,${HOMEBREW_PREFIX}/opt/llvm/lib"
 	export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/llvm/include"
 
+	source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/completion.zsh.inc"
+	source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.zsh.inc"
+
 	path=(
 		"${HOME}/.local/bin"
 		"${HOME}/.cargo/bin"
@@ -55,7 +58,4 @@ then
 		${infopath}
 		""  # Empty string means to use the default search path.
 	)
-
-	source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/completion.zsh.inc"
-	source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.zsh.inc"
 fi
