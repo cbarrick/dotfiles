@@ -340,6 +340,12 @@ export PAGER LESS
 # Use paru instead of pacman
 exists paru && alias pacman="paru"
 
+# Use toilet instead of figlet.
+# Note that toilet does not support all figlet options.
+exists toilet && exists figlet && \
+	alias toilet="toilet -d $(figlet -I2) -f standard"
+exists toilet && alias figlet="toilet"
+
 
 # Rationalize Dots
 #--------------------
