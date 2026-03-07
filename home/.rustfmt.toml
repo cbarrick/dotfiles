@@ -1,123 +1,81 @@
-edition = "2021"
+# Rustfmt config
+
+edition = "2024"
 unstable_features = true
 
 # Core:
-# - Use Unix line endings.
-# - Use spaces for indentation.
-# - Convert tabs to 4 spaces.
-newline_style = "Unix"
-hard_tabs = false
-tab_spaces = 4
-
-# Auto alignment
-# - Disable auto-align.
-struct_field_align_threshold = 0
-enum_discrim_align_threshold = 0
-
-# Long lines:
-# - Maximum line width is 100 characters.
-# - Use block-style indentation when wrapping.
-# - Prefer small form of expressions up to the line length.
-# - Function arguments use tall formatting when too long.
-# - Put binrary ops at the front of the line when wrapping.
-# - Wrap long strings.
-# - Force attributes to be on a separate line.
-# - Use trailing commas in vertical layouts.
-max_width = 100
-indent_style = "Block"
-use_small_heuristics = "Max"
-fn_args_layout = "Tall"
-binop_separator = "Front"
-format_strings = true
-inline_attribute_width = 0
-trailing_comma = "Vertical"
+max_width = 100  # Maximum line width is the baseline for use_small_heuristics.
+use_small_heuristics = "Default"  # Prefer small form of expressions up to the line length.
+indent_style = "Block"  # Use block-style indentation when wrapping.
+fn_params_layout = "Tall"  # Function arguments use tall formatting when too long.
+binop_separator = "Front"  # Put binrary ops at the front of the line when wrapping.
+format_strings = true  # Wrap long strings.
+inline_attribute_width = 100  # Allow attributes to be on a combined line with items.
+trailing_comma = "Vertical"  # Use trailing commas in vertical layouts.
+trailing_semicolon = true  # Use put a trailing semicolon after `break`, `continue`, and `return`.
+use_try_shorthand = true  # Rewrite uses of the legacy `try!` macro into the `?` operator.
+overflow_delimited_expr = true  # Overflow the last argument in a function call separately.
+force_explicit_abi = true  # Always include the ABI in `extern` items.
+format_generated_files = false  # Ignore code with `@generated` in the first few lines.
+generated_marker_line_search_limit = 5  # Number of lines to search for the `@generated` tag.
+hex_literal_case = "Preserve"  # Don't change the casing of hex literals.
+float_literal_trailing_zero = "IfNoPostfix"  # Don't allow float literals like `1.`, require a trailing zero.
 
 # Comments:
-# - Comments are 80 characters max.
-# - Allow rustfmt to auto-wrap comments.
-# - Format code in comments.
-# - Normalize block comments into line comments when possible.
-# - Normalize doc attributes into comments when possible.
-comment_width = 80
-wrap_comments = true
-format_code_in_doc_comments = true
-normalize_comments = true
-normalize_doc_attributes = true
+comment_width = 80  # Comments are 80 characters max.
+wrap_comments = true  # Allow rustfmt to auto-wrap comments.
+format_code_in_doc_comments = true  # Format code in comments.
+doc_comment_code_block_width = 100  # Code in doc comments has a max width of 100.
+normalize_comments = true  # Normalize block comments into line comments when possible.
+normalize_doc_attributes = true  # Normalize doc attributes into comments when possible.
 
 # Whitespace:
-# - Allow items to be separated by at most two blank lines.
-# - Put space after colons, but not before.
-# - Do not include spaces around range operators.
-# - Use spaces arround `=` in attributes.
-blank_lines_lower_bound = 0
-blank_lines_upper_bound = 2
-space_after_colon = true
-space_before_colon = false
-spaces_around_ranges = false
-# space_around_attr_eq = true  # post rustfmt v2.0.0
+newline_style = "Unix"  # Use Unix line endings.
+hard_tabs = false  # Use spaces for indentation.
+tab_spaces = 4  # Convert tabs to 4 spaces.
+blank_lines_lower_bound = 0  # Allow items to not be separated.
+blank_lines_upper_bound = 2  # Allow items to be separated by at most two blank lines.
+space_after_colon = true  # Put space after colons, but not before.
+space_before_colon = false  # Do not include spaces around range operators.
+spaces_around_ranges = false  # Use spaces arround `=` in attributes.
 
 # Braces, Brackets, and Parens:
-# - Prefer braces on the same line, except with `where` clauses.
-# - Combine control expressions with function calls.
-# - Put single-expression functions on a single line.
-# - Remove extraneous parens, one layer is allowed for clarity.
-# - Allow closures and match expressions to be combined without extra braces.
-brace_style = "SameLineWhere"
-control_brace_style = "AlwaysSameLine"
-empty_item_single_line = true
-combine_control_expr = true
-fn_single_line = false
-remove_nested_parens = true
-force_multiline_blocks = false
+brace_style = "SameLineWhere"  # Prefer braces on the same line, except with `where` clauses.
+control_brace_style = "AlwaysSameLine"  # Combine control expressions with function calls.
+empty_item_single_line = true  # Put single-expression functions on a single line.
+combine_control_expr = true  # Allow control expressions to combine with function calls.
+fn_single_line = true  # Put single-expression functions on a single line
+remove_nested_parens = true  # Remove extraneous parens, one layer is allowed for clarity.
+force_multiline_blocks = false  # Allow closures and match expressions to be combined without extra braces.
 
 # Reordering:
-# - Allow rustfmt to reorder things.
-reorder_impl_items = false # Does not allow blank linkes between items.
-reorder_imports = true
-reorder_modules = true
-merge_derives = true
+reorder_impl_items = false  # Don't reorder items in impl blocks.
+reorder_imports = true  # Do reorder imports.
+reorder_modules = true  # Do reorder mod declarations.
+merge_derives = true  # Merge derive attributes.
 
 # Imports:
-# - Use deeply nested import grouping.
-# - Allow single line import blocks but wrap if they get too long.
-# - Allow automatic merging and reordering.
-imports_granularity = "Crate"
-imports_indent = "Block"
-imports_layout = "Mixed"
+imports_granularity = "Crate"  # Use deeply nested import grouping.
+imports_indent = "Block"  # Allow single line import blocks but wrap if they get too long.
+imports_layout = "Mixed"  # Allow automatic merging and reordering.
+group_imports = "Preserve"  # Do not reorder import groups.
 
 # Structs:
-# - Use field initialization shorthand.
-# - Put small struct literals on a single line.
-use_field_init_shorthand = true
-struct_lit_single_line = true
+use_field_init_shorthand = true  # Use field initialization shorthand.
+struct_lit_single_line = true  # Put small struct literals on a single line.
 
 # Macros:
-# - Format them.
-format_macro_matchers = true
-format_macro_bodies = true
+format_macro_matchers = true  # Format macro matchers
+format_macro_bodies = true  # Format macro bodies.
+skip_macro_invocations = []  # List of macro calls to skip formatting.
 
 # Match blocks & pattern matching:
-# - Do not use a trailing comma after block arms.
-# - Do not allow a leading pipe symbol in match arms.
-# - Use block form if the arm is too long.
-# - Do not force condensed wildcard patterns.
-match_block_trailing_comma = false
-match_arm_leading_pipes = "Never"
-match_arm_blocks = true
-condense_wildcard_suffixes = false
+match_block_trailing_comma = false  # Do not use a trailing comma after block arms.
+match_arm_leading_pipes = "Never"  # Do not allow a leading pipe symbol in match arms.
+match_arm_blocks = true  # Use block form if the arm is too long.
+match_arm_indent = true  # Indent match arms.
+condense_wildcard_suffixes = false  # Do not force condensed wildcard patterns.
 
 # Types:
-# - Put spaces around operators in type clauses.
-# - Always use multiple lines for where clauses.
-type_punctuation_density = "Wide"
-where_single_line = false
-
-# Misc:
-# - Allow implicit "C" ABI on extern blocks.
-# - Rewrite uses of the legacy `try!` macro into the `?` operator.
-# - Overflow the last argument in a function call separately.
-# - Use put a trailing semicolon after `break`, `continue`, and `return`.
-force_explicit_abi = false
-use_try_shorthand = true
-overflow_delimited_expr = true
-trailing_semicolon = true
+type_punctuation_density = "Wide"  # Put spaces around operators in type clauses.
+where_single_line = false  # Always use multiple lines for where clauses.
