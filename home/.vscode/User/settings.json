@@ -176,4 +176,5 @@
     "evenBetterToml.formatter.alignComments": true,
     "rust-analyzer.restartServerOnConfigChange": true,
     "cSpell.enabled": false,
+    "chat.disableAIFeatures": true,
 }
