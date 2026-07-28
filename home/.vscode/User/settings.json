@@ -32,7 +32,7 @@
     "editor.scrollbar.verticalScrollbarSize": 0,
     "editor.suggestSelection": "first",
     "breadcrumbs.icons": false,
-    "workbench.colorTheme": "Atom One Dark",
+    "workbench.colorTheme": "Atom One Light",
     "workbench.editor.decorations.badges": false,
     "workbench.editor.untitled.labelFormat": "name",
     "workbench.editorAssociations": { "*.ipynb": "jupyter-notebook" },

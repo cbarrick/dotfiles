@@ -18,6 +18,7 @@ then
 	path=(
 		"${HOME}/.local/bin"
 		"${HOME}/.cargo/bin"
+		"${HOMEBREW_PREFIX}/opt/rustup/bin"
 		"${HOMEBREW_PREFIX}/opt/llvm/bin"
 		"${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
 		"${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
@@ -32,6 +33,7 @@ then
 
 	fpath=(
 		"${ZDOTDIR}/functions"
+		"${HOMEBREW_PREFIX}/opt/rustup/share/zsh/site-functions"
 		"${HOMEBREW_PREFIX}/share/zsh-completions"
 		"${HOMEBREW_PREFIX}/share/zsh/site-functions"
 		"${HOMEBREW_PREFIX}/share/zsh/functions"
