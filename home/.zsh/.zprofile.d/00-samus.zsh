@@ -1,5 +1,8 @@
 if [[ "${HOST%%.*}" == "samus" ]]
 then
+	# Use Bitwarden as my SSH agent.
+	export SSH_AUTH_SOCK="${HOME}/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
+
 	export HOMEBREW_PREFIX="/opt/homebrew"
 	export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
 	export HOMEBREW_REPOSITORY="/opt/homebrew"
