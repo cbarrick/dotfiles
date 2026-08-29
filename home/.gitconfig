@@ -1,12 +1,22 @@
 [user]
 email = cbarrick1@gmail.com
 name = Chris Barrick
+signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII5No2gSiUzEbaXznEcOCxDXmUW0+SKcLXHvK7pS6h6C csb@samus.home.cbarrick.dev
+
+[gpg]
+format = ssh
+
+[gpg "ssh"]
+allowedSignersFile = ~/.gitconfig.d/allowed_signers
 
 [core]
 excludesfile = ~/.gitignore
 
 [init]
 defaultBranch = main
+
+[commit]
+gpgsign = true
 
 [rebase]
 autoSquash = true
