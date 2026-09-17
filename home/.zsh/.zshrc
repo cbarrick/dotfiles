@@ -322,8 +322,12 @@ alias reboot="sudo reboot"
 # Allow alias expansion with sudo
 alias sudo="sudo "
 
-# Use hub instead of git when avaliable
+# Use hub instead of git when available
 exists hub && alias git=hub
+
+# Use Sequoia instead of GPG when available
+exists gpg-sq && alias gpg=gpg-sq
+exists gpgv-sq && alias gpgv=gpgv-sq
 
 # Editors in order of preference, least to most
 exists nano && EDITOR="nano"

@@ -116,6 +116,17 @@ DICTIONARY="${HOME}/.dictionary.txt"
 export DICTIONARY
 
 
+# Sequoia
+#--------------------
+# Sequoia is an implementation of the OpenPGP standard.
+# By default, Sequoia uses a platform appropriate location, e.g. XDG on Linux
+# or Application Support on macOS. We force this to be an old-school dotfile
+# directory instead, to make backup and management a bit easier across systems.
+
+SEQUOIA_HOME="${HOME}/.sequoia"
+export SEQUOIA_HOME
+
+
 # Modular config files
 #--------------------
 # `(on)` means to sort the glob by name.
