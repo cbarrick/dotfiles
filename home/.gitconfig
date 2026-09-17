@@ -1,10 +1,10 @@
 [user]
-email = cbarrick1@gmail.com
 name = Chris Barrick
-signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII5No2gSiUzEbaXznEcOCxDXmUW0+SKcLXHvK7pS6h6C csb@samus.home.cbarrick.dev
+email = cbarrick1@gmail.com
+signingkey = 1053AF4DA678FEF285A06005FFD9B129EF9B0DF2
 
 [gpg]
-format = ssh
+program = gpg-sq
 
 [gpg "ssh"]
 allowedSignersFile = ~/.gitconfig.d/allowed_signers
@@ -26,6 +26,9 @@ default = current
 
 [pull]
 rebase = true
+
+[tag]
+gpgsign = true
 
 [filter "lfs"]
 clean = git-lfs clean %f
