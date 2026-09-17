@@ -177,4 +177,5 @@
     "rust-analyzer.restartServerOnConfigChange": true,
     "cSpell.enabled": false,
     "chat.disableAIFeatures": true,
+    "workbench.activityBar.location": "hidden",
 }
