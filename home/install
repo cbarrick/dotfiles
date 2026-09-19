@@ -53,11 +53,15 @@ done
 # Link `.zshenv` into the home directory.
 link ~/.zsh/.zshenv ~/.zshenv
 
-# Tell iTerm2 about its profile.
+# macOS specific settings that I always want.
 if [[ `uname` == 'Darwin' ]]
 then
+    # Tell iTerm2 about its profile.
     defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.iterm2"
     defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+    # pinentry-mac should not store GPG keys in the keychain by default.
+    defaults write org.gpgtools.pinentry-mac UseKeychain -bool NO
 fi
 
 # Regenerate authorized_keys
