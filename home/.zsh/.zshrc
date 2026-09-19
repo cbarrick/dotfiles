@@ -354,6 +354,9 @@ exists toilet && alias figlet="toilet"
 exists gpg-sq && alias gpg=gpg-sq
 exists gpgv-sq && alias gpgv=gpgv-sq
 
+# GPG pinentry may need to know the current TTY device in interactive shells.
+export GPG_TTY=$(tty)
+
 # If gpg-agent is installed, use it as the ssh agent.
 if exists gpgconf
 then
