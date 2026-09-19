@@ -4,9 +4,8 @@
 # https://ipython.readthedocs.io/en/stable/config/options/index.html
 
 # Classic prompt style ('>>>') with colors.
-c.InteractiveShell.color_info = True
-c.TerminalInteractiveShell.colors = 'Neutral'
-c.TerminalInteractiveShell.prompts_class = 'IPython.terminal.prompts.ClassicPrompts'
+c.TerminalInteractiveShell.colors = "Neutral"
+c.TerminalInteractiveShell.prompts_class = "IPython.terminal.prompts.ClassicPrompts"
 
 # Disable the startup banner.
 c.TerminalIPythonApp.display_banner = False
