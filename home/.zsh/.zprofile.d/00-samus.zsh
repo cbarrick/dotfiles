@@ -1,8 +1,5 @@
 if [[ "${HOST%%.*}" == "samus" ]]
 then
-	# Use GPG agent as my SSH agent.
-	export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-
 	export HOMEBREW_PREFIX="/opt/homebrew"
 	export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
 	export HOMEBREW_REPOSITORY="/opt/homebrew"

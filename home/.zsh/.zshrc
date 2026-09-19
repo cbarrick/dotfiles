@@ -325,10 +325,6 @@ alias sudo="sudo "
 # Use hub instead of git when available
 exists hub && alias git=hub
 
-# Use Sequoia instead of GPG when available
-exists gpg-sq && alias gpg=gpg-sq
-exists gpgv-sq && alias gpgv=gpgv-sq
-
 # Editors in order of preference, least to most
 exists nano && EDITOR="nano"
 exists vim  && EDITOR="vim"
@@ -349,6 +345,21 @@ exists paru && alias pacman="paru"
 exists toilet && exists figlet && \
 	alias toilet="toilet -d $(figlet -I2) -f standard"
 exists toilet && alias figlet="toilet"
+
+
+# GPG and SSH
+#--------------------
+
+# Use Sequoia instead of GPG when available.
+exists gpg-sq && alias gpg=gpg-sq
+exists gpgv-sq && alias gpgv=gpgv-sq
+
+# If gpg-agent is installed, use it as the ssh agent.
+if exists gpgconf
+then
+	gpgconf --launch all
+	export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
 
 
 # Rationalize Dots
