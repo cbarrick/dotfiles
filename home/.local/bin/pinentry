@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+#
+# A script which delegates to the appropriate pinentry program.
+
+set -euo pipefail
+
+# Checks if a file or command exists.
+function exists {
+    type $1 &> /dev/null
+}
+
+# exec into a command if it exists.
+function try_exec {
+    exists "$1" && exec $@
+}
+
+# Pinentry programs, in order of preference.
+try_exec pinentry-mac $@
+try_exec pinentry-curses $@
+
+# Fallback: Look for a pinentry program on the path, skipping this script.
+for p in $path
+do
+    local prog="${p}/pinentry"
+    [[ "${prog:A}" == "${0:A}" ]] && continue  # Don't recurse back into this script.
+    try_exec "${prog:A}" $@  # If the program exists, delegate to it.
+done
+
+echo "pinentry command not found" >&2
+exit 1
